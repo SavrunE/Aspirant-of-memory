@@ -14,9 +14,21 @@ public class Click : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit2D aHit = new RaycastHit2D();
-            aHit = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            Debug.Log(aHit.collider.name);
+            RaycastHit2D rayHit = new RaycastHit2D();
+            rayHit = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+            if (rayHit.collider != null)
+            {
+                TryGetButton(rayHit.collider);
+            }
+        }
+    }
+
+    private void TryGetButton(Collider2D hittedObject)
+    {
+        if (hittedObject.TryGetComponent(out IButtonEffect effect))
+        {
+            effect.Activate();
         }
     }
 }

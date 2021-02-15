@@ -243,6 +243,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &499192188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499192190}
+  - component: {fileID: 499192189}
+  m_Layer: 0
+  m_Name: Clicker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &499192189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499192188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d7a0f25eee6c94d8eae9db37c17f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &499192190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499192188}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +533,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1119131043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 773639162904539018, guid: 7314c116d25646144ae6ad9be24a07ca, type: 3}
+  m_PrefabInstance: {fileID: 1635384645265208173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1119131046
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119131043}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1119131047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119131043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da6396489861fa4089d8bdcd5079ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1451085847
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1805791331}
   - component: {fileID: 1805791332}
+  - component: {fileID: 1805791333}
   m_Layer: 0
   m_Name: Circle (1)
   m_TagString: Untagged
@@ -818,6 +895,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1805791333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805791330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c93a85887e9e544851fd1107205260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1861017070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9203228687643411618, guid: 7314c116d25646144ae6ad9be24a07ca, type: 3}
+  m_PrefabInstance: {fileID: 1635384645265208173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1861017072
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861017070}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1861017073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861017070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c93a85887e9e544851fd1107205260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2139582151
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,6 +999,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 392207720}
     m_Modifications:
+    - target: {fileID: 773639162904539018, guid: 7314c116d25646144ae6ad9be24a07ca, type: 3}
+      propertyPath: m_Name
+      value: ButtonEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475434302212248735, guid: 7314c116d25646144ae6ad9be24a07ca, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3922715691573281961, guid: 7314c116d25646144ae6ad9be24a07ca, type: 3}
       propertyPath: m_RootOrder
       value: 0
