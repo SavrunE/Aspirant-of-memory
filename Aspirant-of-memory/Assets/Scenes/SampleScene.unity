@@ -563,9 +563,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1119131043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da6396489861fa4089d8bdcd5079ef5, type: 3}
+  m_Script: {fileID: 11500000, guid: b868cac350e2b9d48961f4192e2bea9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxAlpha: 0.9
+  speedEffect: 0.1
 --- !u!1 &1451085847
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,6 +1004,10 @@ PrefabInstance:
     - target: {fileID: 773639162904539018, guid: 7314c116d25646144ae6ad9be24a07ca, type: 3}
       propertyPath: m_Name
       value: ButtonEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475434302212248735, guid: 7314c116d25646144ae6ad9be24a07ca, type: 3}
+      propertyPath: m_Color.a
+      value: 0.18431373
       objectReference: {fileID: 0}
     - target: {fileID: 2475434302212248735, guid: 7314c116d25646144ae6ad9be24a07ca, type: 3}
       propertyPath: m_SortingOrder
