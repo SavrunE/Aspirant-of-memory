@@ -6,7 +6,7 @@ public class MainButton : MonoBehaviour, IButtonEffect
 {
     private ButtonEffect effect;
 
-    private void Start()
+    private void Awake()
     {
         effect = GetComponentInChildren<ButtonEffect>();
         if (effect == null)
