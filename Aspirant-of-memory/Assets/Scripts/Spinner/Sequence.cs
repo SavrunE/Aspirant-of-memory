@@ -5,30 +5,47 @@ using UnityEngine;
 public class Sequence : MonoBehaviour
 {
     [SerializeField] private int lengthQueue;
+    [SerializeField] private float ActivateButtonDelay = 0.5f;
 
-    private MainButton[] childButtons;
-    private Queue<MainButton> queueButtons;
+    private Button[] childButtons;
+    private Queue<Button> queueButtons;
 
     private void Start()
     {
-        childButtons = gameObject.GetComponentsInChildren<MainButton>();
+        childButtons = gameObject.GetComponentsInChildren<Button>();
         foreach (var child in childButtons)
         {
 
-            Debug.Log(child);
         }
-        queueButtons = new Queue<MainButton>();
+        queueButtons = new Queue<Button>();
 
-        CollectQueue();
+        StartCoroutine(CollectQueue());
     }
 
-    private void CollectQueue()
+    private IEnumerator CollectQueue()
     {
+        Button button;
         for (int i = 0; i < lengthQueue; i++)
         {
-            queueButtons.Enqueue(childButtons[Random.Range(0, childButtons.Length)]);
+            yield return new WaitForSeconds(ActivateButtonDelay);
 
-            Debug.Log(childButtons[Random.Range(0, childButtons.Length)]);
+            button = childButtons[Random.Range(0, childButtons.Length)];
+            queueButtons.Enqueue(button);
+            button.PutInQueue();
+        }
+        Debug.Log("Need to make it possible to start playing.");
+    }
+
+    public void CheckButtonSelected(Button button)
+    {
+        if (button == queueButtons.Peek())
+        {
+            queueButtons.Dequeue();
+            button.Activate();
+        }
+        else
+        {
+            Debug.Log("Stop game");
         }
     }
 }

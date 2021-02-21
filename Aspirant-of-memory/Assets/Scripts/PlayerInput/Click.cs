@@ -28,7 +28,7 @@ public class Click : MonoBehaviour
     {
         if (hittedObject.TryGetComponent(out IButtonEffect effect))
         {
-            effect.Activate();
+            effect.OnClick();
         }
     }
 }
