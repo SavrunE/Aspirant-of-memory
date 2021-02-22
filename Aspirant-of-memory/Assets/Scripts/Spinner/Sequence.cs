@@ -7,15 +7,19 @@ public class Sequence : MonoBehaviour
     [SerializeField] private int lengthQueue;
     [SerializeField] private float ActivateButtonDelay = 0.5f;
 
-    private Button[] childButtons;
     private Queue<Button> queueButtons;
+    private ColorSettings colorSettings;
 
-    private void Start()
+    public Button[] childButtons { get; private set; }
+
+    private void Awake()
     {
-        childButtons = gameObject.GetComponentsInChildren<Button>();
-        foreach (var child in childButtons)
-        {
+        colorSettings = GetComponent<ColorSettings>();
 
+        childButtons = gameObject.GetComponentsInChildren<Button>();
+        for (int i = 0; i < childButtons.Length; i++)
+        {
+            //childButtons[i].gameObject.GetComponent<SpriteRenderer>().color = colorSettings.colors[i];
         }
         queueButtons = new Queue<Button>();
 

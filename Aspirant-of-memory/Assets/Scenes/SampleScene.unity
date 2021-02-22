@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lengthQueue: 10
+  ActivateButtonDelay: 1.5
 --- !u!1 &499192188
 GameObject:
   m_ObjectHideFlags: 0
