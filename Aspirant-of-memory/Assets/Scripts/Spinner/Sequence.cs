@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Sequence : MonoBehaviour
 {
+    public Button[] childButtons { get; private set; }
+
     [SerializeField] private int lengthQueue;
     [SerializeField] private float ActivateButtonDelay = 0.5f;
 
     private Queue<Button> queueButtons;
     private ColorSettings colorSettings;
 
-    public Button[] childButtons { get; private set; }
 
     private void Awake()
     {

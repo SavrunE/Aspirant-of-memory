@@ -6,6 +6,13 @@ using UnityEngine;
 public class ColorSettings : MonoBehaviour
 {
     public Color[] colors;
+
+    [Range(0f, 0.5f)]
+    public float effectAlpha = 0.2f;
+    [Range(0.6f, 0.9f)]
+    public float maxEffectAlpha = 0.9f;
+    public float speedEffectChanger = 0.01f;
+
     private Sequence sequence;
 
     private void Start()
@@ -22,6 +29,7 @@ public class ColorSettings : MonoBehaviour
             if (sequence.childButtons[i].TryGetComponent(out Button button))
             {
                 button.gameObject.GetComponent<SpriteRenderer>().color = colors[i];
+                button.Effect.GetComponent<SpriteRenderer>().color = colors[i];
             }
         }
     }

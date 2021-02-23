@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Button : MonoBehaviour, IButtonEffect
 {
-    private ButtonEffect effect;
-    private Sequence queue;
+    public  ButtonEffect Effect { get; private set; }
+    public Sequence Queue { get; private set; }
 
     private void Awake()
     {
@@ -16,21 +16,21 @@ public class Button : MonoBehaviour, IButtonEffect
 
     private void TryGetEffect()
     {
-        effect = GetComponentInChildren<ButtonEffect>();
-        if (effect == null)
+        Effect = GetComponentInChildren<ButtonEffect>();
+        if (Effect == null)
         {
             Debug.Log("У кнопки нет эфекта " + this.gameObject.name);
         }
         else
         {
-            effect.buttonParent = this;
+            Effect.buttonParent = this;
         }
     }
 
     private void TryGetParentSequence()
     {
-        queue = transform.parent.GetComponent<Sequence>();
-        if (queue == null)
+        Queue = transform.parent.GetComponent<Sequence>();
+        if (Queue == null)
         {
             Debug.Log("У кнопки нет родительской очереди " + this.gameObject.name);
         }
@@ -43,11 +43,11 @@ public class Button : MonoBehaviour, IButtonEffect
 
     public void OnClick()
     {
-        queue.CheckButtonSelected(this);
+        Queue.CheckButtonSelected(this);
     }
 
     public void Activate()
     {
-        effect.ChangeCollor();
+        Effect.ChangeCollor();
     }
 }
