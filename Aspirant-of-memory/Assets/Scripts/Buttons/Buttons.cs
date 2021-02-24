@@ -2,29 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
-public class Button : MonoBehaviour, IButtonEffect
+public class Buttons : MonoBehaviour
 {
-    public  ButtonEffect Effect { get; private set; }
     public Sequence Queue { get; private set; }
 
     private void Awake()
     {
-        TryGetEffect();
         TryGetParentSequence();
-    }
-
-    private void TryGetEffect()
-    {
-        Effect = GetComponentInChildren<ButtonEffect>();
-        if (Effect == null)
-        {
-            Debug.Log("У кнопки нет эфекта " + this.gameObject.name);
-        }
-        else
-        {
-            Effect.buttonParent = this;
-        }
     }
 
     private void TryGetParentSequence()
@@ -48,6 +32,5 @@ public class Button : MonoBehaviour, IButtonEffect
 
     public void Activate()
     {
-        Effect.ChangeCollor();
     }
 }

@@ -2,34 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ColorSettings))]
 public class Sequence : MonoBehaviour
 {
-    public Button[] childButtons { get; private set; }
+    public Buttons[] childButtons { get; private set; }
 
     [SerializeField] private int lengthQueue;
     [SerializeField] private float ActivateButtonDelay = 0.5f;
 
-    private Queue<Button> queueButtons;
+    private Queue<Buttons> queueButtons;
     private ColorSettings colorSettings;
 
 
     private void Awake()
     {
         colorSettings = GetComponent<ColorSettings>();
-
-        childButtons = gameObject.GetComponentsInChildren<Button>();
+        childButtons = gameObject.GetComponentsInChildren<Buttons>();
         for (int i = 0; i < childButtons.Length; i++)
         {
             //childButtons[i].gameObject.GetComponent<SpriteRenderer>().color = colorSettings.colors[i];
         }
-        queueButtons = new Queue<Button>();
+        queueButtons = new Queue<Buttons>();
 
         StartCoroutine(CollectQueue());
     }
 
     private IEnumerator CollectQueue()
     {
-        Button button;
+        Buttons button;
         for (int i = 0; i < lengthQueue; i++)
         {
             yield return new WaitForSeconds(ActivateButtonDelay);
@@ -41,7 +41,7 @@ public class Sequence : MonoBehaviour
         Debug.Log("Need to make it possible to start playing.");
     }
 
-    public void CheckButtonSelected(Button button)
+    public void CheckButtonSelected(Buttons button)
     {
         if (button == queueButtons.Peek())
         {
