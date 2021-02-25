@@ -11,6 +11,8 @@ public class ColorChanger : MonoBehaviour
     private float speedEffectChanger;
     private float baseAlpha;
 
+    private Coroutine coroutine = null;
+
     private void Start()
     {
         TakeColorSetiings();
@@ -25,8 +27,6 @@ public class ColorChanger : MonoBehaviour
         maximumEffectAlpha = ColorSettings.Instance.maximumEffectAlpha;
         speedEffectChanger = ColorSettings.Instance.speedEffectChanger;
         baseAlpha = spriteRenderer.color.a;
-
-        Debug.Log(minimumEffectAlpha + "" + maximumEffectAlpha + speedEffectChanger);
     }
 
     public void ChangeBaseColor(int element)
@@ -37,7 +37,12 @@ public class ColorChanger : MonoBehaviour
 
     public void ChangeCollorAlpha()
     {
-        StartCoroutine(StartChangeColor());
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, baseAlpha);
+        }
+        coroutine = StartCoroutine(StartChangeColor());
     }
 
     private IEnumerator StartChangeColor()
@@ -50,9 +55,7 @@ public class ColorChanger : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        Debug.Log("sprite.color.a < maxAlpha");
-
-        StartCoroutine(ReturnChangeColor());
+        coroutine =  StartCoroutine(ReturnChangeColor());
     }
 
     private IEnumerator ReturnChangeColor()
@@ -64,8 +67,6 @@ public class ColorChanger : MonoBehaviour
                        speedEffectChanger);
             yield return new WaitForFixedUpdate();
         }
-
-        Debug.Log("sprite.color.a < maxAlpha");
 
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, baseAlpha);
     }

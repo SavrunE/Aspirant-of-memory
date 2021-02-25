@@ -16,6 +16,7 @@ public class ButtonEffect : MonoBehaviour, IButtonEffect
 
     private void Start()
     {
+        colorChanger = GetComponent<ColorChanger>();
         sprite = GetComponent<SpriteRenderer>();
         baseAlpha = sprite.color.a;
 
