@@ -7,18 +7,19 @@ public class Sequence : MonoBehaviour
     [SerializeField] private int lengthQueue;
     [SerializeField] private float ActivateButtonDelay = 1.5f;
 
-    public Button[] childButtons { get; private set; }
+    private List<Button> childButtons;
     private Queue<Button> queueButtons;
+    private ButtonsSpawner buttonsSpawner;
 
-    private void Start()
+    public void CollectSequence(List<Button> childButtons)
     {
-        childButtons = gameObject.GetComponentsInChildren<Button>();
+        this.childButtons = childButtons;
         ChangeButtonsStartColor();
     }
 
     private void ChangeButtonsStartColor()
     {
-        for (int i = 0; i < childButtons.Length; i++)
+        for (int i = 0; i < childButtons.Count; i++)
         {
             childButtons[i].TakeBaseColor(i);
         }
@@ -37,7 +38,7 @@ public class Sequence : MonoBehaviour
 
         for (int i = 0; i < lengthQueue; i++)
         {
-            button = childButtons[Random.Range(0, childButtons.Length)];
+            button = childButtons[Random.Range(0, childButtons.Count)];
             queueButtons.Enqueue(button);
             button.PutInQueue();
 
