@@ -7,7 +7,7 @@ using UnityEngine;
 public class Button : MonoBehaviour, IButtonEffect
 {
     private ButtonEffect buttonEffect;
-    private Sequence sequence;
+    private ButtonRotator buttonRotator;
     private ColorChanger colorChanger;
 
     private void Awake()
@@ -28,10 +28,10 @@ public class Button : MonoBehaviour, IButtonEffect
 
     private void TryGetParentSequence()
     {
-        sequence = transform.parent.GetComponent<Sequence>();
-        if (sequence == null)
+        buttonRotator = transform.parent.GetComponent<ButtonRotator>();
+        if (buttonRotator == null)
         {
-            Debug.Log("У кнопки нет родительского sequence " + this.gameObject.name);
+            Debug.Log("У кнопки нет родительского buttonRotator " + this.gameObject.name);
         }
     }
 
@@ -47,7 +47,7 @@ public class Button : MonoBehaviour, IButtonEffect
 
     public void OnClick()
     {
-        sequence.CheckButtonSelected(this);
+        buttonRotator.sequence.CheckButtonSelected(this);
     }
 
     public void Activate()
