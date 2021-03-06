@@ -35,9 +35,10 @@ public class Button : MonoBehaviour, IButtonEffect
         }
     }
 
-    public void TakeBaseColor(int element)
+    public void TakeBaseColor(int elementNumber)
     {
-        colorChanger.ChangeBaseColor(element);
+        colorChanger.ChangeBaseColor(elementNumber);
+        buttonEffect.TakeBaseColor(elementNumber);
     }
 
     public void PutInQueue()

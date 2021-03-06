@@ -34,6 +34,12 @@ public class ColorChanger : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = ColorSettings.Instance.colors[element];
     }
+    public void ChangeBaseColor(int element, float colorAlpha)
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = ColorSettings.Instance.colors[element];
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, colorAlpha);
+    }
 
     public void ChangeCollorAlpha()
     {

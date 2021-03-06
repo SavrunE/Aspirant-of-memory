@@ -7,18 +7,11 @@ public class ButtonEffect : MonoBehaviour, IButtonEffect
 {
     public Button buttonParent { get; private set; }
 
-    private SpriteRenderer sprite;
-    private float baseAlpha;
-
     private ColorChanger colorChanger;
-    private float maxAlpha;
-    private float speedEffect;
 
-    private void Start()
+    private void Awake()
     {
         colorChanger = GetComponent<ColorChanger>();
-        sprite = GetComponent<SpriteRenderer>();
-        baseAlpha = sprite.color.a;
 
         buttonParent = transform.parent.GetComponent<Button>();
     }
@@ -31,5 +24,10 @@ public class ButtonEffect : MonoBehaviour, IButtonEffect
     public void ChangeCollor()
     {
         colorChanger.ChangeCollorAlpha();
+    }
+
+    public void TakeBaseColor(int elementNumber)
+    {
+        colorChanger.ChangeBaseColor(elementNumber, ColorSettings.Instance.effectAlpha);
     }
 }

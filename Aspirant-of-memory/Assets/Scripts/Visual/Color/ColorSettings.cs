@@ -12,6 +12,7 @@ public class ColorSettings : MonoBehaviour
     [Range(0.6f, 0.9f)]
     public float maximumEffectAlpha = 0.9f;
     public float speedEffectChanger = 0.01f;
+    public float effectAlpha = 0.2f;
 
     private Sequence sequence;
 

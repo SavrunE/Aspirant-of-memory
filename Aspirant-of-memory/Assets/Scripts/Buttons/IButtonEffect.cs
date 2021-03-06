@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IButtonEffect 
 {
     void OnClick();
+    void TakeBaseColor(int elementNumber);
 }

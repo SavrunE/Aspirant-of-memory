@@ -7,7 +7,6 @@ using UnityEngine;
 public class ButtonsSpawner : MonoBehaviour
 {
     [SerializeField] private int startButtonsCount;
-    [SerializeField] private float localPositionY = 2f;
     [SerializeField] private ButtonRotator buttonRotatorTemplate;
     private Sequence sequence;
     public List<Button> childButtons { get; private set; }
@@ -26,7 +25,6 @@ public class ButtonsSpawner : MonoBehaviour
             childButtons.Add(buttonRotator.GetComponentInChildren<Button>());
 
             buttonRotator.transform.eulerAngles = new Vector3(0, 0, angelsSpawn * i);
-            buttonRotator.transform.localPosition = new Vector3(0, localPositionY, 0);
         }
         Debug.Log(childButtons.Count);
         sequence.CollectSequence(childButtons);
