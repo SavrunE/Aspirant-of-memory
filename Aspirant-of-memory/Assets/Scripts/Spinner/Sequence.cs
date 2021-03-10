@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Sequence : MonoBehaviour
@@ -10,6 +12,8 @@ public class Sequence : MonoBehaviour
     private List<Button> childButtons;
     private Queue<Button> queueButtons;
     private ButtonsSpawner buttonsSpawner;
+
+    public event Action<bool> SequenceActivated;
 
     public void CollectSequence(List<Button> childButtons)
     {
@@ -38,24 +42,31 @@ public class Sequence : MonoBehaviour
 
         for (int i = 0; i < lengthQueue; i++)
         {
-            button = childButtons[Random.Range(0, childButtons.Count)];
+            button = childButtons[UnityEngine.Random.Range(0, childButtons.Count)];
             queueButtons.Enqueue(button);
             button.PutInQueue();
 
             yield return new WaitForSeconds(ActivateButtonDelay);
         }
+        SequenceActivated?.Invoke(true);
     }
 
     public void CheckButtonSelected(Button button)
     {
-        if (button == queueButtons.Peek())
+        if (queueButtons.Any() && button == queueButtons.Peek())
         {
             queueButtons.Dequeue();
             button.Activate();
+
+            if (!queueButtons.Any())
+            {
+                Debug.Log("Winner");
+            }
         }
         else
         {
-            Debug.Log("Stop game");
+            Debug.Log("Game was stopped by losing");
+            SequenceActivated?.Invoke(false);
         }
     }
 }

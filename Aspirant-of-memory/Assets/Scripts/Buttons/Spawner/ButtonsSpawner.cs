@@ -26,7 +26,6 @@ public class ButtonsSpawner : MonoBehaviour
 
             buttonRotator.transform.eulerAngles = new Vector3(0, 0, angelsSpawn * i);
         }
-        Debug.Log(childButtons.Count);
         sequence.CollectSequence(childButtons);
     }
 }
