@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 392207720}
   - component: {fileID: 392207721}
-  - component: {fileID: 392207722}
   - component: {fileID: 392207723}
   m_Layer: 0
   m_Name: Spinner
@@ -170,31 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lengthQueue: 2
   ActivateButtonDelay: 1.5
---- !u!114 &392207722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392207719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc0b9949288676f429933d3c94110be7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colors:
-  - {r: 1, g: 0, b: 0, a: 0.47058824}
-  - {r: 1, g: 0.5893409, b: 0, a: 0.6745098}
-  - {r: 1, g: 0.98393744, b: 0, a: 0.49803922}
-  - {r: 0, g: 1, b: 0.16954446, a: 0.6745098}
-  - {r: 0, g: 1, b: 0.95151806, a: 0.6745098}
-  - {r: 0, g: 0.024564743, b: 1, a: 0.6745098}
-  - {r: 0.5517421, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0.7805748, a: 0.6745098}
-  minimumEffectAlpha: 0.2
-  maximumEffectAlpha: 0.9
-  speedEffectChanger: 0.08
-  effectAlpha: 0.2
 --- !u!114 &392207723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63fb9939a486c6a43b901c29fe36edd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonsCount: 2
+  ButtonsCount: 10
   buttonRotatorTemplate: {fileID: -1201948898605944743, guid: 45caa5981dc3da24e95676938b87106e, type: 3}
 --- !u!1 &499192188
 GameObject:
@@ -857,6 +831,65 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1637157125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1637157127}
+  - component: {fileID: 1637157126}
+  m_Layer: 0
+  m_Name: ColorSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1637157126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637157125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc0b9949288676f429933d3c94110be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 1, g: 0, b: 0, a: 0.47058824}
+  - {r: 1, g: 0.5893409, b: 0, a: 0.6745098}
+  - {r: 1, g: 0.98393744, b: 0, a: 0.49803922}
+  - {r: 0, g: 1, b: 0.16954446, a: 0.6745098}
+  - {r: 0, g: 1, b: 0.95151806, a: 0.6745098}
+  - {r: 0, g: 0.024564743, b: 1, a: 0.6745098}
+  - {r: 0.5517421, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.7805748, a: 0.6745098}
+  - {r: 0.4433962, g: 0.24846919, b: 0.40058872, a: 0.6745098}
+  - {r: 0.4339623, g: 0.030295465, b: 0.34515548, a: 0.6745098}
+  - {r: 0.16037738, g: 0.021787107, b: 0.12943004, a: 0.6745098}
+  minimumEffectAlpha: 0.2
+  maximumEffectAlpha: 0.9
+  speedEffectChanger: 0.08
+  effectAlpha: 0.2
+--- !u!4 &1637157127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637157125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1638212836
 GameObject:
   m_ObjectHideFlags: 0
