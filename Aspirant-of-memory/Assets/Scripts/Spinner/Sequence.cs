@@ -14,6 +14,7 @@ public class Sequence : MonoBehaviour
     private ButtonsSpawner buttonsSpawner;
 
     public event Action<bool> SequenceActivated;
+    public event Action<int> SequenceChanged;
 
     public void CollectSequence(List<Button> childButtons)
     {
@@ -57,11 +58,7 @@ public class Sequence : MonoBehaviour
         {
             queueButtons.Dequeue();
             button.Activate();
-
-            if (!queueButtons.Any())
-            {
-                Debug.Log("Winner");
-            }
+            SequenceChanged?.Invoke(queueButtons.Count);
         }
         else
         {

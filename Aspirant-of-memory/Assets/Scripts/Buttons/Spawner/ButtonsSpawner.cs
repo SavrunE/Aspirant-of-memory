@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using IJunior.TypedScenes;
 
 
 [RequireComponent(typeof(Sequence))]
-public class ButtonsSpawner : MonoBehaviour
+public class ButtonsSpawner : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 {
-    [SerializeField] private int startButtonsCount;
+    [SerializeField] private int ButtonsCount;
     [SerializeField] private ButtonRotator buttonRotatorTemplate;
     private Sequence sequence;
     public List<Button> childButtons { get; private set; }
+
+    public void OnSceneLoaded(LevelConfiguration argument)
+    {
+        ButtonsCount = argument.ButtonsCount;
+    }
 
     public void Start()
     {
@@ -17,9 +23,9 @@ public class ButtonsSpawner : MonoBehaviour
 
         childButtons = new List<Button>();
         ButtonRotator buttonRotator;
-        float angelsSpawn = 360f / startButtonsCount;
+        float angelsSpawn = 360f / ButtonsCount;
 
-        for (int i = 0; i < startButtonsCount; i++)
+        for (int i = 0; i < ButtonsCount; i++)
         {
             buttonRotator = Instantiate(buttonRotatorTemplate, this.transform);
             childButtons.Add(buttonRotator.GetComponentInChildren<Button>());
