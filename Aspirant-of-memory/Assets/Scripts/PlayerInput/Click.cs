@@ -22,6 +22,7 @@ public class Click : MonoBehaviour
     {
         camera = Camera.main;
     }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && activateClicker)

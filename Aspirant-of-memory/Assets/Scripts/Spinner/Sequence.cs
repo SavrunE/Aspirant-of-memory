@@ -7,11 +7,13 @@ using UnityEngine;
 public class Sequence : MonoBehaviour
 {
     [SerializeField] private int lengthQueue;
-    [SerializeField] private float ActivateButtonDelay = 1.5f;
+    [SerializeField] private float activateButtonDelay = 1.5f;
 
     private List<Button> childButtons;
     private Queue<Button> queueButtons;
     private ButtonsSpawner buttonsSpawner;
+
+    public float movingDelay = 1f; 
 
     public event Action<bool> SequenceActivated;
     public event Action<int> SequenceChanged;
@@ -47,7 +49,7 @@ public class Sequence : MonoBehaviour
             queueButtons.Enqueue(button);
             button.PutInQueue();
 
-            yield return new WaitForSeconds(ActivateButtonDelay);
+            yield return new WaitForSeconds(activateButtonDelay);
         }
         SequenceActivated?.Invoke(true);
     }
