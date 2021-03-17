@@ -18,6 +18,7 @@ public class Sequence : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 
     public event Action<bool> QueueReady;
     public event Action<int> SequenceChanged;
+    public event Action LoseLevel;
     public void OnSceneLoaded(LevelConfiguration argument)
     {
         queueLength = argument.QueueLength;
@@ -71,6 +72,7 @@ public class Sequence : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
         {
             Debug.Log("Game was stopped by losing");
             QueueReady?.Invoke(false);
+            LoseLevel?.Invoke();
         }
     }
 }

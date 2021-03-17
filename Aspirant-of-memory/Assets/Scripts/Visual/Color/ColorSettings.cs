@@ -26,7 +26,6 @@ public class ColorSettings : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
 
         sequence = GetComponent<Sequence>();
     }

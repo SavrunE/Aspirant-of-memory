@@ -11,17 +11,24 @@ public class LevelLoader : MonoBehaviour
     private void OnEnable()
     {
         sequence.SequenceChanged += OnSequenceChanged;
+        sequence.LoseLevel += OnLoseLevel;
     }
     private void OnDisable()
     {
-        sequence.SequenceChanged -= OnSequenceChanged;
+        sequence.LoseLevel -= OnLoseLevel;
     }
 
     private void OnSequenceChanged(int size)
     {
         if (size == 0)
         {
+            Debug.Log("New level");
             DefaultLevel.Load(levelConfiguration);
         }
+    }
+    private void OnLoseLevel()
+    {
+        Debug.Log("Lose level");
+        DefaultLevel.Load(levelConfiguration);
     }
 }
