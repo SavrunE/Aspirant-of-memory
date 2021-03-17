@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using IJunior.TypedScenes;
 
 [RequireComponent(typeof(ButtonsSpawner))]
 [RequireComponent(typeof(Sequence))]
-public class SpinnerMover : MonoBehaviour
+public class SpinnerMover : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 {
     [SerializeField] private int buttonsOffset;
 
     private ButtonsSpawner buttonsSpawner;
     private Sequence sequence;
+
+    public void OnSceneLoaded(LevelConfiguration argument)
+    {
+        buttonsOffset = argument.RotateLength;
+    }
 
     private void OnEnable()
     {

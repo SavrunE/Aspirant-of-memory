@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using IJunior.TypedScenes;
 
-public class Sequence : MonoBehaviour
+public class Sequence : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 {
-    [SerializeField] private int lengthQueue;
+    [SerializeField] private int queueLength;
     [SerializeField] private float activateButtonDelay = 1.5f;
 
     private List<Button> childButtons;
@@ -17,6 +18,10 @@ public class Sequence : MonoBehaviour
 
     public event Action<bool> SequenceActivated;
     public event Action<int> SequenceChanged;
+    public void OnSceneLoaded(LevelConfiguration argument)
+    {
+        queueLength = argument.QueueLength;
+    }
 
     public void CollectSequence(List<Button> childButtons)
     {
@@ -43,7 +48,7 @@ public class Sequence : MonoBehaviour
 
         Button button;
 
-        for (int i = 0; i < lengthQueue; i++)
+        for (int i = 0; i < queueLength; i++)
         {
             button = childButtons[UnityEngine.Random.Range(0, childButtons.Count)];
             queueButtons.Enqueue(button);

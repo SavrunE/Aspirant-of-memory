@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 392207720}
   - component: {fileID: 392207721}
   - component: {fileID: 392207723}
+  - component: {fileID: 392207722}
   m_Layer: 0
   m_Name: Spinner
   m_TagString: Untagged
@@ -168,7 +169,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lengthQueue: 2
-  ActivateButtonDelay: 1.5
+  activateButtonDelay: 1.5
+  movingDelay: 1
+--- !u!114 &392207722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392207719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef91fbab430c28b48bcfaa8db157662d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonsOffset: 2
 --- !u!114 &392207723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63fb9939a486c6a43b901c29fe36edd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonsCount: 10
+  ButtonsCount: 8
   buttonRotatorTemplate: {fileID: -1201948898605944743, guid: 45caa5981dc3da24e95676938b87106e, type: 3}
 --- !u!1 &499192188
 GameObject:
