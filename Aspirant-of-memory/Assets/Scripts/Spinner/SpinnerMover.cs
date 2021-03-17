@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using IJunior.TypedScenes;
+using System;
 
 [RequireComponent(typeof(ButtonsSpawner))]
 [RequireComponent(typeof(Sequence))]
@@ -12,6 +13,8 @@ public class SpinnerMover : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 
     private ButtonsSpawner buttonsSpawner;
     private Sequence sequence;
+
+    public event Action<bool> SequenceActivated;
 
     public void OnSceneLoaded(LevelConfiguration argument)
     {
@@ -23,31 +26,37 @@ public class SpinnerMover : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
         buttonsSpawner = GetComponent<ButtonsSpawner>();
         sequence = GetComponent<Sequence>();
 
-        sequence.SequenceActivated += DoRotate;
+        sequence.QueueReady += DoRotate;
     }
     private void OnDisable()
     {
-        sequence.SequenceActivated -= DoRotate;
+        sequence.QueueReady -= DoRotate;
     }
 
     public void DoRotate(bool activated)
     {
-        if (activated)
+        if (activated && buttonsOffset != 0)
         {
-            int range = Random.Range(0, 2);
+            int range = UnityEngine.Random.Range(0, 2);
             switch (range)
             {
                 case 0:
-                    Rotate(buttonsSpawner.angleRotation * buttonsOffset);
+                    StartCoroutine(Rotate(buttonsSpawner.angleRotation * buttonsOffset));
                     break;
                 case 1:
-                    Rotate(-buttonsSpawner.angleRotation * buttonsOffset);
+                    StartCoroutine(Rotate(-buttonsSpawner.angleRotation * buttonsOffset));
                     break;
             }
         }
+        else
+        {
+            SequenceActivated?.Invoke(true);
+        }
     }
-    private void Rotate(float valueZ)
+    private IEnumerator Rotate(float valueZ)
     {
         transform.DORotate(new Vector3(0, 0, valueZ), sequence.movingDelay, RotateMode.Fast);
+        yield return new WaitForSeconds(sequence.movingDelay);
+        SequenceActivated?.Invoke(true);
     }
 }

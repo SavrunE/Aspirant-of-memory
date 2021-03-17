@@ -6,16 +6,16 @@ public class Click : MonoBehaviour
 {
     private Camera camera;
     private bool activateClicker = false;
-    [SerializeField] private Sequence sequence;
+    [SerializeField] private SpinnerMover spinnerMover;
 
     private void OnEnable()
     {
-        sequence.SequenceActivated += ClickerActivate;
+        spinnerMover.SequenceActivated += ClickerActivate;
     }
 
     private void OnDisable()
     {
-        sequence.SequenceActivated -= ClickerActivate;
+        spinnerMover.SequenceActivated -= ClickerActivate;
     }
 
     private void Start()
@@ -49,6 +49,7 @@ public class Click : MonoBehaviour
     {
         if (value)
         {
+            Debug.Log("Activated");
             activateClicker = true;
         }
         else

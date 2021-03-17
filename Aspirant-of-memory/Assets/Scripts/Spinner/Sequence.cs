@@ -16,7 +16,7 @@ public class Sequence : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 
     public float movingDelay = 1f; 
 
-    public event Action<bool> SequenceActivated;
+    public event Action<bool> QueueReady;
     public event Action<int> SequenceChanged;
     public void OnSceneLoaded(LevelConfiguration argument)
     {
@@ -56,7 +56,7 @@ public class Sequence : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 
             yield return new WaitForSeconds(activateButtonDelay);
         }
-        SequenceActivated?.Invoke(true);
+        QueueReady?.Invoke(true);
     }
 
     public void CheckButtonSelected(Button button)
@@ -70,7 +70,7 @@ public class Sequence : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
         else
         {
             Debug.Log("Game was stopped by losing");
-            SequenceActivated?.Invoke(false);
+            QueueReady?.Invoke(false);
         }
     }
 }
