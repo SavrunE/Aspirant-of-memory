@@ -22,4 +22,9 @@ public class LevelConfiguration : ScriptableObject
     {
         return Random.Range(baseValue, baseValue + overValue + 1);
     }
+
+    public void ChangeValues(int value)
+    {
+        buttonsCount += value;
+    }
 }
