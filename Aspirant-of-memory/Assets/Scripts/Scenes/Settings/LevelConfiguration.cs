@@ -23,8 +23,27 @@ public class LevelConfiguration : ScriptableObject
         return Random.Range(baseValue, baseValue + overValue + 1);
     }
 
-    public void ChangeValues(int value)
+    public List<int> TakeValues()
     {
-        buttonsCount += value;
+        List<int> numbers = new List<int>(0);
+        numbers.AddRange(new int[] {
+          buttonsCount,  buttonsCountRangeOver,
+         queueLength,  queueLengthRangeOver,
+         rotateOffset,  rotateOffsetRangeOver});
+
+        return numbers;
+    }
+
+    public void ChangeValues(
+        int buttonsCount, int buttonsCountRangeOver,
+        int queueLength, int queueLengthRangeOver,
+        int rotateOffset, int rotateOffsetRangeOver)
+    {
+        this.buttonsCount = buttonsCount;
+        this.buttonsCountRangeOver = buttonsCountRangeOver;
+        this.queueLength = queueLength;
+        this.queueLengthRangeOver = queueLengthRangeOver;
+        this.rotateOffset = rotateOffset;
+        this.rotateOffsetRangeOver = rotateOffsetRangeOver;
     }
 }

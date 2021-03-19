@@ -18,4 +18,4 @@ MonoBehaviour:
   queueLengthRangeOver: 0
   rotateOffset: 0
   rotateOffsetRangeOver: 0
-  startedLevelConfiguration: {fileID: 0}
+  startedLevelConfiguration: {fileID: 11400000, guid: 86dcbeb1ad862d4498fa3ce040d3cbe5, type: 2}

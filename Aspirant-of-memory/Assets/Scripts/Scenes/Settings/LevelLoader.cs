@@ -23,7 +23,7 @@ public class LevelLoader : MonoBehaviour
         if (size == 0)
         {
             Debug.Log("New level");
-            levelConfiguration.ChangeValues(1);
+            //levelConfiguration.ChangeValues(1);
             DefaultLevel.Load(levelConfiguration);
         }
     }
