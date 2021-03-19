@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using IJunior.TypedScenes;
 
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private Sequence sequence;
     [SerializeField] private LevelConfiguration levelConfiguration;
+    [SerializeField] private Mode gameMode;
 
     private void OnEnable()
     {
@@ -23,13 +23,12 @@ public class LevelLoader : MonoBehaviour
         if (size == 0)
         {
             Debug.Log("New level");
-            //levelConfiguration.ChangeValues(1);
-            DefaultLevel.Load(levelConfiguration);
+            gameMode.NextLevelLoad();
         }
     }
     private void OnLoseLevel()
     {
         Debug.Log("Lose level");
-        DefaultLevel.Load(levelConfiguration);
+        gameMode.ReloadLevel();
     }
 }

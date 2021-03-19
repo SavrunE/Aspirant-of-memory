@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New config", menuName = "Config")]
 public class LevelConfiguration : ScriptableObject
 {
+    [Header("Level configuration")]
     [SerializeField] private int buttonsCount;
     [SerializeField] private int buttonsCountRangeOver;
 
@@ -14,6 +15,14 @@ public class LevelConfiguration : ScriptableObject
     [SerializeField] private int rotateOffset;
     [SerializeField] private int rotateOffsetRangeOver;
 
+    [Header("Limitations")]
+    [SerializeField] private int maxButtons = 8;
+    [SerializeField] private int maxLengthCount = 16;
+    private int maxRotate => maxButtons / 2;
+
+    public int MaxButtons => maxButtons;
+    public int MaxLengthCount => maxLengthCount;
+    public int MaxRotate => maxRotate;
     public int ButtonsCount => RangeOverSize(buttonsCount, buttonsCountRangeOver);
     public int QueueLength => RangeOverSize(queueLength, queueLengthRangeOver);
     public int RotateLength => RangeOverSize(rotateOffset, rotateOffsetRangeOver);
@@ -23,27 +32,31 @@ public class LevelConfiguration : ScriptableObject
         return Random.Range(baseValue, baseValue + overValue + 1);
     }
 
-    public List<int> TakeValues()
+    public List<int> TakeParameters()
     {
-        List<int> numbers = new List<int>(0);
-        numbers.AddRange(new int[] {
-          buttonsCount,  buttonsCountRangeOver,
+        List<int> parameters = new List<int>(0);
+        parameters.AddRange(new int[] {
+         buttonsCount,  buttonsCountRangeOver,
          queueLength,  queueLengthRangeOver,
          rotateOffset,  rotateOffsetRangeOver});
 
-        return numbers;
+        return parameters;
     }
 
-    public void ChangeValues(
-        int buttonsCount, int buttonsCountRangeOver,
-        int queueLength, int queueLengthRangeOver,
-        int rotateOffset, int rotateOffsetRangeOver)
+    public void IncreaseParameters(int[] changeValue)
     {
-        this.buttonsCount = buttonsCount;
-        this.buttonsCountRangeOver = buttonsCountRangeOver;
-        this.queueLength = queueLength;
-        this.queueLengthRangeOver = queueLengthRangeOver;
-        this.rotateOffset = rotateOffset;
-        this.rotateOffsetRangeOver = rotateOffsetRangeOver;
+        int i = 0;
+        if (buttonsCount + 1 + buttonsCountRangeOver <= MaxButtons)
+        {
+            buttonsCount += changeValue[i++];
+            buttonsCountRangeOver += changeValue[i++];
+        }
+        if (queueLength + 1 + queueLengthRangeOver <= MaxLengthCount)
+        {
+            queueLength += changeValue[i++];
+            queueLengthRangeOver += changeValue[i++];
+        }
+        rotateOffset += changeValue[i++];
+        rotateOffsetRangeOver += changeValue[i++];
     }
 }
