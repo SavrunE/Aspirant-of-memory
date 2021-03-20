@@ -18,11 +18,9 @@ public class LevelConfiguration : ScriptableObject
     [Header("Limitations")]
     [SerializeField] private int maxButtons = 8;
     [SerializeField] private int maxLengthCount = 16;
-    private int maxRotate => maxButtons / 2;
-
     public int MaxButtons => maxButtons;
     public int MaxLengthCount => maxLengthCount;
-    public int MaxRotate => maxRotate;
+    public int MaxRotate => maxButtons / 2;
     public int ButtonsCount => RangeOverSize(buttonsCount, buttonsCountRangeOver);
     public int QueueLength => RangeOverSize(queueLength, queueLengthRangeOver);
     public int RotateLength => RangeOverSize(rotateOffset, rotateOffsetRangeOver);

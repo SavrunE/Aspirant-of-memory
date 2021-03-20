@@ -7,10 +7,8 @@ public class EasyMode : Mode
 {
     private static int levelNumber;
     private int[] levelParameters;
-
     private int SettingsCount => LevelConfigurationSettings.TakeParameters().Count;
     private int iterationValue => levelNumber % SettingsCount;
-    
 
     private void Start()
     {

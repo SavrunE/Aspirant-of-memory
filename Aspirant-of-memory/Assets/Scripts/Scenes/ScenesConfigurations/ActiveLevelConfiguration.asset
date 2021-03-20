@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9cbc3b7e7c06b846a8cd605b6214b04, type: 3}
   m_Name: ActiveLevelConfiguration
   m_EditorClassIdentifier: 
-  buttonsCount: 0
-  buttonsCountRangeOver: 0
-  queueLength: 0
-  queueLengthRangeOver: 0
-  rotateOffset: 0
-  rotateOffsetRangeOver: 0
+  buttonsCount: 3
+  buttonsCountRangeOver: 2
+  queueLength: 4
+  queueLengthRangeOver: 1
+  rotateOffset: 1
+  rotateOffsetRangeOver: 1
+  maxButtons: 8
+  maxLengthCount: 16
   startedLevelConfiguration: {fileID: 11400000, guid: 86dcbeb1ad862d4498fa3ce040d3cbe5, type: 2}
