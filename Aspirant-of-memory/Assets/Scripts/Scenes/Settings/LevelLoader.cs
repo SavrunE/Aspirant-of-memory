@@ -29,6 +29,6 @@ public class LevelLoader : MonoBehaviour
     private void OnLoseLevel()
     {
         Debug.Log("Lose level");
-        gameMode.ReloadLevel();
+        gameMode.RestartLevel();
     }
 }

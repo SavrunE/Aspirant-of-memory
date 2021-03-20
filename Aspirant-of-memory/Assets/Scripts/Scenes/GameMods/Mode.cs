@@ -4,12 +4,15 @@ using UnityEngine;
 
 public abstract class Mode : MonoBehaviour
 {
-    public LevelConfiguration LevelConfigurationSettings;
+    public ActiveLevelConfiguration ActiveLevelConfigurationSettings;
     public int CurrentPoints { get; private set; }
     public int PointsForWinLevel { get; private set; }
     public int MaxModePoints { get; private set; }
 
     public abstract void ChangeConfigurationsValues();
     public abstract void NextLevelLoad();
-    public abstract void ReloadLevel();
+    public abstract void RestartLevel();
+    public abstract void RefundLevelSettings();
+
+
 }

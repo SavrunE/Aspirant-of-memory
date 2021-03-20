@@ -25,6 +25,11 @@ public class LevelConfiguration : ScriptableObject
     public int QueueLength => RangeOverSize(queueLength, queueLengthRangeOver);
     public int RotateLength => RangeOverSize(rotateOffset, rotateOffsetRangeOver);
 
+    public int[] Parameters => new int[] {
+        buttonsCount, buttonsCountRangeOver,
+        queueLength, queueLengthRangeOver,
+        rotateOffset , rotateOffsetRangeOver };
+
     private int RangeOverSize(int baseValue, int overValue)
     {
         return Random.Range(baseValue, baseValue + overValue + 1);
@@ -33,10 +38,7 @@ public class LevelConfiguration : ScriptableObject
     public List<int> TakeParameters()
     {
         List<int> parameters = new List<int>(0);
-        parameters.AddRange(new int[] {
-         buttonsCount,  buttonsCountRangeOver,
-         queueLength,  queueLengthRangeOver,
-         rotateOffset,  rotateOffsetRangeOver});
+        parameters.AddRange(Parameters);
 
         return parameters;
     }
@@ -56,5 +58,15 @@ public class LevelConfiguration : ScriptableObject
         }
         rotateOffset += changeValue[i++];
         rotateOffsetRangeOver += changeValue[i++];
+    }
+    protected void ChangeParameters(int[] changeValue)
+    {
+        int i = 0;
+        buttonsCount = changeValue[i++];
+        buttonsCountRangeOver = changeValue[i++];
+        queueLength = changeValue[i++];
+        queueLengthRangeOver = changeValue[i++];
+        rotateOffset = changeValue[i++];
+        rotateOffsetRangeOver = changeValue[i++];
     }
 }

@@ -7,7 +7,7 @@ public class EasyMode : Mode
 {
     private static int levelNumber;
     private int[] levelParameters;
-    private int SettingsCount => LevelConfigurationSettings.TakeParameters().Count;
+    private int SettingsCount => ActiveLevelConfigurationSettings.TakeParameters().Count;
     private int iterationValue => levelNumber % SettingsCount;
 
     private void Start()
@@ -25,17 +25,22 @@ public class EasyMode : Mode
                 levelParameters[i]++;
             }
         }
-        LevelConfigurationSettings.IncreaseParameters(levelParameters);
+        ActiveLevelConfigurationSettings.IncreaseParameters(levelParameters);
     }
 
     public override void NextLevelLoad()
     {
         ChangeConfigurationsValues();
-        DefaultLevel.Load(LevelConfigurationSettings);
+        DefaultLevel.Load(ActiveLevelConfigurationSettings);
     }
 
-    public override void ReloadLevel()
+    public override void RestartLevel()
     {
-        DefaultLevel.Load(LevelConfigurationSettings);
+        DefaultLevel.Load(ActiveLevelConfigurationSettings);
+    }
+
+    public override void RefundLevelSettings()
+    {
+        ActiveLevelConfigurationSettings.RefundLevelSettings();
     }
 }

@@ -7,4 +7,9 @@ public class ActiveLevelConfiguration : LevelConfiguration
 {
     [Header("Start level configuration")]
     [SerializeField] private LevelConfiguration startedLevelConfiguration;
+
+    public void RefundLevelSettings()
+    {
+        ChangeParameters(startedLevelConfiguration.Parameters);
+    }
 }
