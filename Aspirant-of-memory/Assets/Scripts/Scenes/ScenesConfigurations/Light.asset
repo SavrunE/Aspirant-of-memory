@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Light
   m_EditorClassIdentifier: 
   buttonsCount: 3
-  buttonsCountRangeOver: 2
+  buttonsCountRangeOver: 0
   queueLength: 2
-  queueLengthRangeOver: 1
+  queueLengthRangeOver: 0
   rotateOffset: 0
-  rotateOffsetRangeOver: 1
+  rotateOffsetRangeOver: 0
+  maxButtons: 8
+  maxLengthCount: 16

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ModsContainer))]
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private Sequence sequence;
     [SerializeField] private LevelConfiguration levelConfiguration;
+    [HideInInspector]
     [SerializeField] private Mode gameMode;
 
     private void OnEnable()
@@ -15,6 +17,7 @@ public class LevelLoader : MonoBehaviour
     }
     private void OnDisable()
     {
+        sequence.SequenceChanged -= OnSequenceChanged;
         sequence.LoseLevel -= OnLoseLevel;
     }
 
@@ -22,13 +25,23 @@ public class LevelLoader : MonoBehaviour
     {
         if (size == 0)
         {
-            Debug.Log("New level");
+            //Debug.Log("New level");
             gameMode.NextLevelLoad();
         }
     }
     private void OnLoseLevel()
     {
-        Debug.Log("Lose level");
+        //Debug.Log("Lose level");
         gameMode.RestartLevel();
+    }
+
+    public void SetActiveMode(Mode mode)
+    {
+        gameMode = mode;
+    }
+
+    public void ModeRefundLevelSettings()
+    {
+        gameMode.RefundLevelSettings();
     }
 }

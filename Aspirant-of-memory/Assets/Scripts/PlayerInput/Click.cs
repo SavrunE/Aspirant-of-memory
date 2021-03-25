@@ -49,7 +49,6 @@ public class Click : MonoBehaviour
     {
         if (value)
         {
-            Debug.Log("Activated");
             activateClicker = true;
         }
         else

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EasyMode : Mode
+public class MediumMode : Mode
 {
     public override void ChangeConfigurationsValues()
     {

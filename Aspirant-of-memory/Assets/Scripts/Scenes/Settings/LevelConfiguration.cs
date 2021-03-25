@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New config", menuName = "Config")]
+[CreateAssetMenu(fileName = "LevelConfiguration", menuName = "LevelConfiguration")]
 public class LevelConfiguration : ScriptableObject
 {
     [Header("Level configuration")]

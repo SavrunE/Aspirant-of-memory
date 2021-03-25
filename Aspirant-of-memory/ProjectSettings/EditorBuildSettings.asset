@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StartWindow.unity
+    guid: c9fe1d403f61bea4397ee40913b29af3
+  - enabled: 1
     path: Assets/Scenes/DefaultLevel.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Art By Kandles/Basic Icons/Basic.unity
     guid: e94aa72992554ac4f853887043f14ab3
+  - enabled: 0
+    path: Assets/40+ Simple Icons - Free/Scenes/Demo.unity
+    guid: c811b8f3d70216146a9b7e53f620fe1a
   m_configObjects: {}
