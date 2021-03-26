@@ -29,9 +29,26 @@ public abstract class Mode : MonoBehaviour
     {
         this.activeLevelConfigurationSettings = activeLevelConfigurationSettings;
     }
+
+    public void LevelComplete(ModsContainer modsContainer)
+    {
+        if (levelNumber >= activeLevelConfigurationSettings.MaxLevel)
+        {
+            Debug.Log("Получить следующий LevelConfiguration сложности, " +
+                "сделать кнопку для перехода на него или " +
+                "кнопку Начать занаво и получить бонус-поинты");
+
+            modsContainer.TakeNextMode(this);
+            NextLevelLoad();
+        }
+        else
+        {
+            NextLevelLoad();
+        }
+    }
+
     public void NextLevelLoad()
     {
-        //Debug.Log(LevelNumber);
         OnLevelChanged?.Invoke(LevelNumber);
         ChangeConfigurationsValues();
         DefaultLevel.Load(activeLevelConfigurationSettings);

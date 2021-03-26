@@ -9,7 +9,12 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private LevelConfiguration levelConfiguration;
     [HideInInspector]
     [SerializeField] private Mode gameMode;
+    private ModsContainer modsContainer;
 
+    private void Start()
+    {
+        modsContainer = GetComponent<ModsContainer>();
+    }
     private void OnEnable()
     {
         sequence.SequenceChanged += OnSequenceChanged;
@@ -25,13 +30,11 @@ public class LevelLoader : MonoBehaviour
     {
         if (size == 0)
         {
-            //Debug.Log("New level");
-            gameMode.NextLevelLoad();
+            gameMode.LevelComplete(modsContainer);
         }
     }
     private void OnLoseLevel()
     {
-        //Debug.Log("Lose level");
         gameMode.RestartLevel();
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LevelInfo : MonoBehaviour
 {
-    [SerializeField] private ModsContainer modsContainer;
+    [SerializeField] private ModeController modeController;
     private Mode mode;
 
     [SerializeField] private Text levelText;
@@ -13,7 +13,7 @@ public class LevelInfo : MonoBehaviour
 
     private void OnEnable()
     {
-        mode = modsContainer.ActiveMode;
+        mode = modeController.TakeCurrentMode();
         ChangeTextLevel(mode.LevelNumber);
     }
 

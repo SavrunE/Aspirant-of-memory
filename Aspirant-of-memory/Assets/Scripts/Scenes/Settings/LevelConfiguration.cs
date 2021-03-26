@@ -18,6 +18,11 @@ public class LevelConfiguration : ScriptableObject
     [Header("Limitations")]
     [SerializeField] private int maxButtons = 8;
     [SerializeField] private int maxLengthCount = 16;
+
+    [Header("Not changed parameters")]
+    [SerializeField] private int maxLevel;
+
+    public int MaxLevel => maxLevel;
     public int MaxButtons => maxButtons;
     public int MaxLengthCount => maxLengthCount;
     public int MaxRotate => maxButtons / 2;
