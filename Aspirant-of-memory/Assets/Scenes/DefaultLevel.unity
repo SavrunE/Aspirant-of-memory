@@ -1204,6 +1204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b4cd5b64c90774d9d9f40ef8b05f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapParameter: 1
+  firstValueIncreaser: 0
+  secondValueIncreaser: 2
 --- !u!1 &1165121171
 GameObject:
   m_ObjectHideFlags: 0

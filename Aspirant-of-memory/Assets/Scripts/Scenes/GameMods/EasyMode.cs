@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EasyMode : Mode
+public class EasyMode : StartMode
 {
-    public override void ChangeConfigurationsValuesOnWin()
-    {
-        throw new System.NotImplementedException();
-    }
 }

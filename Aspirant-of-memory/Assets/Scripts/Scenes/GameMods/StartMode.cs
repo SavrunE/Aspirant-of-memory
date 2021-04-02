@@ -5,8 +5,9 @@ using UnityEngine;
 public class StartMode : Mode
 {
     [SerializeField] private int swapParameter = 2;
+    [Header("Massive variable increaser")]
     [SerializeField] private int firstValueIncreaser = 0;
-    [SerializeField] private int secondValueIncreaser = 1;
+    [SerializeField] private int secondValueIncreaser = 2;
     private int iterationValue => levelNumber % SettingsCount;
 
     public override void ChangeConfigurationsValuesOnWin()
