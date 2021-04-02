@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MediumMode : Mode
 {
-    public override void ChangeConfigurationsValues()
+    public override void ChangeConfigurationsValuesOnWin()
     {
         throw new System.NotImplementedException();
     }

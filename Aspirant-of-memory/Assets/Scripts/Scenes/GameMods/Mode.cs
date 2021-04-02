@@ -18,7 +18,12 @@ public abstract class Mode : MonoBehaviour
     public int LevelNumber => levelNumber;
     public Action<int> OnLevelChanged;
 
-    public abstract void ChangeConfigurationsValues();
+    public abstract void ChangeConfigurationsValuesOnWin();
+    public void ChangeConfigurationsValues() 
+    {
+        levelNumber++;
+        ChangeConfigurationsValuesOnWin();
+    }
 
     private void Start()
     {

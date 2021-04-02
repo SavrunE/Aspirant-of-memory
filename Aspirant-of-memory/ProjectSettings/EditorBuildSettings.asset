@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/40+ Simple Icons - Free/Scenes/Demo.unity
     guid: c811b8f3d70216146a9b7e53f620fe1a
+  - enabled: 1
+    path: Assets/Scenes/Test.unity
+    guid: 70244a9fe6a9f2a4cae53381eb90283f
   m_configObjects: {}
