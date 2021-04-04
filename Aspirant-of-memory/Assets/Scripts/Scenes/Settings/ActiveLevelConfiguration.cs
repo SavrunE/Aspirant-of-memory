@@ -5,11 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ActiveLevelConfiguration", menuName = "ActiveLevelConfiguration")]
 public class ActiveLevelConfiguration : LevelConfiguration
 {
-    [Header("Start level configuration")]
-    [SerializeField] private LevelConfiguration startedLevelConfiguration;
-
-    public void RefundLevelSettings()
+    public void RefundLevelSettings(LevelConfiguration levelConfiguration)
     {
-        ChangeParameters(startedLevelConfiguration.Parameters);
+        ChangeParameters(levelConfiguration.Parameters);
     }
 }

@@ -7,8 +7,10 @@ using IJunior.TypedScenes;
 public abstract class Mode : MonoBehaviour
 {
     protected static int levelNumber;
+    [SerializeField] protected int maxLevel = 5;
 
     protected ActiveLevelConfiguration activeLevelConfigurationSettings;
+    [SerializeField] protected LevelConfiguration startLevelConfiguration;
     public int CurrentPoints { get; private set; }
     public int PointsForWinLevel { get; private set; }
     public int MaxModePoints { get; private set; }
@@ -37,7 +39,7 @@ public abstract class Mode : MonoBehaviour
 
     public void LevelComplete(ModsContainer modsContainer)
     {
-        if (levelNumber >= activeLevelConfigurationSettings.MaxLevel)
+        if (levelNumber >= maxLevel)
         {
             Debug.Log("ѕолучить следующий LevelConfiguration сложности, " +
                 "сделать кнопку дл€ перехода на него или " +
@@ -68,7 +70,7 @@ public abstract class Mode : MonoBehaviour
     public void RefundLevelSettings()
     {
         ResetLevelNumber();
-        activeLevelConfigurationSettings.RefundLevelSettings();
+        activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfiguration);
         DefaultLevel.Load(activeLevelConfigurationSettings);
     }
 

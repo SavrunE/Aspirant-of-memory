@@ -55,11 +55,16 @@ public class ModsContainer : MonoBehaviour
             {
                 if (Mods[i + 1] != null)
                 {
-                    return Mods[i + 1];
+                    Mode modeParameter = Mods[i + 1];
+                    Debug.Log(modeParameter);
+                    modeParameter.ResetLevelNumber();
+                    modeParameter.RefundLevelSettings();
+
+                    return modeParameter;
                 }
                 else
                 {
-                    Debug.Log("Mods[i] was last");
+                    Debug.Log(Mods[i] + " is last");
                     return null;
                 }
             }
