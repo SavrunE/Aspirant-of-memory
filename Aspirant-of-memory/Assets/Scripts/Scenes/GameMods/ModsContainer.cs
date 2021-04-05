@@ -59,6 +59,7 @@ public class ModsContainer : MonoBehaviour
                     Debug.Log(modeParameter);
                     modeParameter.ResetLevelNumber();
                     modeParameter.RefundLevelSettings();
+                    levelLoader.SetActiveMode(modeParameter);
 
                     return modeParameter;
                 }

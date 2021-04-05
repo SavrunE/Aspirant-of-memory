@@ -8,6 +8,8 @@ public abstract class Mode : MonoBehaviour
 {
     protected static int levelNumber;
     [SerializeField] protected int maxLevel = 5;
+    [SerializeField] protected int pointsFromWin = 14;
+    public int PointsFromWin => pointsFromWin;
 
     protected ActiveLevelConfiguration activeLevelConfigurationSettings;
     [SerializeField] protected LevelConfiguration startLevelConfiguration;

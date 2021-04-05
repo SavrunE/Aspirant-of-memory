@@ -3,37 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ModsContainer))]
+[RequireComponent(typeof(Points))]
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private Sequence sequence;
     [SerializeField] private LevelConfiguration levelConfiguration;
-    [HideInInspector]
-    [SerializeField] private Mode gameMode;
+
+    private Mode gameMode;
+
     private ModsContainer modsContainer;
+    private Points points;
 
     private void Start()
     {
+        points = GetComponent<Points>();
         modsContainer = GetComponent<ModsContainer>();
     }
     private void OnEnable()
     {
         sequence.SequenceChanged += OnSequenceChanged;
-        sequence.LoseLevel += OnLoseLevel;
+        sequence.LoseLevel += LoseLevel;
     }
     private void OnDisable()
     {
         sequence.SequenceChanged -= OnSequenceChanged;
-        sequence.LoseLevel -= OnLoseLevel;
+        sequence.LoseLevel -= LoseLevel;
     }
 
     private void OnSequenceChanged(int size)
     {
         if (size == 0)
         {
-            gameMode.LevelComplete(modsContainer);
+            WinLevel();
         }
     }
-    private void OnLoseLevel()
+
+    private void WinLevel()
+    {
+        points.PointsIncrease(gameMode.PointsFromWin);
+        gameMode.LevelComplete(modsContainer);
+    }
+
+    private void LoseLevel()
     {
         gameMode.RestartLevel();
     }
