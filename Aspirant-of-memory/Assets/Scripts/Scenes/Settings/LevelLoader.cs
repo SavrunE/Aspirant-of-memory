@@ -4,58 +4,77 @@ using UnityEngine;
 
 [RequireComponent(typeof(ModsContainer))]
 [RequireComponent(typeof(Points))]
+[RequireComponent(typeof(Animation))]
 public class LevelLoader : MonoBehaviour
 {
-    [SerializeField] private Sequence sequence;
-    [SerializeField] private LevelConfiguration levelConfiguration;
+	[SerializeField] private Sequence sequence;
+	[SerializeField] private LevelConfiguration levelConfiguration;
 
-    private Mode gameMode;
+	private Mode gameMode;
 
-    private ModsContainer modsContainer;
-    private Points points;
+	private ModsContainer modsContainer;
+	private Points points;
+	private Animation animation;
 
-    private void Start()
-    {
-        points = GetComponent<Points>();
-        modsContainer = GetComponent<ModsContainer>();
-    }
-    private void OnEnable()
-    {
-        sequence.SequenceChanged += OnSequenceChanged;
-        sequence.LoseLevel += LoseLevel;
-    }
-    private void OnDisable()
-    {
-        sequence.SequenceChanged -= OnSequenceChanged;
-        sequence.LoseLevel -= LoseLevel;
-    }
+	private void Start()
+	{
+		modsContainer = GetComponent<ModsContainer>();
+		points = GetComponent<Points>();
+		animation = GetComponent<Animation>();
+	}
+	private void OnEnable()
+	{
+		sequence.SequenceChanged += OnSequenceChanged;
+		sequence.LoseLevel += LoseLevel;
+	}
+	private void OnDisable()
+	{
+		sequence.SequenceChanged -= OnSequenceChanged;
+		sequence.LoseLevel -= LoseLevel;
+	}
 
-    private void OnSequenceChanged(int size)
-    {
-        if (size == 0)
-        {
-            WinLevel();
-        }
-    }
+	private void OnSequenceChanged(int size)
+	{
+		if (size == 0)
+		{
+			WinLevel();
+		}
+	}
 
-    private void WinLevel()
-    {
-        points.PointsIncrease(gameMode.PointsFromWin);
-        gameMode.LevelComplete(modsContainer);
-    }
+	private void WinLevel()
+	{
+		
+		StartCoroutine(WinCoroutine());
+	}
 
-    private void LoseLevel()
+	private IEnumerator WinCoroutine()
     {
-        gameMode.RestartLevel();
-    }
+		float waintTime = animation.WinAnimation();
+		yield return new WaitForSeconds(waintTime);
 
-    public void SetActiveMode(Mode mode)
-    {
-        gameMode = mode;
-    }
+		points.PointsIncrease(gameMode.PointsFromWin);
+		gameMode.LevelComplete(modsContainer);
+	}
 
-    public void ModeRefundLevelSettings()
-    {
-        gameMode.RefundLevelSettings();
-    }
+	private void LoseLevel()
+	{
+		StartCoroutine(LoseCoroutine());
+	}
+	private IEnumerator LoseCoroutine()
+	{
+		float waintTime = animation.LoseAnimation();
+		yield return new WaitForSeconds(waintTime);
+
+		gameMode.RestartLevel();
+	}
+
+	public void SetActiveMode(Mode mode)
+	{
+		gameMode = mode;
+	}
+
+	public void ModeRefundLevelSettings()
+	{
+		gameMode.RefundLevelSettings();
+	}
 }

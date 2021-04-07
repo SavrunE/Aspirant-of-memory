@@ -6,7 +6,6 @@ using UnityEngine;
 public class Points : MonoBehaviour
 {
     [SerializeField] private static int points;
-    public PointsUI PointsUI;
     public event Action<int> OnPointsChanged;
 
     public int PointsValue => points;

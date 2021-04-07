@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 392207721}
   - component: {fileID: 392207723}
   - component: {fileID: 392207722}
+  - component: {fileID: 392207724}
   m_Layer: 0
   m_Name: Spinner
   m_TagString: Untagged
@@ -198,6 +199,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonsCount: 8
   buttonRotatorTemplate: {fileID: -1201948898605944743, guid: 45caa5981dc3da24e95676938b87106e, type: 3}
+--- !u!114 &392207724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392207719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bf909690b241d4b813636df0187ab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalScale: 0.9
 --- !u!1 &481866415
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +402,7 @@ GameObject:
   - component: {fileID: 514014632}
   - component: {fileID: 514014631}
   - component: {fileID: 514014633}
+  - component: {fileID: 514014634}
   m_Layer: 0
   m_Name: LevelLoader
   m_TagString: Untagged
@@ -409,7 +424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequence: {fileID: 392207721}
   levelConfiguration: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
-  gameMode: {fileID: 0}
 --- !u!4 &514014630
 Transform:
   m_ObjectHideFlags: 0
@@ -465,6 +479,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f937a283a61ae42a1400eb84badb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &514014634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514014628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd58d5ee972e6f64aaf3f26e1514e569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinner: {fileID: 392207724}
+  animationTime: 1
+  winAnimationSlower: 2
+  maximalScale: 10
+  lowestScale: 0
+  rotateValue: 300
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,6 +1170,7 @@ GameObject:
   - component: {fileID: 1155677006}
   - component: {fileID: 1155677009}
   - component: {fileID: 1155677008}
+  - component: {fileID: 1155677007}
   m_Layer: 5
   m_Name: Points
   m_TagString: Untagged
@@ -1164,6 +1197,19 @@ RectTransform:
   m_AnchoredPosition: {x: -478, y: -143}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1155677007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155677005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e6c4186a0910042b4dcfde355bb2d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: {fileID: 514014633}
 --- !u!114 &1155677008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,7 +1353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLevel: 5
   pointsFromWin: 15
-  startLevelConfiguration: {fileID: 11400000, guid: 4e46ae115a974db43bcf724a18a8de92, type: 2}
+  startLevelConfiguration: {fileID: 11400000, guid: 86dcbeb1ad862d4498fa3ce040d3cbe5, type: 2}
   swapParameter: 1
   firstValueIncreaser: 0
   secondValueIncreaser: 2
