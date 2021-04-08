@@ -12,13 +12,13 @@ public class StartMode : Mode
 
     public override void ChangeConfigurationsValuesOnWin()
     {
-        if (levelNumber % swapParameter == 0)
+        if (levelNumber % swapParameter != 0)
         {
-            levelParameters[secondValueIncreaser]++;
+            levelParameters[firstValueIncreaser]++;
         }
         else
         {
-            levelParameters[firstValueIncreaser]++;
+            levelParameters[secondValueIncreaser]++;
         }
         activeLevelConfigurationSettings.IncreaseParameters(levelParameters);
     }

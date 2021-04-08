@@ -1,13 +1,15 @@
+using IJunior.TypedScenes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LevelLoader))]
 [RequireComponent(typeof(ModeController))]
-public class ModsContainer : MonoBehaviour
+public class ModsContainer : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 {
     [SerializeField] private ActiveLevelConfiguration activeLevelConfigurationSettings;
     [SerializeField] private Mode startMode;
+    [SerializeField] private Mode[] allModes;
 
     private LevelLoader levelLoader;
     [HideInInspector]
@@ -16,34 +18,24 @@ public class ModsContainer : MonoBehaviour
     [HideInInspector]
     public Mode[] Mods;
 
-    private void Awake()
+    public void OnSceneLoaded(LevelConfiguration argument)
     {
         levelLoader = GetComponent<LevelLoader>();
-        modeActivator();
     }
 
+    private void Start()
+    {
+        modeActivator();
+    }
     private void modeActivator()
     {
         ModeController = GetComponent<ModeController>();
-        ModeController.CheckNullCurrentMode(startMode);
         TakeModsInChildren();
     }
+
     private void TakeModsInChildren()
     {
         Mods = GetComponentsInChildren<Mode>();
-        foreach (var mode in Mods)
-        {
-            mode.ChangeActiveLevelConfiguration(activeLevelConfigurationSettings);
-            CheckActiveMode(mode);
-        }
-    }
-
-    private void CheckActiveMode(Mode mode)
-    {
-        if (ModeController.TakeCurrentMode() == mode)
-        {
-            levelLoader.SetActiveMode(mode);
-        }
     }
 
     public Mode TakeNextMode(Mode currentMode)

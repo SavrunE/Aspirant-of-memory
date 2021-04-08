@@ -465,6 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeLevelConfigurationSettings: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
   startMode: {fileID: 1161474920}
+  allModes: []
   ModeController: {fileID: 0}
   Mods: []
 --- !u!114 &514014633
@@ -493,7 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinner: {fileID: 392207724}
   animationTime: 1
-  winAnimationSlower: 2
+  winAnimationMultiplayer: 1.5
   maximalScale: 10
   lowestScale: 0
   rotateValue: 300
@@ -1115,7 +1116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f6b1911966908468eec68facb4b9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modeController: {fileID: 514014631}
   levelText: {fileID: 1143484462}
 --- !u!114 &1143484462
 MonoBehaviour:
@@ -1305,6 +1305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLevel: 5
   pointsFromWin: 10
+  activeLevelConfigurationSettings: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
   startLevelConfiguration: {fileID: 11400000, guid: 86dcbeb1ad862d4498fa3ce040d3cbe5, type: 2}
   swapParameter: 2
   firstValueIncreaser: 0
@@ -1323,6 +1324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLevel: 5
   pointsFromWin: 14
+  activeLevelConfigurationSettings: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
   startLevelConfiguration: {fileID: 11400000, guid: 86dcbeb1ad862d4498fa3ce040d3cbe5, type: 2}
 --- !u!114 &1161474922
 MonoBehaviour:
@@ -1337,8 +1339,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLevel: 5
-  pointsFromWin: 14
-  startLevelConfiguration: {fileID: 0}
+  pointsFromWin: 23
+  activeLevelConfigurationSettings: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
+  startLevelConfiguration: {fileID: 11400000, guid: 4e46ae115a974db43bcf724a18a8de92, type: 2}
 --- !u!114 &1161474923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,6 +1356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLevel: 5
   pointsFromWin: 15
+  activeLevelConfigurationSettings: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
   startLevelConfiguration: {fileID: 11400000, guid: 86dcbeb1ad862d4498fa3ce040d3cbe5, type: 2}
   swapParameter: 1
   firstValueIncreaser: 0

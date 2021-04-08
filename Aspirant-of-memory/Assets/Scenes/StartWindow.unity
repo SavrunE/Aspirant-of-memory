@@ -259,6 +259,8 @@ GameObject:
   m_Component:
   - component: {fileID: 935540318}
   - component: {fileID: 935540317}
+  - component: {fileID: 935540319}
+  - component: {fileID: 935540320}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -293,3 +295,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &935540319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935540316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb379ad590c3731458992c5e019a94c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startMode: {fileID: 935540320}
+--- !u!114 &935540320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935540316}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc2c5273b63960498cc6bcf75520d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLevel: 5
+  pointsFromWin: 14
+  activeLevelConfigurationSettings: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
+  startLevelConfiguration: {fileID: 11400000, guid: 17c2dec9f1fb12f4a8a8d74746f3369d, type: 2}
+  swapParameter: 2
+  firstValueIncreaser: 0
+  secondValueIncreaser: 2

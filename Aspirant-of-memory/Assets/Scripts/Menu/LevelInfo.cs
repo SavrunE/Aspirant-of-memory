@@ -1,19 +1,18 @@
+using IJunior.TypedScenes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelInfo : MonoBehaviour
+public class LevelInfo : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 {
-    [SerializeField] private ModeController modeController;
     private Mode mode;
-
     [SerializeField] private Text levelText;
     private int baseLevel = 0;
 
-    private void OnEnable()
+    public void OnSceneLoaded(LevelConfiguration argument)
     {
-        mode = modeController.TakeCurrentMode();
+        mode = argument.Mode;
         ChangeTextLevel(mode.LevelNumber);
     }
 

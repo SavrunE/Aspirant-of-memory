@@ -8,10 +8,10 @@ public class Animation : MonoBehaviour
     [SerializeField] private Spinner spinner;
     [SerializeField] private float animationTime = 1f;
     [Range(1f, 5f)]
-    [SerializeField] private float winAnimationSlower = 1f;
+    [SerializeField] private float winAnimationMultiplayer = 1.5f;
     [SerializeField] private float maximalScale = 10f;
     [SerializeField] private float lowestScale = 0f;
-    [SerializeField] private float rotateValue = 180f;
+    [SerializeField] private float rotateValue = 300f;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class Animation : MonoBehaviour
     }
     public float WinAnimation()
     {
-        spinner.transform.DOScale(maximalScale, animationTime * winAnimationSlower);
+        spinner.transform.DOScale(maximalScale, animationTime * winAnimationMultiplayer);
         spinner.transform.DORotate(new Vector3(0, 0, rotateValue), animationTime);
 
         return animationTime;

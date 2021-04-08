@@ -1,20 +1,17 @@
+using IJunior.TypedScenes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ModeController : MonoBehaviour
+public class ModeController : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 {
     public static Mode CurrentMode { get; private set; }
-
-    public void CheckNullCurrentMode(Mode mode)
+    public void OnSceneLoaded(LevelConfiguration argument)
     {
-        if (CurrentMode == null)
-        {
-            Debug.Log("ModeController take " + mode);
-            CurrentMode = mode;
-        }
+        CurrentMode = argument.Mode;
     }
+   
     public void ChangeCurrentMode(Mode mode)
     {
         CurrentMode = mode;

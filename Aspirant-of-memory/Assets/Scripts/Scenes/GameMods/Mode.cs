@@ -11,14 +11,14 @@ public abstract class Mode : MonoBehaviour
     [SerializeField] protected int pointsFromWin = 14;
     public int PointsFromWin => pointsFromWin;
 
-    protected ActiveLevelConfiguration activeLevelConfigurationSettings;
+    [SerializeField] protected ActiveLevelConfiguration activeLevelConfigurationSettings;
     [SerializeField] protected LevelConfiguration startLevelConfiguration;
     public int CurrentPoints { get; private set; }
     public int PointsForWinLevel { get; private set; }
     public int MaxModePoints { get; private set; }
 
     protected int[] levelParameters;
-    protected int SettingsCount => activeLevelConfigurationSettings.TakeParameters().Count;
+    protected int SettingsCount => startLevelConfiguration.TakeParameters().Count;
     public int LevelNumber => levelNumber;
     public Action<int> OnLevelChanged;
 
@@ -29,14 +29,9 @@ public abstract class Mode : MonoBehaviour
         ChangeConfigurationsValuesOnWin();
     }
 
-    private void Start()
+    private void Awake()
     {
         levelParameters = new int[SettingsCount];
-    }
-
-    public void ChangeActiveLevelConfiguration(ActiveLevelConfiguration activeLevelConfigurationSettings)
-    {
-        this.activeLevelConfigurationSettings = activeLevelConfigurationSettings;
     }
 
     public void LevelComplete(ModsContainer modsContainer)
