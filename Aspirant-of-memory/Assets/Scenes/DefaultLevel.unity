@@ -399,7 +399,6 @@ GameObject:
   m_Component:
   - component: {fileID: 514014630}
   - component: {fileID: 514014629}
-  - component: {fileID: 514014632}
   - component: {fileID: 514014631}
   - component: {fileID: 514014633}
   - component: {fileID: 514014634}
@@ -424,6 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequence: {fileID: 392207721}
   levelConfiguration: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
+  modsContainer: {fileID: 1161474924}
 --- !u!4 &514014630
 Transform:
   m_ObjectHideFlags: 0
@@ -451,23 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb67fe1475988574a85b3bc671d2b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &514014632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514014628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc7022c630f36464ca8fabc04a92f75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeLevelConfigurationSettings: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
-  startMode: {fileID: 1161474920}
-  allModes: []
-  ModeController: {fileID: 0}
-  Mods: []
 --- !u!114 &514014633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,6 +1248,7 @@ GameObject:
   - component: {fileID: 1161474921}
   - component: {fileID: 1161474920}
   - component: {fileID: 1161474923}
+  - component: {fileID: 1161474924}
   m_Layer: 5
   m_Name: Mods
   m_TagString: Untagged
@@ -1361,6 +1345,23 @@ MonoBehaviour:
   swapParameter: 1
   firstValueIncreaser: 0
   secondValueIncreaser: 2
+--- !u!114 &1161474924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161474918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc7022c630f36464ca8fabc04a92f75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allModes:
+  - {fileID: 1161474920}
+  - {fileID: 1161474923}
+  - {fileID: 1161474921}
+  - {fileID: 1161474922}
 --- !u!1 &1165121171
 GameObject:
   m_ObjectHideFlags: 0

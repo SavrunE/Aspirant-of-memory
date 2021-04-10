@@ -14,11 +14,13 @@ public class StartMode : Mode
     {
         if (levelNumber % swapParameter != 0)
         {
-            levelParameters[firstValueIncreaser]++;
+            levelParameters[firstValueIncreaser] = 1;
+            levelParameters[secondValueIncreaser] = 0;
         }
         else
         {
-            levelParameters[secondValueIncreaser]++;
+            levelParameters[firstValueIncreaser] = 0;
+            levelParameters[secondValueIncreaser] = 1;
         }
         activeLevelConfigurationSettings.IncreaseParameters(levelParameters);
     }

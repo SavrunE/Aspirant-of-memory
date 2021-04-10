@@ -3,39 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ModsContainer))]
 [RequireComponent(typeof(Points))]
 [RequireComponent(typeof(Animation))]
 public class LevelLoader : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 {
     [SerializeField] private Sequence sequence;
     [SerializeField] private LevelConfiguration levelConfiguration;
+    [SerializeField] private ModsContainer modsContainer;
 
     private Mode gameMode;
-
-    private ModsContainer modsContainer;
     private Points points;
     private Animation animation;
 
+    public void OnSceneLoaded(LevelConfiguration argument)
+    {
+        gameMode = argument.Mode;
+        gameMode.OnModeChanged += SetActiveMode;
+    }
+
     private void Start()
     {
-        modsContainer = GetComponent<ModsContainer>();
         points = GetComponent<Points>();
         animation = GetComponent<Animation>();
     }
+
     private void OnEnable()
     {
         sequence.SequenceChanged += OnSequenceChanged;
         sequence.LoseLevel += LoseLevel;
     }
+
     private void OnDisable()
     {
+        gameMode.OnModeChanged -= SetActiveMode;
         sequence.SequenceChanged -= OnSequenceChanged;
         sequence.LoseLevel -= LoseLevel;
-    }
-    public void OnSceneLoaded(LevelConfiguration argument)
-    {
-        gameMode = argument.Mode;
     }
 
     private void OnSequenceChanged(int size)
@@ -64,6 +66,7 @@ public class LevelLoader : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
     {
         StartCoroutine(LoseCoroutine());
     }
+
     private IEnumerator LoseCoroutine()
     {
         float waintTime = animation.LoseAnimation();
@@ -81,6 +84,4 @@ public class LevelLoader : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
     {
         gameMode.RefundLevelSettings();
     }
-
-
 }

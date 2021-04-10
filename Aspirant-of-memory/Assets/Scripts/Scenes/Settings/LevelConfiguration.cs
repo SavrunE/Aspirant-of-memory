@@ -63,6 +63,7 @@ public class LevelConfiguration : ScriptableObject
         rotateOffset += changeValue[i++];
         rotateOffsetRangeOver += changeValue[i++];
     }
+
     protected void ChangeParameters(int[] changeValue)
     {
         int i = 0;

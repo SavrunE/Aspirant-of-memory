@@ -21,6 +21,7 @@ public abstract class Mode : MonoBehaviour
     protected int SettingsCount => startLevelConfiguration.TakeParameters().Count;
     public int LevelNumber => levelNumber;
     public Action<int> OnLevelChanged;
+    public Action<Mode> OnModeChanged;
 
     public abstract void ChangeConfigurationsValuesOnWin();
     public void ChangeConfigurationsValues() 
@@ -41,8 +42,8 @@ public abstract class Mode : MonoBehaviour
             Debug.Log("Получить следующий LevelConfiguration сложности, " +
                 "сделать кнопку для перехода на него или " +
                 "кнопку Начать занаво и получить бонус-поинты");
-
-            modsContainer.TakeNextMode(this);
+            Mode nextMode = modsContainer.TakeNextMode(this);
+            OnModeChanged?.Invoke(nextMode);
             NextLevelLoad();
         }
         else

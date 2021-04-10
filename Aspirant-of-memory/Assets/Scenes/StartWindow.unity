@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLevel: 5
-  pointsFromWin: 14
+  pointsFromWin: 10
   activeLevelConfigurationSettings: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
   startLevelConfiguration: {fileID: 11400000, guid: 17c2dec9f1fb12f4a8a8d74746f3369d, type: 2}
   swapParameter: 2
