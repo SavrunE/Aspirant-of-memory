@@ -8,6 +8,7 @@ public class StartSceneLoader : MonoBehaviour
 {
     private SaveSerial saveSerial;
     public ActiveLevelConfiguration ActiveLevelConfigurationSettings;
+
     private void Start()
     {
         saveSerial = GetComponent<SaveSerial>();
@@ -18,6 +19,7 @@ public class StartSceneLoader : MonoBehaviour
     private void LoadProgress()
     {
         saveSerial.LoadGame();
-        ActiveLevelConfigurationSettings.ChangeCurrentMode(saveSerial.Mode());
+        MySingleton.Instance.ActiveMode = saveSerial.Mode();
+        Debug.Log(saveSerial.Mode());
     }
 }

@@ -5,9 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelConfiguration", menuName = "LevelConfiguration")]
 public class LevelConfiguration : ScriptableObject
 {
-    private Mode currentMode;
-    public Mode Mode => currentMode;
-
     [Header("Level configuration")]
     [SerializeField] private int buttonsCount;
     [SerializeField] private int buttonsCountRangeOver;
@@ -73,10 +70,5 @@ public class LevelConfiguration : ScriptableObject
         queueLengthRangeOver = changeValue[i++];
         rotateOffset = changeValue[i++];
         rotateOffsetRangeOver = changeValue[i++];
-    }
-
-    public void ChangeCurrentMode(Mode mode)
-    {
-        currentMode = mode;
     }
 }

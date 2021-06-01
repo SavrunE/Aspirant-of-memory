@@ -5,13 +5,21 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+[Serializable]
+class SaveData
+{
+    public int Level;
+    public int Points;
+    public Mode Mode;
+}
+
 public class SaveSerial : MonoBehaviour
 {
     [SerializeField] private Mode startMode;
 
     private int level;
+    private int points;
     private Mode mode;
-
 
     private BinaryFormatter binaryFormatter;
     private FileStream file;
@@ -32,13 +40,13 @@ public class SaveSerial : MonoBehaviour
     public void SaveLevel(int level)
     {
         CreateBinarFormate();
-        ParametersChanger(level, Mode());
+        ParametersChanger(level, points, Mode());
         Serializer();
     }
-    public void SaveAll(int level, Mode mode)
+    public void SaveAll(int level, int points, Mode mode)
     {
         CreateBinarFormate();
-        ParametersChanger(level, mode);
+        ParametersChanger(level, points, mode);
         Serializer();
     }
 
@@ -68,13 +76,13 @@ public class SaveSerial : MonoBehaviour
             data = (SaveData)binaryFormatter.Deserialize(file);
             file.Close();
 
-            ParametersChanger(data.Level, data.Mode);
+            ParametersChanger(data.Level, data.Points, data.Mode);
 
             Debug.Log("Game data loaded!");
         }
         else
         {
-            ParametersChanger(0, startMode);
+            ParametersChanger(0, 0, startMode);
             Debug.Log("There is no save data! Taked reset.");
         }
     }
@@ -86,7 +94,7 @@ public class SaveSerial : MonoBehaviour
             File.Delete(Application.persistentDataPath
               + "/MySaveData.dat");
 
-            ParametersChanger(0, startMode);
+            ParametersChanger(0, 0, startMode);
 
             Debug.Log("Data reset complete!");
         }
@@ -94,15 +102,21 @@ public class SaveSerial : MonoBehaviour
             Debug.LogError("No save data to delete.");
     }
 
-    private void ParametersChanger(int level, Mode mode)
+    private void ParametersChanger(int level, int points, Mode mode)
     {
         this.level = level;
-        this.mode = mode;
+        this.points = points;
+        if (mode == null)
+        {
+            this.mode = startMode;
+        }
+        else
+        {
+            this.mode = mode;
+        }
+
+        Debug.Log(this.level);
+        Debug.Log(this.mode);
     }
 }
-[Serializable]
-class SaveData
-{
-    public int Level;
-    public Mode Mode;
-}
+

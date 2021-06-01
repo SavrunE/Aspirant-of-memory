@@ -4,27 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Points))]
-[RequireComponent(typeof(Animation))]
-public class LevelLoader : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
+[RequireComponent(typeof(SpinnerAnimation))]
+public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private Sequence sequence;
     [SerializeField] private LevelConfiguration levelConfiguration;
-    [SerializeField] private ModsContainer modsContainer;
+    [SerializeField] private ModesContainer modsContainer;
 
     private Mode gameMode;
-    private Points points;
-    private Animation animation;
+    public Mode Mode => gameMode;
 
-    public void OnSceneLoaded(LevelConfiguration argument)
-    {
-        gameMode = argument.Mode;
-        gameMode.OnModeChanged += SetActiveMode;
-    }
+    private Points points;
+    private SpinnerAnimation animation;
 
     private void Start()
     {
+        gameMode = MySingleton.Instance.ActiveMode;
+        Debug.Log(gameMode);
         points = GetComponent<Points>();
-        animation = GetComponent<Animation>();
+        animation = GetComponent<SpinnerAnimation>();
     }
 
     private void OnEnable()
@@ -35,7 +33,6 @@ public class LevelLoader : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 
     private void OnDisable()
     {
-        gameMode.OnModeChanged -= SetActiveMode;
         sequence.SequenceChanged -= OnSequenceChanged;
         sequence.LoseLevel -= LoseLevel;
     }
@@ -75,10 +72,6 @@ public class LevelLoader : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
         gameMode.RestartLevel();
     }
 
-    public void SetActiveMode(Mode mode)
-    {
-        gameMode = mode;
-    }
 
     public void ModeRefundLevelSettings()
     {

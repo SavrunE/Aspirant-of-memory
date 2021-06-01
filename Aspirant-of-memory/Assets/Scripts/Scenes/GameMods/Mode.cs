@@ -35,14 +35,18 @@ public abstract class Mode : MonoBehaviour
         levelParameters = new int[SettingsCount];
     }
 
-    public void LevelComplete(ModsContainer modsContainer)
+    public void LevelComplete(ModesContainer modsContainer)
     {
         if (levelNumber >= maxLevel)
         {
-            Debug.Log("Получить следующий LevelConfiguration сложности, " +
+            Debug.Log("Получить следующий Mode " +
                 "сделать кнопку для перехода на него или " +
                 "кнопку Начать занаво и получить бонус-поинты");
-            Mode nextMode = modsContainer.TakeNextMode(this);
+            Mode nextMode = MySingleton.Instance.ModesContainer.TakeNextMode(this);
+
+            Debug.Log(nextMode);
+
+            MySingleton.Instance.ActiveMode = nextMode;
             OnModeChanged?.Invoke(nextMode);
             NextLevelLoad();
         }
@@ -67,13 +71,14 @@ public abstract class Mode : MonoBehaviour
 
     public void RefundLevelSettings()
     {
-        ResetLevelNumber();
+        ResetLevel();
         activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfiguration);
         DefaultLevel.Load(activeLevelConfigurationSettings);
     }
 
-    public void ResetLevelNumber()
+    public void ResetLevel()
     {
+        activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfiguration);
         levelNumber = 0;
     }
 }
