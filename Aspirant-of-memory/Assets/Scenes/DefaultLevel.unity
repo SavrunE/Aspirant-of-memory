@@ -749,7 +749,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539740953}
   m_CullTransparentMesh: 1
---- !u!1 &830305671
+--- !u!1 &603969968
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -757,7 +757,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 830305673}
+  - component: {fileID: 603969969}
+  - component: {fileID: 603969970}
   m_Layer: 0
   m_Name: Saver
   m_TagString: Untagged
@@ -765,13 +766,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &830305673
+--- !u!4 &603969969
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830305671}
+  m_GameObject: {fileID: 603969968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -779,6 +780,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &603969970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603969968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb379ad590c3731458992c5e019a94c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startMode: {fileID: 0}
 --- !u!1 &896513933
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,7 +1647,6 @@ GameObject:
   - component: {fileID: 1375304399}
   - component: {fileID: 1375304398}
   - component: {fileID: 1375304397}
-  - component: {fileID: 1375304396}
   m_Layer: 5
   m_Name: SavePoints
   m_TagString: Untagged
@@ -1660,19 +1673,6 @@ RectTransform:
   m_AnchoredPosition: {x: -300, y: 606}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1375304396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375304394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb379ad590c3731458992c5e019a94c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startMode: {fileID: 1161474920}
 --- !u!114 &1375304397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1717,7 +1717,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1375304396}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SaveSerial, Assembly-CSharp
         m_MethodName: SaveLevel
         m_Mode: 3
@@ -2258,7 +2258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2064290353
 RectTransform:
   m_ObjectHideFlags: 0

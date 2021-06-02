@@ -4,35 +4,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//поля задаются в начальной сцене, в дефолтный левел заносятся при загрузке из синглтона
 public class ModesContainer : MonoBehaviour
 {
-    //public static ModesContainer Instance;
     public Mode[] allModes;
     [SerializeField] private Mode activeMode;
     public Mode ActiveMode => allModes[0];
     [SerializeField] private NextModeAnimation nextModeAnimation;
 
+    public Action<Mode> OnModeChanged;
+
+
     private void Start()
     {
-        MySingleton.Instance.Modes = allModes;
-        MySingleton.Instance.ActiveMode = ActiveMode;
         Debug.Log(MySingleton.Instance.ActiveMode);
         Debug.Log(ActiveMode);
         MySingleton.Instance.ModesContainer = this;
-    }
-
-    private void Awake()
-    {
-    //    if (Instance == null)
-    //    {
-    //        Instance = this;
-    //    }
-    //    else if(Instance == this)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-
-    //    DontDestroyOnLoad(this);
     }
 
     public void ChangeActiveMode(Mode mode)
@@ -55,16 +42,19 @@ public class ModesContainer : MonoBehaviour
                     modeParameter.ResetLevel();
                     nextModeAnimation.StartAnimation();
 
+                    OnModeChanged?.Invoke(modeParameter);
+
                     return modeParameter;
                 }
                 else
                 {
-                    Debug.Log(allModes[i] + " is last");
+                    Debug.Log(allModes[i] + " was last");
                     return null;
                 }
             }
             i++;
         }
-        return null;
+
+        throw new Exeption("тут такого типо не должно было быть");
     }
 }

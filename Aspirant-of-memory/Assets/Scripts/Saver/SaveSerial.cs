@@ -114,9 +114,6 @@ public class SaveSerial : MonoBehaviour
         {
             this.mode = mode;
         }
-
-        Debug.Log(this.level);
-        Debug.Log(this.mode);
     }
 }
 

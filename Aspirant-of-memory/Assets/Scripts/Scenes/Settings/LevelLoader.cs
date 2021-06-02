@@ -17,6 +17,8 @@ public class LevelLoader : MonoBehaviour
     private Points points;
     private SpinnerAnimation animation;
 
+
+
     private void Start()
     {
         gameMode = MySingleton.Instance.ActiveMode;
@@ -56,7 +58,13 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(waintTime);
 
         points.PointsIncrease(gameMode.PointsFromWin);
-        gameMode.LevelComplete(modsContainer);
+
+        if (gameMode.ModeCompleted())
+        {
+            Mode nextMode = modsContainer.TakeNextMode(Mode);
+
+            nextMode.NextLevelLoad();
+        }
     }
 
     private void LoseLevel()

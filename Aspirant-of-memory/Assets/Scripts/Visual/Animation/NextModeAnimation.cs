@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ParticleSystem))]
 public class NextModeAnimation : Animation
 {
-    [SerializeField] private ParticleSystem nextModeEffect;
+    private ParticleSystem nextModeEffect;
+
+    private void Start()
+    {
+        nextModeEffect = gameObject.GetComponent<ParticleSystem>();
+    }
 
     public void StartAnimation()
     {
