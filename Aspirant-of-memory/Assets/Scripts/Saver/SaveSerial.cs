@@ -10,22 +10,25 @@ class SaveData
 {
     public int Level;
     public int Points;
-    public Mode Mode;
+    public ModeContainer Mode;
+    public LevelConfiguration activeLevelConfiguration;
 }
 
 public class SaveSerial : MonoBehaviour
 {
-    [SerializeField] private Mode startMode;
+    [SerializeField] private ModeContainer modeContainer;
+    [SerializeField] private LevelConfiguration startLevelConfiguration;
 
     private int level;
     private int points;
-    private Mode mode;
+    private ModeContainer mode;
+    private LevelConfiguration activeLevelConfiguration;
 
     private BinaryFormatter binaryFormatter;
     private FileStream file;
     private SaveData data;
 
-    public Mode Mode()
+    public ModeContainer Mode()
     {
         if (mode != null)
         {
@@ -33,20 +36,34 @@ public class SaveSerial : MonoBehaviour
         }
         else
         {
-            return startMode;
+            Debug.Log("In SaveSerial on load modeContainer == null");
+            return modeContainer;
+        }
+    }
+
+    public LevelConfiguration ActiveLevelConfiguration()
+    {
+        if (activeLevelConfiguration != null)
+        {
+            return activeLevelConfiguration;
+        }
+        else
+        {
+            Debug.Log("In SaveSerial on load activeLevelConfiguration == null");
+            return startLevelConfiguration;
         }
     }
 
     public void SaveLevel(int level)
     {
         CreateBinarFormate();
-        ParametersChanger(level, points, Mode());
+        ParametersChanger(level, points, Mode(), ActiveLevelConfiguration());
         Serializer();
     }
-    public void SaveAll(int level, int points, Mode mode)
+    public void SaveAll(int level, int points, ModeContainer mode, LevelConfiguration activeLevelConfiguration)
     {
         CreateBinarFormate();
-        ParametersChanger(level, points, mode);
+        ParametersChanger(level, points, mode, activeLevelConfiguration);
         Serializer();
     }
 
@@ -76,13 +93,13 @@ public class SaveSerial : MonoBehaviour
             data = (SaveData)binaryFormatter.Deserialize(file);
             file.Close();
 
-            ParametersChanger(data.Level, data.Points, data.Mode);
+            ParametersChanger(data.Level, data.Points, data.Mode, data.activeLevelConfiguration);
 
             Debug.Log("Game data loaded!");
         }
         else
         {
-            ParametersChanger(0, 0, startMode);
+            ParametersChanger(0, 0, modeContainer, startLevelConfiguration);
             Debug.Log("There is no save data! Taked reset.");
         }
     }
@@ -94,7 +111,7 @@ public class SaveSerial : MonoBehaviour
             File.Delete(Application.persistentDataPath
               + "/MySaveData.dat");
 
-            ParametersChanger(0, 0, startMode);
+            ParametersChanger(0, 0, modeContainer, startLevelConfiguration);
 
             Debug.Log("Data reset complete!");
         }
@@ -102,18 +119,19 @@ public class SaveSerial : MonoBehaviour
             Debug.LogError("No save data to delete.");
     }
 
-    private void ParametersChanger(int level, int points, Mode mode)
+    private void ParametersChanger(int level, int points, ModeContainer mode, LevelConfiguration activeLevelConfiguration)
     {
         this.level = level;
         this.points = points;
         if (mode == null)
         {
-            this.mode = startMode;
+            this.mode = modeContainer;
         }
         else
         {
             this.mode = mode;
         }
+        this.activeLevelConfiguration = activeLevelConfiguration;
     }
 }
 

@@ -7,12 +7,10 @@ using UnityEngine;
 public class StartSceneLoader : MonoBehaviour
 {
     private SaveSerial saveSerial;
-    private ModesContainer ModesContainer;
     public ActiveLevelConfiguration ActiveLevelConfigurationSettings;
 
     private void Start()
     {
-        ModesContainer = GetComponentInChildren<ModesContainer>();
         saveSerial = GetComponent<SaveSerial>();
         LoadProgress();
         DefaultLevel.Load(ActiveLevelConfigurationSettings);
@@ -21,8 +19,12 @@ public class StartSceneLoader : MonoBehaviour
     private void LoadProgress()
     {
         saveSerial.LoadGame();
-        MySingleton.Instance.ActiveMode = saveSerial.Mode();
-        MySingleton.Instance.ModesContainer = ModesContainer;
+        MySingleton.Instance.ModesContainer = GetComponentInChildren<ModesContainer>();
+        if (MySingleton.Instance.ModesContainer == null)
+        {
+            throw new Exeption("ModesContainer on start window == null");
+        }
+        MySingleton.Instance.ModesContainer.ChangeActiveMode(saveSerial.Mode());
         Debug.Log(saveSerial.Mode());
     }
 }

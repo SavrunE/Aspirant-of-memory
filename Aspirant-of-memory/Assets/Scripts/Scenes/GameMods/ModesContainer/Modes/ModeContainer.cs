@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using IJunior.TypedScenes;
 
-public abstract class Mode : MonoBehaviour
+public abstract class ModeContainer : MonoBehaviour
 {
     protected static int levelNumber;
     [SerializeField] protected int maxLevel = 5;

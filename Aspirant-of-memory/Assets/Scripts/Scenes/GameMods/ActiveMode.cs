@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ActiveMode : MonoBehaviour
 {
-    private Mode mode;
-    public Mode Mode() => mode;
+    private ModeContainer mode;
+    public ModeContainer Mode() => mode;
 
-    public void ChangeActiveMode(Mode mode)
+    public void ChangeActiveMode(ModeContainer mode)
     {
         this.mode = mode;
     }
