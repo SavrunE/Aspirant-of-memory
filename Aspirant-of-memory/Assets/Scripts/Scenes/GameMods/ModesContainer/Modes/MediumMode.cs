@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MediumMode : ModeContainer
+public class MediumMode : Mode
 {
     public override void ChangeConfigurationsValuesOnWin()
     {

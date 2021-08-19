@@ -7,24 +7,18 @@ using UnityEngine;
 //поля задаются в начальной сцене, в дефолтный левел заносятся при загрузке из синглтона
 public class ModesContainer : MonoBehaviour
 {
-    public ModeContainer[] allModes;
-    [SerializeField] private ModeContainer activeMode;
-    public ModeContainer ActiveMode => allModes[0];
+    public Mode[] allModes;
+    [SerializeField] private Mode activeMode;
+    public Mode ActiveMode => allModes[0];
     [SerializeField] private NextModeAnimation nextModeAnimation;
 
-    public Action<ModeContainer> OnModeChanged;
+    public Action<Mode> OnModeChanged;
 
-
-    private void Start()
-    {
-        MySingleton.Instance.ModesContainer = this;
-    }
-
-    public void ChangeActiveMode(ModeContainer mode)
+    public void ChangeActiveMode(Mode mode)
     {
         activeMode = mode;
     }
-    public void ChangeActiveMode(ModeContainer mode, bool PlayChangeModeAnimation)
+    public void ChangeActiveMode(Mode mode, bool PlayChangeModeAnimation)
     {
         activeMode = mode;
 
@@ -34,7 +28,7 @@ public class ModesContainer : MonoBehaviour
         }
     }
 
-    public ModeContainer TakeNextMode(ModeContainer currentMode)
+    public Mode TakeNextMode(Mode currentMode)
     {
         int i = 0;
         foreach (var mode in allModes)
@@ -43,7 +37,7 @@ public class ModesContainer : MonoBehaviour
             {
                 if (allModes[i + 1] != null)
                 {
-                    ModeContainer modeParameter = allModes[i + 1];
+                    Mode modeParameter = allModes[i + 1];
                     Debug.Log(modeParameter);
                     modeParameter.ResetLevel();
                     nextModeAnimation.StartAnimation();

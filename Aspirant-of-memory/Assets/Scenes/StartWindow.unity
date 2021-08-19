@@ -307,7 +307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb379ad590c3731458992c5e019a94c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMode: {fileID: 1015982711}
+  defoultStartMode: {fileID: 1015982711}
+  startLevelConfiguration: {fileID: 11400000, guid: 17c2dec9f1fb12f4a8a8d74746f3369d, type: 2}
 --- !u!1 &1015982707
 GameObject:
   m_ObjectHideFlags: 0

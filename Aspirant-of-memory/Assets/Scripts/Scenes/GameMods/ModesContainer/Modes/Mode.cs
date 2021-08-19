@@ -4,21 +4,20 @@ using UnityEngine;
 using System;
 using IJunior.TypedScenes;
 
-public abstract class ModeContainer : MonoBehaviour
+public abstract class Mode : MonoBehaviour
 {
     protected static int levelNumber;
     [SerializeField] protected int maxLevel = 5;
     [SerializeField] protected int pointsFromWin = 14;
     public int PointsFromWin => pointsFromWin;
 
-    [SerializeField] protected ActiveLevelConfiguration activeLevelConfigurationSettings;
-    [SerializeField] protected LevelConfiguration startLevelConfiguration;
+    [SerializeField] protected LevelConfiguration levelConfiguration;
     public int CurrentPoints { get; private set; }
     public int PointsForWinLevel { get; private set; }
     public int MaxModePoints { get; private set; }
 
     protected int[] levelParameters;
-    protected int SettingsCount => startLevelConfiguration.TakeParameters().Count;
+    protected int SettingsCount => levelConfiguration.TakeParameters().Count;
     public int LevelNumber => levelNumber;
     public Action<int> OnLevelChanged;
 
@@ -31,24 +30,21 @@ public abstract class ModeContainer : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log(levelConfiguration);
         levelParameters = new int[SettingsCount];
+    }
+    public void IncreaseLevel(int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            ChangeConfigurationsValuesOnWin();
+        }
     }
 
     public bool ModeCompleted()
     {
         if (levelNumber >= maxLevel)
         {
-            //Debug.Log("Получить следующий Mode " +
-            //    "сделать кнопку для перехода на него или " +
-            //    "кнопку Начать занаво и получить бонус-поинты");
-            //Mode nextMode = MySingleton.Instance.ModesContainer.TakeNextMode(this);
-
-            //Debug.Log(nextMode);
-
-            //MySingleton.Instance.ActiveMode = nextMode;
-            //OnModeChanged?.Invoke(nextMode);
-            //NextLevelLoad();
-
             return true;
         }
         else
@@ -62,25 +58,25 @@ public abstract class ModeContainer : MonoBehaviour
     {
         OnLevelChanged?.Invoke(LevelNumber);
         ChangeConfigurationsValues();
-        DefaultLevel.Load(activeLevelConfigurationSettings);
+        DefaultLevel.Load(levelConfiguration);
     }
 
     public void RestartLevel()
     {
         OnLevelChanged?.Invoke(LevelNumber);
-        DefaultLevel.Load(activeLevelConfigurationSettings);
+        DefaultLevel.Load(levelConfiguration);
     }
 
     public void RefundLevelSettings()
     {
         ResetLevel();
-        activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfiguration);
-        DefaultLevel.Load(activeLevelConfigurationSettings);
+        levelConfiguration.RefundLevelSettings(levelConfiguration);
+        DefaultLevel.Load(levelConfiguration);
     }
 
     public void ResetLevel()
     {
-        activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfiguration);
+        levelConfiguration.RefundLevelSettings(levelConfiguration);
         levelNumber = 0;
     }
 }

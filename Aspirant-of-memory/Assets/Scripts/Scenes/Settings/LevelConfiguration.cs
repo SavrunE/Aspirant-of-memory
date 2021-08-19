@@ -31,6 +31,11 @@ public class LevelConfiguration : ScriptableObject
         queueLength, queueLengthRangeOver,
         rotateOffset , rotateOffsetRangeOver };
 
+    public void RefundLevelSettings(LevelConfiguration levelConfiguration)
+    {
+        ChangeParameters(levelConfiguration.Parameters);
+    }
+
     private int RangeOverSize(int baseValue, int overValue)
     {
         return Random.Range(baseValue, baseValue + overValue + 1);
