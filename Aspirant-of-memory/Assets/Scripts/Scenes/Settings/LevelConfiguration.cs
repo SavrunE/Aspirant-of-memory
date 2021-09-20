@@ -5,6 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelConfiguration", menuName = "LevelConfiguration")]
 public class LevelConfiguration : ScriptableObject
 {
+    protected static int levelNumber;
+    [SerializeField] protected int maxLevel = 5;
+    [SerializeField] protected int pointsFromWin = 14;
+    public int PointsFromWin => pointsFromWin;
+
     [Header("Level configuration")]
     [SerializeField] private int buttonsCount;
     [SerializeField] private int buttonsCountRangeOver;
@@ -30,6 +35,11 @@ public class LevelConfiguration : ScriptableObject
         buttonsCount, buttonsCountRangeOver,
         queueLength, queueLengthRangeOver,
         rotateOffset , rotateOffsetRangeOver };
+
+    public void RefundLevelSettings(LevelConfiguration levelConfiguration)
+    {
+        ChangeParameters(levelConfiguration.Parameters);
+    }
 
     private int RangeOverSize(int baseValue, int overValue)
     {

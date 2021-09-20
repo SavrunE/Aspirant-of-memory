@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef51bd49a509b6f41a39a64b00e0a99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActiveLevelConfigurationSettings: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
+  LevelConfigurationSettings: {fileID: 0}
 --- !u!4 &935540318
 Transform:
   m_ObjectHideFlags: 0
@@ -307,7 +307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb379ad590c3731458992c5e019a94c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMode: {fileID: 1015982711}
+  defoultStartMode: {fileID: 0}
+  startLevelConfiguration: {fileID: 0}
 --- !u!1 &1015982707
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,10 +318,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1015982708}
-  - component: {fileID: 1015982713}
-  - component: {fileID: 1015982712}
-  - component: {fileID: 1015982711}
-  - component: {fileID: 1015982710}
   - component: {fileID: 1015982709}
   m_Layer: 5
   m_Name: Mods
@@ -361,6 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allModes:
+<<<<<<< HEAD
   - {fileID: 1015982711}
   - {fileID: 1015982710}
   - {fileID: 1015982712}
@@ -436,3 +434,11 @@ MonoBehaviour:
   pointsFromWin: 23
   activeLevelConfigurationSettings: {fileID: 11400000, guid: c19f1264d10234d419ac8832da09d3ee, type: 2}
   startLevelConfiguration: {fileID: 11400000, guid: 4e46ae115a974db43bcf724a18a8de92, type: 2}
+=======
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  activeMode: {fileID: 0}
+  nextModeAnimation: {fileID: 495016789095544484, guid: 313d718224c3ef740ba4108f28b616f6, type: 3}
+>>>>>>> c35f6241bd1faf1c1463ce2c185d51ce458a004e

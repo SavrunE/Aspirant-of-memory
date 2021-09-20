@@ -7,19 +7,22 @@ using UnityEngine;
 public class StartSceneLoader : MonoBehaviour
 {
     private SaveSerial saveSerial;
-    public ActiveLevelConfiguration ActiveLevelConfigurationSettings;
+    public LevelConfiguration LevelConfigurationSettings;
 
     private void Start()
     {
         saveSerial = GetComponent<SaveSerial>();
         LoadProgress();
-        DefaultLevel.Load(ActiveLevelConfigurationSettings);
+        DefaultLevel.Load(LevelConfigurationSettings);
     }
 
     private void LoadProgress()
     {
         saveSerial.LoadGame();
+<<<<<<< HEAD
         MySingleton.Instance.ActiveMode = saveSerial.Mode();
         Debug.Log(saveSerial.Mode());
+=======
+>>>>>>> c35f6241bd1faf1c1463ce2c185d51ce458a004e
     }
 }
