@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HardMode : ModeContainer
+public class HardMode : Mode
 {
     public override void ChangeConfigurationsValuesOnWin()
     {

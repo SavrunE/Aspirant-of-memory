@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartMode : ModeContainer
+public class StartMode : Mode
 {
     [SerializeField] private int swapParameter = 2;
     [Header("Massive variable increaser")]

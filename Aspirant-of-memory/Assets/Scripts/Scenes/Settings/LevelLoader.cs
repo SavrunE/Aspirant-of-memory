@@ -11,8 +11,8 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private LevelConfiguration levelConfiguration;
     [SerializeField] private ModesContainer modsContainer;
 
-    private ModeContainer gameMode;
-    public ModeContainer Mode => gameMode;
+    private Mode gameMode;
+    public Mode Mode => gameMode;
 
     private Points points;
     private SpinnerAnimation animation;
@@ -21,7 +21,7 @@ public class LevelLoader : MonoBehaviour
 
     private void Start()
     {
-        gameMode = MySingleton.Instance.ModesContainer.ActiveMode;
+        gameMode = MySingleton.Instance.ActiveMode;
         Debug.Log(gameMode);
         points = GetComponent<Points>();
         animation = GetComponent<SpinnerAnimation>();
@@ -61,7 +61,7 @@ public class LevelLoader : MonoBehaviour
 
         if (gameMode.ModeCompleted())
         {
-            ModeContainer nextMode = modsContainer.TakeNextMode(Mode);
+            Mode nextMode = modsContainer.TakeNextMode(Mode);
 
             nextMode.NextLevelLoad();
         }
