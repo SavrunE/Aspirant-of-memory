@@ -21,6 +21,7 @@ public abstract class Mode : MonoBehaviour
     protected int SettingsCount => startLevelConfiguration.TakeParameters().Count;
     public int LevelNumber => levelNumber;
     public Action<int> OnLevelChanged;
+    public Action<Mode> OnModeChanged;
 
     public abstract void ChangeConfigurationsValuesOnWin();
     public void ChangeConfigurationsValues() 
@@ -34,27 +35,24 @@ public abstract class Mode : MonoBehaviour
         levelParameters = new int[SettingsCount];
     }
 
-    public bool ModeCompleted()
+    public void LevelComplete(ModesContainer modsContainer)
     {
         if (levelNumber >= maxLevel)
         {
-            //Debug.Log("Получить следующий Mode " +
-            //    "сделать кнопку для перехода на него или " +
-            //    "кнопку Начать занаво и получить бонус-поинты");
-            //Mode nextMode = MySingleton.Instance.ModesContainer.TakeNextMode(this);
+            Debug.Log("Получить следующий Mode " +
+                "сделать кнопку для перехода на него или " +
+                "кнопку Начать занаво и получить бонус-поинты");
+            Mode nextMode = MySingleton.Instance.ModesContainer.TakeNextMode(this);
 
-            //Debug.Log(nextMode);
+            Debug.Log(nextMode);
 
-            //MySingleton.Instance.ActiveMode = nextMode;
-            //OnModeChanged?.Invoke(nextMode);
-            //NextLevelLoad();
-
-            return true;
+            MySingleton.Instance.ActiveMode = nextMode;
+            OnModeChanged?.Invoke(nextMode);
+            NextLevelLoad();
         }
         else
         {
             NextLevelLoad();
-            return false;
         }
     }
 
