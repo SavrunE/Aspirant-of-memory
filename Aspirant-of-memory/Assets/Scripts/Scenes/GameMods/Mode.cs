@@ -42,12 +42,7 @@ public abstract class Mode : MonoBehaviour
             Debug.Log("Получить следующий Mode " +
                 "сделать кнопку для перехода на него или " +
                 "кнопку Начать занаво и получить бонус-поинты");
-            Mode nextMode = MySingleton.Instance.ModesContainer.TakeNextMode(this);
-
-            Debug.Log(nextMode);
-
-            MySingleton.Instance.ActiveMode = nextMode;
-            OnModeChanged?.Invoke(nextMode);
+            
             NextLevelLoad();
         }
         else

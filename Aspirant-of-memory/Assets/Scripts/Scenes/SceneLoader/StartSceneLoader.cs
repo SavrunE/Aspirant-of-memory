@@ -19,10 +19,8 @@ public class StartSceneLoader : MonoBehaviour
     private void LoadProgress()
     {
         saveSerial.LoadGame();
-<<<<<<< HEAD
-        MySingleton.Instance.ActiveMode = saveSerial.Mode();
+        // актив мод?
+        Debug.Log("актив мод?");
         Debug.Log(saveSerial.Mode());
-=======
->>>>>>> c35f6241bd1faf1c1463ce2c185d51ce458a004e
     }
 }
