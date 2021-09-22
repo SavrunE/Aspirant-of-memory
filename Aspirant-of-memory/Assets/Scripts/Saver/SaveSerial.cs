@@ -8,75 +8,36 @@ using System.IO;
 [Serializable]
 class SaveData
 {
-    public int Level;
-    public int Points;
-    public Mode Mode;
+    public int PlayersMaxOpenLevel;
+    public int PlayersCurrentPoints;
     public LevelConfiguration activeLevelConfiguration;
 }
 
 public class SaveSerial : MonoBehaviour
 {
-    [SerializeField] private Mode startMode;
-    [SerializeField] private Mode defoultStartMode;
-    [SerializeField] private LevelConfiguration startLevelConfiguration;
-
-    private int level;
-    private int points;
-    private Mode mode;
+    private int playersMaxOpenLevel;
+    private int playersCurrentPoints;
+    
+    [SerializeField] private LevelConfiguration defaultActiveLevelConfiguration;
     private LevelConfiguration activeLevelConfiguration;
 
-    public int Level() => level;
+    public int Level() => playersMaxOpenLevel;
 
     private BinaryFormatter binaryFormatter;
     private FileStream file;
     private SaveData data;
 
-    public Mode Mode()
-    {
-        if (mode != null)
-        {
-            return mode;
-        }
-        if (data.Mode != null)
-        {
-            return data.Mode;
-        }
-        else
-        {
-            return startMode;
-            Debug.Log("In SaveSerial on load modeContainer == null");
-            return defoultStartMode;
-        }
-    }
-
-    public LevelConfiguration ActiveLevelConfiguration()
-    {
-        if (activeLevelConfiguration != null)
-        {
-            return activeLevelConfiguration;
-        }
-        else
-        {
-            Debug.Log("In SaveSerial on load activeLevelConfiguration == null");
-            return startLevelConfiguration;
-        }
-    }
-
     public void SaveLevel(int level)
     {
         CreateBinarFormate();
-        ParametersChanger(level, points, Mode());
+        ParametersChanger(level);
         Serializer();
     }
-    public void SaveAll(int level, int points, Mode mode) 
-    { 
-        ParametersChanger(level, this.points, Mode(), ActiveLevelConfiguration());
-        Serializer();
-    }
+  
     public void SaveAll(int level, int points, Mode mode, LevelConfiguration activeLevelConfiguration)
     {
         CreateBinarFormate();
-        ParametersChanger(level, points, mode);
+        ParametersChanger(level, points, activeLevelConfiguration);
         Serializer();
     }
 
@@ -106,14 +67,13 @@ public class SaveSerial : MonoBehaviour
             data = (SaveData)binaryFormatter.Deserialize(file);
             file.Close();
 
-            ParametersChanger(data.Level, data.Points, data.Mode);
+            ParametersChanger(data.PlayersMaxOpenLevel, data.PlayersCurrentPoints, data.activeLevelConfiguration);
 
             Debug.Log("Game data loaded!");
         }
         else
         {
-            ParametersChanger(0, 0, startMode);
-            ParametersChanger(0, 0, defoultStartMode, startLevelConfiguration);
+            ParametersChanger(0, 0, defaultActiveLevelConfiguration);
             Debug.Log("There is no save data! Taked reset.");
         }
     }
@@ -125,8 +85,7 @@ public class SaveSerial : MonoBehaviour
             File.Delete(Application.persistentDataPath
               + "/MySaveData.dat");
 
-            ParametersChanger(0, 0, startMode);
-            ParametersChanger(0, 0, defoultStartMode, startLevelConfiguration);
+            ParametersChanger(0, 0, activeLevelConfiguration);
 
             Debug.Log("Data reset complete!");
         }
@@ -134,27 +93,16 @@ public class SaveSerial : MonoBehaviour
             Debug.LogError("No save data to delete.");
     }
 
-    private void ParametersChanger(int level, int points, Mode mode) 
+    private void ParametersChanger(int level)
     {
-        ParametersChanger(level, points, mode, startLevelConfiguration);
+        this.playersMaxOpenLevel = level;
     }
-    private void ParametersChanger(int level, int points, Mode mode, LevelConfiguration activeLevelConfiguration)
-    {
-        this.level = level;
-        this.points = points;
-        if (mode == null)
-        {
-            this.mode = startMode;
-            this.mode = defoultStartMode;
-            Debug.Log(this.mode);
-        }
-        else
-        {
-            this.mode = mode;
-        }
 
-        Debug.Log(this.level);
-        Debug.Log(this.mode);
+    private void ParametersChanger(int level, int points, LevelConfiguration activeLevelConfiguration)
+    {
+        this.playersMaxOpenLevel = level;
+        this.playersCurrentPoints = points;
+        this.activeLevelConfiguration = activeLevelConfiguration;
     }
 }
 

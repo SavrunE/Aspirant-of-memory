@@ -21,6 +21,5 @@ public class StartSceneLoader : MonoBehaviour
         saveSerial.LoadGame();
         // актив мод?
         Debug.Log("актив мод?");
-        Debug.Log(saveSerial.Mode());
     }
 }
