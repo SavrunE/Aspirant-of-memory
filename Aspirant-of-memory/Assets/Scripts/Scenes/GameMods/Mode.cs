@@ -6,8 +6,8 @@ using IJunior.TypedScenes;
 
 public abstract class Mode : MonoBehaviour
 {
-    protected static int levelNumber;
-    [SerializeField] protected int maxLevel = 5;
+    public SaveSerial SaveSerial;
+    [SerializeField] protected int maxStageLevel = 5;
     [SerializeField] protected int pointsFromWin = 14;
     public int PointsFromWin => pointsFromWin;
 
@@ -19,48 +19,51 @@ public abstract class Mode : MonoBehaviour
 
     protected int[] levelParameters;
     protected int SettingsCount => startLevelConfiguration.TakeParameters().Count;
-    public int LevelNumber => levelNumber;
-    public Action<int> OnLevelChanged;
+    public Action<int> OnStageLevelChanged;
     public Action<Mode> OnModeChanged;
 
     public abstract void ChangeConfigurationsValuesOnWin();
-    public void ChangeConfigurationsValues() 
-    {
-        levelNumber++;
-        ChangeConfigurationsValuesOnWin();
-    }
 
     private void Awake()
     {
         levelParameters = new int[SettingsCount];
     }
 
-    public void LevelComplete(ModesContainer modsContainer)
+    public void LoadProgress()
     {
-        if (levelNumber >= maxLevel)
+        for (int i = 0; i < activeLevelConfigurationSettings.StageLevelNumber; i++)
         {
-            Debug.Log("Получить следующий Mode " +
-                "сделать кнопку для перехода на него или " +
-                "кнопку Начать занаво и получить бонус-поинты");
-            
-            NextLevelLoad();
-        }
-        else
-        {
-            NextLevelLoad();
+            ChangeConfigurationsValuesOnWin();
         }
     }
 
-    public void NextLevelLoad()
+    public void StageLevelComplete(ModesContainer modsContainer)
     {
-        OnLevelChanged?.Invoke(LevelNumber);
-        ChangeConfigurationsValues();
+        if (activeLevelConfigurationSettings.StageLevelNumber >= maxStageLevel)
+        {
+            if (activeLevelConfigurationSettings.CurrentLevel == activeLevelConfigurationSettings.MaxOpenLevel)
+            {
+                SaveSerial.SaveLevel(activeLevelConfigurationSettings.MaxOpenLevel + 1);
+            }
+            StartWindow.Load();
+        }
+        else
+        {
+            NextStageLevelLoad();
+        }
+    }
+
+    public void NextStageLevelLoad()
+    {
+        activeLevelConfigurationSettings.IncreaseStageLevelNumber();
+        OnStageLevelChanged?.Invoke(activeLevelConfigurationSettings.StageLevelNumber);
+        ChangeConfigurationsValuesOnWin();
         DefaultLevel.Load(activeLevelConfigurationSettings);
     }
 
     public void RestartLevel()
     {
-        OnLevelChanged?.Invoke(LevelNumber);
+        OnStageLevelChanged?.Invoke(activeLevelConfigurationSettings.StageLevelNumber);
         DefaultLevel.Load(activeLevelConfigurationSettings);
     }
 
@@ -74,6 +77,6 @@ public abstract class Mode : MonoBehaviour
     public void ResetLevel()
     {
         activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfiguration);
-        levelNumber = 0;
+        activeLevelConfigurationSettings.RefundStageLevelNumber();
     }
 }

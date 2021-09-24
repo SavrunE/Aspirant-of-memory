@@ -4,16 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SaveSerial))]
-public class StartSceneLoader : MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
     private SaveSerial saveSerial;
-    public LevelConfiguration LevelConfigurationSettings;
 
-    private void Start()
+    private void Awake()
     {
         saveSerial = GetComponent<SaveSerial>();
         LoadProgress();
-        DefaultLevel.Load(LevelConfigurationSettings);
+    }
+
+    public void ActivateLevel(LevelConfiguration levelConfiguration)
+    {
+        DefaultLevel.Load(levelConfiguration);
+    }
+
+    public void LoadLevel(ActiveLevelConfiguration activeLevelConfiguration)
+    {
+        DefaultLevel.Load(activeLevelConfiguration);
     }
 
     private void LoadProgress()

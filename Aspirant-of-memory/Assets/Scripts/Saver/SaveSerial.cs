@@ -10,7 +10,7 @@ class SaveData
 {
     public int PlayersMaxOpenLevel;
     public int PlayersCurrentPoints;
-    public LevelConfiguration activeLevelConfiguration;
+    public ActiveLevelConfiguration activeLevelConfiguration;
 }
 
 public class SaveSerial : MonoBehaviour
@@ -18,8 +18,7 @@ public class SaveSerial : MonoBehaviour
     private int playersMaxOpenLevel;
     private int playersCurrentPoints;
     
-    [SerializeField] private LevelConfiguration defaultActiveLevelConfiguration;
-    private LevelConfiguration activeLevelConfiguration;
+    [SerializeField] private ActiveLevelConfiguration activeLevelConfiguration;
 
     public int Level() => playersMaxOpenLevel;
 
@@ -34,10 +33,10 @@ public class SaveSerial : MonoBehaviour
         Serializer();
     }
   
-    public void SaveAll(int level, int points, Mode mode, LevelConfiguration activeLevelConfiguration)
+    public void SaveAll(int level, int points, Mode modes)
     {
         CreateBinarFormate();
-        ParametersChanger(level, points, activeLevelConfiguration);
+        ParametersChanger(level, points);
         Serializer();
     }
 
@@ -67,13 +66,13 @@ public class SaveSerial : MonoBehaviour
             data = (SaveData)binaryFormatter.Deserialize(file);
             file.Close();
 
-            ParametersChanger(data.PlayersMaxOpenLevel, data.PlayersCurrentPoints, data.activeLevelConfiguration);
+            ParametersChanger(data.PlayersMaxOpenLevel, data.PlayersCurrentPoints);
 
             Debug.Log("Game data loaded!");
         }
         else
         {
-            ParametersChanger(0, 0, defaultActiveLevelConfiguration);
+            ParametersChanger(0, 0);
             Debug.Log("There is no save data! Taked reset.");
         }
     }
@@ -85,7 +84,7 @@ public class SaveSerial : MonoBehaviour
             File.Delete(Application.persistentDataPath
               + "/MySaveData.dat");
 
-            ParametersChanger(0, 0, activeLevelConfiguration);
+            ParametersChanger(0, 0);
 
             Debug.Log("Data reset complete!");
         }
@@ -96,13 +95,16 @@ public class SaveSerial : MonoBehaviour
     private void ParametersChanger(int level)
     {
         this.playersMaxOpenLevel = level;
+
+        activeLevelConfiguration.ChangeMaxOpenLevel(data.PlayersMaxOpenLevel);
     }
 
-    private void ParametersChanger(int level, int points, LevelConfiguration activeLevelConfiguration)
+    private void ParametersChanger(int level, int points)
     {
         this.playersMaxOpenLevel = level;
         this.playersCurrentPoints = points;
-        this.activeLevelConfiguration = activeLevelConfiguration;
+
+        activeLevelConfiguration.ChangeMaxOpenLevel(data.PlayersMaxOpenLevel);
     }
 }
 

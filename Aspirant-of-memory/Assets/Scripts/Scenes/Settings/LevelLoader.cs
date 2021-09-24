@@ -56,7 +56,7 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(waintTime);
 
         points.PointsIncrease(gameMode.PointsFromWin);
-        gameMode.LevelComplete(modsContainer);
+        gameMode.StageLevelComplete(modsContainer);
 
         //if (gameMode.ModeCompleted())
         //{

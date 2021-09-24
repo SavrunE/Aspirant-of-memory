@@ -155,7 +155,7 @@ RectTransform:
   m_Children:
   - {fileID: 2045704923}
   m_Father: {fileID: 592273096}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -405,7 +405,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 348884680}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 935540317}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: ActivateLevel
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: f649c39ae2df6524ab274ee920052f13, type: 2}
+          m_ObjectArgumentAssemblyTypeName: LevelConfiguration, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &348884680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,9 +591,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 348884678}
-  - {fileID: 1925517145}
   - {fileID: 1279756217}
   - {fileID: 114143022}
+  - {fileID: 1925517145}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -731,8 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb379ad590c3731458992c5e019a94c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultStartMode: {fileID: 0}
-  startLevelConfiguration: {fileID: 11400000, guid: 4a667bf1c5a22d9429b3af7c5b150d18, type: 2}
+  activeLevelConfiguration: {fileID: 0}
 --- !u!114 &935540320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,13 +756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bbe200c9ed4c9145924687ed00e7e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLevel: 5
+  SaveSerial: {fileID: 0}
+  maxStageLevel: 5
   pointsFromWin: 14
   activeLevelConfigurationSettings: {fileID: 0}
   startLevelConfiguration: {fileID: 0}
-  swapParameter: 2
-  firstValueIncreaser: 0
-  secondValueIncreaser: 2
 --- !u!1 &1279756216
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +793,7 @@ RectTransform:
   m_Children:
   - {fileID: 319301076}
   m_Father: {fileID: 592273096}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -834,7 +843,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1279756219}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 935540317}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: ActivateLevel
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 32d2c9a4e1af4184dbe4a65c4db728e3, type: 2}
+          m_ObjectArgumentAssemblyTypeName: LevelConfiguration, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1279756219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +1003,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 592273096}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1925517146
 MonoBehaviour:

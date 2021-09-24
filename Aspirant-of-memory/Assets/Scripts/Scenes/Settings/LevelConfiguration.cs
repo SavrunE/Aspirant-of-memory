@@ -5,41 +5,35 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelConfiguration", menuName = "LevelConfiguration")]
 public class LevelConfiguration : ScriptableObject
 {
-    protected static int levelNumber;
-    [SerializeField] protected int maxLevel = 5;
-    [SerializeField] protected int pointsFromWin = 14;
-    public int PointsFromWin => pointsFromWin;
+    public int CurrentLevel { get; private set; }
+
+    [SerializeField] protected int maxStageLevel = 5;
 
     [Header("Level configuration")]
-    [SerializeField] private int buttonsCount;
-    [SerializeField] private int buttonsCountRangeOver;
+    [SerializeField] protected int buttonsCount;
+    [SerializeField] protected int buttonsCountMaximumSpace;
 
-    [SerializeField] private int queueLength;
-    [SerializeField] private int queueLengthRangeOver;
+    [SerializeField] protected int queueLength;
+    [SerializeField] protected int queueLengthMaximumSpace;
 
-    [SerializeField] private int rotateOffset;
-    [SerializeField] private int rotateOffsetRangeOver;
+    [SerializeField] protected int rotateOffset;
+    [SerializeField] protected int rotateOffsetMaximumSpace;
 
     [Header("Limitations")]
-    [SerializeField] private int maxButtons = 8;
-    [SerializeField] private int maxLengthCount = 16;
+    [SerializeField] protected int maxButtons = 8;
+    [SerializeField] protected int maxLengthCount = 16;
 
     public int MaxButtons => maxButtons;
     public int MaxLengthCount => maxLengthCount;
     public int MaxRotate => maxButtons / 2;
-    public int ButtonsCount => RangeOverSize(buttonsCount, buttonsCountRangeOver);
-    public int QueueLength => RangeOverSize(queueLength, queueLengthRangeOver);
-    public int RotateLength => RangeOverSize(rotateOffset, rotateOffsetRangeOver);
+    public int ButtonsCount => RangeOverSize(buttonsCount, buttonsCountMaximumSpace);
+    public int QueueLength => RangeOverSize(queueLength, queueLengthMaximumSpace);
+    public int RotateLength => RangeOverSize(rotateOffset, rotateOffsetMaximumSpace);
 
     public int[] Parameters => new int[] {
-        buttonsCount, buttonsCountRangeOver,
-        queueLength, queueLengthRangeOver,
-        rotateOffset , rotateOffsetRangeOver };
-
-    public void RefundLevelSettings(LevelConfiguration levelConfiguration)
-    {
-        ChangeParameters(levelConfiguration.Parameters);
-    }
+        buttonsCount, buttonsCountMaximumSpace,
+        queueLength, queueLengthMaximumSpace,
+        rotateOffset , rotateOffsetMaximumSpace };
 
     private int RangeOverSize(int baseValue, int overValue)
     {
@@ -52,33 +46,5 @@ public class LevelConfiguration : ScriptableObject
         parameters.AddRange(Parameters);
 
         return parameters;
-    }
-
-    public void IncreaseParameters(int[] changeValue)
-    {
-        int i = 0;
-        if (buttonsCount + 1 + buttonsCountRangeOver <= MaxButtons)
-        {
-            buttonsCount += changeValue[i++];
-            buttonsCountRangeOver += changeValue[i++];
-        }
-        if (queueLength + 1 + queueLengthRangeOver <= MaxLengthCount)
-        {
-            queueLength += changeValue[i++];
-            queueLengthRangeOver += changeValue[i++];
-        }
-        rotateOffset += changeValue[i++];
-        rotateOffsetRangeOver += changeValue[i++];
-    }
-
-    protected void ChangeParameters(int[] changeValue)
-    {
-        int i = 0;
-        buttonsCount = changeValue[i++];
-        buttonsCountRangeOver = changeValue[i++];
-        queueLength = changeValue[i++];
-        queueLengthRangeOver = changeValue[i++];
-        rotateOffset = changeValue[i++];
-        rotateOffsetRangeOver = changeValue[i++];
     }
 }
