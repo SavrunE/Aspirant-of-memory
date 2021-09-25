@@ -27,7 +27,5 @@ public class SceneLoader : MonoBehaviour
     private void LoadProgress()
     {
         saveSerial.LoadGame();
-        // актив мод?
-        Debug.Log("актив мод?");
     }
 }

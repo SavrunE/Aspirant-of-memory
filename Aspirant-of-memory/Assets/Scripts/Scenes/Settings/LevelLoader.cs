@@ -9,18 +9,15 @@ public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private Sequence sequence;
     [SerializeField] private LevelConfiguration levelConfiguration;
-    [SerializeField] private ModesContainer modsContainer;
 
-    private Mode gameMode;
-    public Mode Mode => gameMode;
+    private StageLevelChanger gameMode;
+    public StageLevelChanger Mode => gameMode;
 
     private Points points;
     private SpinnerAnimation animation;
 
     private void Start()
     {
-        //gameMode = MySingleton.Instance.ActiveMode;
-        Debug.Log(gameMode);
         points = GetComponent<Points>();
         animation = GetComponent<SpinnerAnimation>();
     }
@@ -55,15 +52,8 @@ public class LevelLoader : MonoBehaviour
         float waintTime = animation.WinAnimation();
         yield return new WaitForSeconds(waintTime);
 
-        points.PointsIncrease(gameMode.PointsFromWin);
-        gameMode.StageLevelComplete(modsContainer);
-
-        //if (gameMode.ModeCompleted())
-        //{
-        //    Mode nextMode = modsContainer.TakeNextMode(Mode);
-
-        //    nextMode.NextLevelLoad();
-        //}
+        points.PointsIncrease(gameMode.PointsAfterWinStageLevel);
+        gameMode.StageLevelComplete();
     }
 
     private void LoseLevel()
@@ -78,7 +68,6 @@ public class LevelLoader : MonoBehaviour
 
         gameMode.RestartLevel();
     }
-
 
     public void ModeRefundLevelSettings()
     {

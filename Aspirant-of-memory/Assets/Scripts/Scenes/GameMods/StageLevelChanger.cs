@@ -4,9 +4,10 @@ using UnityEngine;
 using System;
 using IJunior.TypedScenes;
 
-public abstract class Mode : MonoBehaviour
+public abstract class StageLevelChanger : MonoBehaviour
 {
     public SaveSerial SaveSerial;
+    public int PointsAfterWinStageLevel = 5;
     [SerializeField] protected int maxStageLevel = 5;
     [SerializeField] protected int pointsFromWin = 14;
     public int PointsFromWin => pointsFromWin;
@@ -20,7 +21,7 @@ public abstract class Mode : MonoBehaviour
     protected int[] levelParameters;
     protected int SettingsCount => startLevelConfiguration.TakeParameters().Count;
     public Action<int> OnStageLevelChanged;
-    public Action<Mode> OnModeChanged;
+    public Action<StageLevelChanger> OnModeChanged;
 
     public abstract void ChangeConfigurationsValuesOnWin();
 
@@ -37,7 +38,7 @@ public abstract class Mode : MonoBehaviour
         }
     }
 
-    public void StageLevelComplete(ModesContainer modsContainer)
+    public void StageLevelComplete()
     {
         if (activeLevelConfigurationSettings.StageLevelNumber >= maxStageLevel)
         {

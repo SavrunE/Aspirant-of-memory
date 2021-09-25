@@ -23,6 +23,16 @@ public class LevelConfiguration : ScriptableObject
     [SerializeField] protected int maxButtons = 8;
     [SerializeField] protected int maxLengthCount = 16;
 
+    [Header("Change parameters setting")]
+    [SerializeField] protected int buttonsCountChangeEveryStageLevel;
+    [SerializeField] protected int buttonsCountMaximumSpaceChangeEveryStageLevel;
+
+    [SerializeField] protected int queueLengthChangeEveryStageLevel;
+    [SerializeField] protected int queueLengthMaximumSpaceChangeEveryStageLevel;
+
+    [SerializeField] protected int rotateOffsetChangeEveryStageLevel;
+    [SerializeField] protected int rotateOffsetMaximumSpaceChangeEveryStageLevel;
+
     public int MaxButtons => maxButtons;
     public int MaxLengthCount => maxLengthCount;
     public int MaxRotate => maxButtons / 2;
@@ -46,5 +56,86 @@ public class LevelConfiguration : ScriptableObject
         parameters.AddRange(Parameters);
 
         return parameters;
+    }
+
+    public void ChangeParametersSettings()
+    {
+        if (ModuloCheckWithStageLevelNumber(buttonsCountChangeEveryStageLevel))
+        {
+            IncreaseButtonsCount();
+        }
+        if (ModuloCheckWithStageLevelNumber(buttonsCountMaximumSpaceChangeEveryStageLevel))
+        {
+            IncreaseButtonsCountMaximumSpace();
+        }
+        if (ModuloCheckWithStageLevelNumber(queueLengthChangeEveryStageLevel))
+        {
+            IncreaseQueueLength();
+        }
+        if (ModuloCheckWithStageLevelNumber(queueLengthMaximumSpaceChangeEveryStageLevel))
+        {
+            IncreaseQueueLengthMaximumSpace();
+        }
+        if (ModuloCheckWithStageLevelNumber(rotateOffsetChangeEveryStageLevel))
+        {
+            IncreaseRotateOffset();
+        }
+        if (ModuloCheckWithStageLevelNumber(rotateOffsetMaximumSpaceChangeEveryStageLevel))
+        {
+            IncreaseRotateOffsetMaximumSpace();
+        }
+    }
+
+    private bool ModuloCheckWithStageLevelNumber(int checkParameter)
+    {
+        if (checkParameter != 0 && StageLevelNumberInfo() % checkParameter == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    public virtual int StageLevelNumberInfo()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void IncreaseButtonsCount()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void IncreaseButtonsCountMaximumSpace()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void IncreaseQueueLength()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void IncreaseQueueLengthMaximumSpace()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void IncreaseRotateOffset()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void IncreaseRotateOffsetMaximumSpace()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void IncreaseStageLevelNumber()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void RefundStageLevelNumber()
+    {
+        throw new System.NotImplementedException();
     }
 }

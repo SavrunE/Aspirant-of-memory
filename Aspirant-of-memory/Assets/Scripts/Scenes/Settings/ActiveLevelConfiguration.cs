@@ -9,37 +9,37 @@ public class ActiveLevelConfiguration : LevelConfiguration
     public int MaxOpenLevel { get; private set; }
     public int StageLevelNumber { get; private set; }
 
-    public void IncreaseButtonsCount()
+    public override void IncreaseButtonsCount()
     {
         buttonsCount++;
     }
     
-    public void IncreaseButtonsCountMaximumSpace()
+    public override void IncreaseButtonsCountMaximumSpace()
     {
         buttonsCountMaximumSpace++;
     }
     
-    public void IncreaseQueueLength()
+    public override void IncreaseQueueLength()
     {
         queueLength++;
     }
     
-    public void IncreaseQueueLengthMaximumSpace()
+    public override void IncreaseQueueLengthMaximumSpace()
     {
         queueLengthMaximumSpace++;
     }
     
-    public void IncreaseRotateOffset()
+    public override void IncreaseRotateOffset()
     {
         rotateOffset++;
     }
     
-    public void IncreaseRotateOffsetMaximumSpace()
+    public override void IncreaseRotateOffsetMaximumSpace()
     {
         rotateOffsetMaximumSpace++;
     }
 
-    public void IncreaseStageLevelNumber()
+    public override void IncreaseStageLevelNumber()
     {
         StageLevelNumber++;
     }
@@ -65,7 +65,7 @@ public class ActiveLevelConfiguration : LevelConfiguration
         rotateOffsetMaximumSpace = changeValue[i++];
     }
 
-    public void RefundStageLevelNumber()
+    public override void RefundStageLevelNumber()
     {
         StageLevelNumber = 0;
     }
