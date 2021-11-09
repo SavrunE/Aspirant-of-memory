@@ -8,18 +8,21 @@ using UnityEngine;
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private Sequence sequence;
-    [SerializeField] private LevelConfiguration levelConfiguration;
-
-    private StageLevelChanger gameMode;
-    public StageLevelChanger Mode => gameMode;
-
+    [SerializeField] private ActiveLevelConfiguration activeLevelConfiguration;
+    
+    private StageLevelChanger stageLevelChanger;
     private Points points;
     private SpinnerAnimation animation;
+
+    public StageLevelChanger Mode => stageLevelChanger;
 
     private void Start()
     {
         points = GetComponent<Points>();
         animation = GetComponent<SpinnerAnimation>();
+        stageLevelChanger = GetComponent<StageLevelChanger>();
+        stageLevelChanger.ChangeActiveLevelConfiguration(activeLevelConfiguration);
+        stageLevelChanger.ChangeLevelConfigurationParametes(activeLevelConfiguration.Parameters);
     }
 
     private void OnEnable()
@@ -49,11 +52,11 @@ public class LevelLoader : MonoBehaviour
 
     private IEnumerator WinCoroutine()
     {
-        float waintTime = animation.WinAnimation();
-        yield return new WaitForSeconds(waintTime);
+        float waitTime = animation.WinAnimation();
+        yield return new WaitForSeconds(waitTime);
 
-        points.PointsIncrease(gameMode.PointsAfterWinStageLevel);
-        gameMode.StageLevelComplete();
+        points.PointsIncrease(stageLevelChanger.PointsAfterWinStageLevel);
+        stageLevelChanger.StageLevelComplete();
     }
 
     private void LoseLevel()
@@ -66,11 +69,11 @@ public class LevelLoader : MonoBehaviour
         float waintTime = animation.LoseAnimation();
         yield return new WaitForSeconds(waintTime);
 
-        gameMode.RestartLevel();
+        stageLevelChanger.RestartLevel();
     }
 
     public void ModeRefundLevelSettings()
     {
-        gameMode.RefundLevelSettings();
+        stageLevelChanger.RefundLevelSettings();
     }
 }

@@ -4,38 +4,51 @@ using UnityEngine;
 using System;
 using IJunior.TypedScenes;
 
-public abstract class StageLevelChanger : MonoBehaviour
+public class StageLevelChanger : MonoBehaviour
 {
     public SaveSerial SaveSerial;
-    public int PointsAfterWinStageLevel = 5;
+    public int PointsAfterWinStageLevel = 10;
     [SerializeField] protected int maxStageLevel = 5;
-    [SerializeField] protected int pointsFromWin = 14;
+    [SerializeField] protected int pointsFromWin = 50;
     public int PointsFromWin => pointsFromWin;
 
-    [SerializeField] protected ActiveLevelConfiguration activeLevelConfigurationSettings;
-    [SerializeField] protected LevelConfiguration startLevelConfiguration;
+    protected ActiveLevelConfiguration activeLevelConfigurationSettings;
+    protected int[] startLevelConfigurationParameters;
     public int CurrentPoints { get; private set; }
     public int PointsForWinLevel { get; private set; }
     public int MaxModePoints { get; private set; }
 
     protected int[] levelParameters;
-    protected int SettingsCount => startLevelConfiguration.TakeParameters().Count;
+    protected int SettingsCount => startLevelConfigurationParameters.Length;
     public Action<int> OnStageLevelChanged;
     public Action<StageLevelChanger> OnModeChanged;
-
-    public abstract void ChangeConfigurationsValuesOnWin();
 
     private void Awake()
     {
         levelParameters = new int[SettingsCount];
     }
 
-    public void LoadProgress()
+    public void ChangeActiveLevelConfiguration(ActiveLevelConfiguration activeLevelConfiguration)
+    {
+        this.activeLevelConfigurationSettings = activeLevelConfiguration;
+    }
+
+    public void ChangeLevelConfigurationParametes(int[] parameters)
+    {
+        this.startLevelConfigurationParameters = parameters;
+    }
+
+    public void LoadProgressStageLevel()
     {
         for (int i = 0; i < activeLevelConfigurationSettings.StageLevelNumber; i++)
         {
             ChangeConfigurationsValuesOnWin();
         }
+    }
+
+    public void ChangeConfigurationsValuesOnWin() 
+    {
+        throw new NotImplementedException();
     }
 
     public void StageLevelComplete()
@@ -71,13 +84,13 @@ public abstract class StageLevelChanger : MonoBehaviour
     public void RefundLevelSettings()
     {
         ResetLevel();
-        activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfiguration);
+        activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfigurationParameters);
         DefaultLevel.Load(activeLevelConfigurationSettings);
     }
 
     public void ResetLevel()
     {
-        activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfiguration);
+        activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfigurationParameters);
         activeLevelConfigurationSettings.RefundStageLevelNumber();
     }
 }

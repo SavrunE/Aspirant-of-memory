@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 514014629}
   - component: {fileID: 514014633}
   - component: {fileID: 514014634}
+  - component: {fileID: 514014631}
   m_Layer: 0
   m_Name: LevelLoader
   m_TagString: Untagged
@@ -420,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequence: {fileID: 392207721}
-  levelConfiguration: {fileID: 0}
+  activeLevelConfiguration: {fileID: 0}
 --- !u!4 &514014630
 Transform:
   m_ObjectHideFlags: 0
@@ -435,6 +436,22 @@ Transform:
   m_Father: {fileID: 1225653638}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &514014631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514014628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f55ce39b5aa5d4795d7f703530abea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SaveSerial: {fileID: 1375304396}
+  PointsAfterWinStageLevel: 10
+  maxStageLevel: 5
+  pointsFromWin: 50
 --- !u!114 &514014633
 MonoBehaviour:
   m_ObjectHideFlags: 0

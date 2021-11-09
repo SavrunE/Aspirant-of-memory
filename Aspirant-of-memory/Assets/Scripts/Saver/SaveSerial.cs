@@ -33,7 +33,7 @@ public class SaveSerial : MonoBehaviour
         Serializer();
     }
   
-    public void SaveAll(int level, int points, StageLevelChanger modes)
+    public void SaveAll(int level, int points)
     {
         CreateBinarFormate();
         ParametersChanger(level, points);

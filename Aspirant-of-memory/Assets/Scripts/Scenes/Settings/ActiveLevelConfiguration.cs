@@ -49,9 +49,9 @@ public class ActiveLevelConfiguration : LevelConfiguration
         MaxOpenLevel = newMaxOpenLevel;
     }
 
-    public void RefundLevelSettings(LevelConfiguration levelConfiguration)
+    public void RefundLevelSettings(int[] parameters)
     {
-        ChangeParameters(levelConfiguration.Parameters);
+        ChangeParameters(parameters);
     }
 
     private void ChangeParameters(int[] changeValue)
