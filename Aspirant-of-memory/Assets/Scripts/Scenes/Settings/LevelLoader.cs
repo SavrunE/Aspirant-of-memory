@@ -16,13 +16,17 @@ public class LevelLoader : MonoBehaviour
 
     public StageLevelChanger Mode => stageLevelChanger;
 
+    private void Awake()
+    {
+        stageLevelChanger = GetComponent<StageLevelChanger>();
+        stageLevelChanger.ChangeActiveLevelConfiguration(activeLevelConfiguration);
+        stageLevelChanger.ChangeLevelConfigurationParametes(activeLevelConfiguration.Parameters);
+    }
+
     private void Start()
     {
         points = GetComponent<Points>();
         animation = GetComponent<SpinnerAnimation>();
-        stageLevelChanger = GetComponent<StageLevelChanger>();
-        stageLevelChanger.ChangeActiveLevelConfiguration(activeLevelConfiguration);
-        stageLevelChanger.ChangeLevelConfigurationParametes(activeLevelConfiguration.Parameters);
     }
 
     private void OnEnable()

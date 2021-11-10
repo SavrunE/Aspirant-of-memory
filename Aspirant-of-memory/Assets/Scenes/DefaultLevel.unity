@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequence: {fileID: 392207721}
-  activeLevelConfiguration: {fileID: 0}
+  activeLevelConfiguration: {fileID: 11400000, guid: f6c1606df9e314f449b3904f08565fd9, type: 2}
 --- !u!4 &514014630
 Transform:
   m_ObjectHideFlags: 0
