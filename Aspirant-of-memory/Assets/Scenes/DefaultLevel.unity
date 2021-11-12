@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SaveSerial: {fileID: 1375304396}
-  PointsAfterWinStageLevel: 10
+  pointsAfterWinStageLevel: 10
   maxStageLevel: 5
   pointsFromWin: 50
 --- !u!114 &514014633
@@ -464,6 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f937a283a61ae42a1400eb84badb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageLevelChanger: {fileID: 514014631}
 --- !u!114 &514014634
 MonoBehaviour:
   m_ObjectHideFlags: 0

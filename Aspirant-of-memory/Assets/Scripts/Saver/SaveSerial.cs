@@ -76,6 +76,7 @@ public class SaveSerial : MonoBehaviour
             Debug.Log("There is no save data! Taked reset.");
         }
     }
+
     public void ResetData()
     {
         if (File.Exists(Application.persistentDataPath
@@ -95,6 +96,7 @@ public class SaveSerial : MonoBehaviour
     private void ParametersChanger(int level)
     {
         this.playersMaxOpenLevel = level;
+        //по идее не должно сохранять поинты
 
         activeLevelConfiguration.ChangeMaxOpenLevel(data.PlayersMaxOpenLevel);
     }
@@ -107,4 +109,3 @@ public class SaveSerial : MonoBehaviour
         activeLevelConfiguration.ChangeMaxOpenLevel(data.PlayersMaxOpenLevel);
     }
 }
-

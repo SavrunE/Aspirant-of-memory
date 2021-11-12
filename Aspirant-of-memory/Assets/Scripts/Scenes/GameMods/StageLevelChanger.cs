@@ -7,10 +7,11 @@ using IJunior.TypedScenes;
 public class StageLevelChanger : MonoBehaviour
 {
     public SaveSerial SaveSerial;
-    public int PointsAfterWinStageLevel = 10;
+    [SerializeField] protected int pointsAfterWinStageLevel = 10;
     [SerializeField] protected int maxStageLevel = 5;
     [SerializeField] protected int pointsFromWin = 50;
-    public int PointsFromWin => pointsFromWin;
+
+    public int PointsAfterWinStageLevel => pointsAfterWinStageLevel;
 
     protected ActiveLevelConfiguration activeLevelConfigurationSettings;
     protected int[] startLevelConfigurationParameters;
@@ -25,6 +26,7 @@ public class StageLevelChanger : MonoBehaviour
 
     private void Awake()
     {
+        SaveSerial = new SaveSerial();
         levelParameters = new int[SettingsCount];
     }
 
@@ -48,7 +50,10 @@ public class StageLevelChanger : MonoBehaviour
 
     public void ChangeConfigurationsValuesOnWin() 
     {
-        throw new NotImplementedException();
+        UpdatePoints(GetComponent<Points>().PointsCount);
+        SaveSerial.SaveAll(activeLevelConfigurationSettings.StageLevelNumber, CurrentPoints);
+        
+        //throw new NotImplementedException();
     }
 
     public void StageLevelComplete()
@@ -92,5 +97,10 @@ public class StageLevelChanger : MonoBehaviour
     {
         activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfigurationParameters);
         activeLevelConfigurationSettings.RefundStageLevelNumber();
+    }
+
+    public void UpdatePoints(int points)
+    {
+        CurrentPoints = points;
     }
 }
