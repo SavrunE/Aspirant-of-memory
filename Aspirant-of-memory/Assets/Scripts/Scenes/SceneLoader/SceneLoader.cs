@@ -8,7 +8,7 @@ public class SceneLoader : MonoBehaviour
 {
     private SaveSerial saveSerial;
 
-    private void Awake()
+    private void Start()
     {
         saveSerial = GetComponent<SaveSerial>();
         LoadProgress();

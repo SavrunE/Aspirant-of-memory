@@ -10,14 +10,14 @@ class SaveData
 {
     public int PlayersMaxOpenLevel;
     public int PlayersCurrentPoints;
-    public ActiveLevelConfiguration activeLevelConfiguration;
+    public ActiveLevelConfiguration ActiveLevelConfiguration;
 }
 
 public class SaveSerial : MonoBehaviour
 {
     private int playersMaxOpenLevel;
     private int playersCurrentPoints;
-    
+
     [SerializeField] private ActiveLevelConfiguration activeLevelConfiguration;
 
     public int Level() => playersMaxOpenLevel;
@@ -32,7 +32,7 @@ public class SaveSerial : MonoBehaviour
         ParametersChanger(level);
         Serializer();
     }
-  
+
     public void SaveAll(int level, int points)
     {
         CreateBinarFormate();
@@ -96,7 +96,8 @@ public class SaveSerial : MonoBehaviour
     private void ParametersChanger(int level)
     {
         this.playersMaxOpenLevel = level;
-        //по идее не должно сохранять поинты
+
+        ChangeData(level, playersCurrentPoints, activeLevelConfiguration);
 
         activeLevelConfiguration.ChangeMaxOpenLevel(data.PlayersMaxOpenLevel);
     }
@@ -106,6 +107,16 @@ public class SaveSerial : MonoBehaviour
         this.playersMaxOpenLevel = level;
         this.playersCurrentPoints = points;
 
+
+        ChangeData(level, points, activeLevelConfiguration);
+
         activeLevelConfiguration.ChangeMaxOpenLevel(data.PlayersMaxOpenLevel);
+    }
+
+    public void ChangeData(int playersMaxOpenLevel, int playersCurrentPoints, ActiveLevelConfiguration activeLevelConfiguration)
+    {
+        data.PlayersMaxOpenLevel = playersMaxOpenLevel;
+        data.PlayersCurrentPoints = playersCurrentPoints;
+        data.ActiveLevelConfiguration = activeLevelConfiguration;
     }
 }
