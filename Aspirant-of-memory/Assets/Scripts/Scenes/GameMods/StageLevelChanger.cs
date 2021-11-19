@@ -51,7 +51,7 @@ public class StageLevelChanger : MonoBehaviour
     public void ChangeConfigurationsValuesOnWin() 
     {
         UpdatePoints(GetComponent<Points>().PointsCount);
-        SaveSerial.SaveAll(activeLevelConfigurationSettings.StageLevelNumber, CurrentPoints);
+        SaveSerial.SaveAll(activeLevelConfigurationSettings.MaxOpenLevel, CurrentPoints, activeLevelConfigurationSettings.Parameters);
         
         //throw new NotImplementedException();
     }
@@ -62,7 +62,7 @@ public class StageLevelChanger : MonoBehaviour
         {
             if (activeLevelConfigurationSettings.CurrentLevel == activeLevelConfigurationSettings.MaxOpenLevel)
             {
-                SaveSerial.SaveLevel(activeLevelConfigurationSettings.MaxOpenLevel + 1);
+                SaveLevel();
             }
             StartWindow.Load();
         }
@@ -70,6 +70,11 @@ public class StageLevelChanger : MonoBehaviour
         {
             NextStageLevelLoad();
         }
+    }
+
+    private void SaveLevel()
+    {
+        SaveSerial.SaveAll(activeLevelConfigurationSettings.MaxOpenLevel + 1, CurrentPoints, activeLevelConfigurationSettings.Parameters);
     }
 
     public void NextStageLevelLoad()

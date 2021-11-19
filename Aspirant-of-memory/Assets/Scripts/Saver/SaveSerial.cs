@@ -10,15 +10,15 @@ class SaveData
 {
     public int PlayersMaxOpenLevel;
     public int PlayersCurrentPoints;
-    public ActiveLevelConfiguration ActiveLevelConfiguration;
+    public int[] Parameters;
 }
 
+[RequireComponent(typeof(ConfigurationChanger))]
 public class SaveSerial : MonoBehaviour
 {
     private int playersMaxOpenLevel;
     private int playersCurrentPoints;
-
-    [SerializeField] private ActiveLevelConfiguration activeLevelConfiguration;
+    private int[] parameters;
 
     public int Level() => playersMaxOpenLevel;
 
@@ -26,33 +26,11 @@ public class SaveSerial : MonoBehaviour
     private FileStream file;
     private SaveData data;
 
-    public void SaveLevel(int level)
-    {
-        CreateBinarFormate();
-        ParametersChanger(level);
-        Serializer();
-    }
+    public event Action<int> OnMaxOpenLevelChanged;
 
-    public void SaveAll(int level, int points)
+    public void SaveAll(int level, int points, int[] parameters)
     {
-        CreateBinarFormate();
-        ParametersChanger(level, points);
-        Serializer();
-    }
-
-    private void CreateBinarFormate()
-    {
-        binaryFormatter = new BinaryFormatter();
-        file = File.Create(Application.persistentDataPath
-          + "/MySaveData.dat");
-        data = new SaveData();
-    }
-
-    private void Serializer()
-    {
-        binaryFormatter.Serialize(file, data);
-        file.Close();
-        Debug.Log("Game data saved!");
+        ParametersChanger(level, points, parameters);
     }
 
     public void LoadGame()
@@ -66,13 +44,13 @@ public class SaveSerial : MonoBehaviour
             data = (SaveData)binaryFormatter.Deserialize(file);
             file.Close();
 
-            ParametersChanger(data.PlayersMaxOpenLevel, data.PlayersCurrentPoints);
+            ParametersChanger(data.PlayersMaxOpenLevel, data.PlayersCurrentPoints, data.Parameters);
 
             Debug.Log("Game data loaded!");
         }
         else
         {
-            ParametersChanger(0, 0);
+            ParametersChanger(0, 0, null);
             Debug.Log("There is no save data! Taked reset.");
         }
     }
@@ -85,7 +63,7 @@ public class SaveSerial : MonoBehaviour
             File.Delete(Application.persistentDataPath
               + "/MySaveData.dat");
 
-            ParametersChanger(0, 0);
+            SaveAll(0, 0, null);
 
             Debug.Log("Data reset complete!");
         }
@@ -93,30 +71,28 @@ public class SaveSerial : MonoBehaviour
             Debug.LogError("No save data to delete.");
     }
 
-    private void ParametersChanger(int level)
-    {
-        this.playersMaxOpenLevel = level;
-
-        ChangeData(level, playersCurrentPoints, activeLevelConfiguration);
-
-        activeLevelConfiguration.ChangeMaxOpenLevel(data.PlayersMaxOpenLevel);
-    }
-
-    private void ParametersChanger(int level, int points)
+    private void ParametersChanger(int level, int points, int[] parameters)
     {
         this.playersMaxOpenLevel = level;
         this.playersCurrentPoints = points;
+        this.parameters = parameters;
 
+        ChangeData(level, points, parameters);
 
-        ChangeData(level, points, activeLevelConfiguration);
-
-        activeLevelConfiguration.ChangeMaxOpenLevel(data.PlayersMaxOpenLevel);
+        OnMaxOpenLevelChanged(playersMaxOpenLevel);
     }
 
-    public void ChangeData(int playersMaxOpenLevel, int playersCurrentPoints, ActiveLevelConfiguration activeLevelConfiguration)
+    public void ChangeData(int playersMaxOpenLevel, int playersCurrentPoints, int[] parameters)
     {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath
+          + "/MySaveData.dat");
+        SaveData data = new SaveData();
         data.PlayersMaxOpenLevel = playersMaxOpenLevel;
         data.PlayersCurrentPoints = playersCurrentPoints;
-        data.ActiveLevelConfiguration = activeLevelConfiguration;
+        data.Parameters = parameters;
+        bf.Serialize(file, data);
+        file.Close();
+        Debug.Log("Game data changed!");
     }
 }

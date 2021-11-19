@@ -910,6 +910,8 @@ GameObject:
   - component: {fileID: 935540318}
   - component: {fileID: 935540317}
   - component: {fileID: 935540319}
+  - component: {fileID: 935540320}
+  - component: {fileID: 935540321}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -953,6 +955,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb379ad590c3731458992c5e019a94c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &935540320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935540316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4493abf125d8b44ebf179af7809f743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeLevelConfiguration: {fileID: 11400000, guid: f6c1606df9e314f449b3904f08565fd9, type: 2}
+--- !u!114 &935540321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935540316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5baf93f28a818cc4a88c3092d1272a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   activeLevelConfiguration: {fileID: 11400000, guid: f6c1606df9e314f449b3904f08565fd9, type: 2}
