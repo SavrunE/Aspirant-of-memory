@@ -9,12 +9,18 @@ public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private Sequence sequence;
     [SerializeField] private ActiveLevelConfiguration activeLevelConfiguration;
+    [SerializeField] private LevelConfiguration levelConfiguration;
     
     private StageLevelChanger stageLevelChanger;
     private Points points;
-    private SpinnerAnimation animation;
+    private SpinnerAnimation spinnerAnimation;
 
     public StageLevelChanger Mode => stageLevelChanger;
+    
+    //public void OnSceneLoaded(LevelConfiguration argument)
+    //{
+    //    levelConfiguration = argument;
+    //}
 
     private void Awake()
     {
@@ -26,7 +32,7 @@ public class LevelLoader : MonoBehaviour
     private void Start()
     {
         points = GetComponent<Points>();
-        animation = GetComponent<SpinnerAnimation>();
+        spinnerAnimation = GetComponent<SpinnerAnimation>();
     }
 
     private void OnEnable()
@@ -56,7 +62,7 @@ public class LevelLoader : MonoBehaviour
 
     private IEnumerator WinCoroutine()
     {
-        float waitTime = animation.WinAnimation();
+        float waitTime = spinnerAnimation.WinAnimation();
         yield return new WaitForSeconds(waitTime);
 
         points.PointsIncrease(stageLevelChanger.PointsAfterWinStageLevel);
@@ -70,8 +76,8 @@ public class LevelLoader : MonoBehaviour
 
     private IEnumerator LoseCoroutine()
     {
-        float waintTime = animation.LoseAnimation();
-        yield return new WaitForSeconds(waintTime);
+        float waitTime = spinnerAnimation.LoseAnimation();
+        yield return new WaitForSeconds(waitTime);
 
         stageLevelChanger.RestartLevel();
     }

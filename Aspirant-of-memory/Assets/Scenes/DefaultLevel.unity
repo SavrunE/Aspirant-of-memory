@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f55ce39b5aa5d4795d7f703530abea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveSerial: {fileID: 0}
+  SaveSerial: {fileID: 1745064667}
   pointsAfterWinStageLevel: 10
   maxStageLevel: 5
   pointsFromWin: 50

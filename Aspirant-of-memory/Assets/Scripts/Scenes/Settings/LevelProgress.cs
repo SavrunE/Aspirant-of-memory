@@ -14,6 +14,6 @@ public class LevelProgress : MonoBehaviour
 
     public void ChangeProgress(int currentValue, int maxValue)
     {
-
+        throw new System.NotImplementedException();
     }
 }

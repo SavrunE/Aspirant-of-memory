@@ -65,7 +65,7 @@ public class ActiveLevelConfiguration : LevelConfiguration
         rotateOffsetMaximumSpace = changeValue[i++];
     }
 
-    public override void RefundStageLevelNumber()
+    public override void ResetStageLevelNumber()
     {
         StageLevelNumber = 0;
     }

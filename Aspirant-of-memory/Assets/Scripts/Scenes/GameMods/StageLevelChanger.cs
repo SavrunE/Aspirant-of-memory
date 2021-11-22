@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using IJunior.TypedScenes;
 
-public class StageLevelChanger : MonoBehaviour
+public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 {
     public SaveSerial SaveSerial;
     [SerializeField] protected int pointsAfterWinStageLevel = 10;
@@ -14,6 +14,7 @@ public class StageLevelChanger : MonoBehaviour
     public int PointsAfterWinStageLevel => pointsAfterWinStageLevel;
 
     protected ActiveLevelConfiguration activeLevelConfigurationSettings;
+    protected LevelConfiguration levelConfiguration;
     protected int[] startLevelConfigurationParameters;
     public int CurrentPoints { get; private set; }
     public int PointsForWinLevel { get; private set; }
@@ -26,8 +27,12 @@ public class StageLevelChanger : MonoBehaviour
 
     private void Awake()
     {
-        SaveSerial = new SaveSerial();
         levelParameters = new int[SettingsCount];
+    }
+
+    public void OnSceneLoaded(LevelConfiguration argument)
+    {
+        levelConfiguration = argument;
     }
 
     public void ChangeActiveLevelConfiguration(ActiveLevelConfiguration activeLevelConfiguration)
@@ -52,8 +57,6 @@ public class StageLevelChanger : MonoBehaviour
     {
         UpdatePoints(GetComponent<Points>().PointsCount);
         SaveSerial.SaveAll(activeLevelConfigurationSettings.MaxOpenLevel, CurrentPoints, activeLevelConfigurationSettings.Parameters);
-        
-        //throw new NotImplementedException();
     }
 
     public void StageLevelComplete()
@@ -62,8 +65,9 @@ public class StageLevelChanger : MonoBehaviour
         {
             if (activeLevelConfigurationSettings.CurrentLevel == activeLevelConfigurationSettings.MaxOpenLevel)
             {
-                SaveLevel();
+                IncreaseMaxOpenLevel();
             }
+            Debug.Log("Win and loaded start window");
             StartWindow.Load();
         }
         else
@@ -72,7 +76,7 @@ public class StageLevelChanger : MonoBehaviour
         }
     }
 
-    private void SaveLevel()
+    private void IncreaseMaxOpenLevel()
     {
         SaveSerial.SaveAll(activeLevelConfigurationSettings.MaxOpenLevel + 1, CurrentPoints, activeLevelConfigurationSettings.Parameters);
     }
@@ -82,13 +86,13 @@ public class StageLevelChanger : MonoBehaviour
         activeLevelConfigurationSettings.IncreaseStageLevelNumber();
         OnStageLevelChanged?.Invoke(activeLevelConfigurationSettings.StageLevelNumber);
         ChangeConfigurationsValuesOnWin();
-        DefaultLevel.Load(activeLevelConfigurationSettings);
+        Debug.Log("Win and increased stage level");
+        DefaultLevel.Load(levelConfiguration);
     }
 
     public void RestartLevel()
     {
-        OnStageLevelChanged?.Invoke(activeLevelConfigurationSettings.StageLevelNumber);
-        DefaultLevel.Load(activeLevelConfigurationSettings);
+        DefaultLevel.Load(levelConfiguration);
     }
 
     public void RefundLevelSettings()
@@ -101,7 +105,7 @@ public class StageLevelChanger : MonoBehaviour
     public void ResetLevel()
     {
         activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfigurationParameters);
-        activeLevelConfigurationSettings.RefundStageLevelNumber();
+        activeLevelConfigurationSettings.ResetStageLevelNumber();
     }
 
     public void UpdatePoints(int points)

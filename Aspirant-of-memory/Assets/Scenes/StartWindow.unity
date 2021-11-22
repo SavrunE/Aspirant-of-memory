@@ -327,9 +327,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 935540319}
+      - m_Target: {fileID: 935540316}
         m_TargetAssemblyTypeName: SaveSerial, Assembly-CSharp
-        m_MethodName: SaveLevel
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -931,6 +931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef51bd49a509b6f41a39a64b00e0a99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeLevelConfiguration: {fileID: 11400000, guid: f6c1606df9e314f449b3904f08565fd9, type: 2}
 --- !u!4 &935540318
 Transform:
   m_ObjectHideFlags: 0

@@ -36,7 +36,6 @@ public class Test : MonoBehaviour
     }
     private void BaseCheck()
     {
-        int i = 0;
         value = 2;
 
         int check1 = Randomizer(value);

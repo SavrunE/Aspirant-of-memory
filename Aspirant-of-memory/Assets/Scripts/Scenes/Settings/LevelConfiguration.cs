@@ -134,7 +134,7 @@ public class LevelConfiguration : ScriptableObject
         throw new System.NotImplementedException();
     }
 
-    public virtual void RefundStageLevelNumber()
+    public virtual void ResetStageLevelNumber()
     {
         throw new System.NotImplementedException();
     }

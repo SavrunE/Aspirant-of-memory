@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Click : MonoBehaviour
 {
-    private Camera camera;
+    private Camera mainCamera;
     private bool activateClicker = false;
     [SerializeField] private SpinnerMover spinnerMover;
 
@@ -20,7 +20,7 @@ public class Click : MonoBehaviour
 
     private void Start()
     {
-        camera = Camera.main;
+        mainCamera = Camera.main;
     }
 
     private void Update()
@@ -28,7 +28,7 @@ public class Click : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && activateClicker)
         {
             RaycastHit2D rayHit = new RaycastHit2D();
-            rayHit = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            rayHit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
             if (rayHit.collider != null)
             {

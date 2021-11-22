@@ -7,6 +7,7 @@ using UnityEngine;
 public class SceneLoader : MonoBehaviour
 {
     private SaveSerial saveSerial;
+    [SerializeField] private ActiveLevelConfiguration activeLevelConfiguration;
 
     private void Start()
     {
@@ -15,6 +16,12 @@ public class SceneLoader : MonoBehaviour
     }
 
     public void ActivateLevel(LevelConfiguration levelConfiguration)
+    {
+        activeLevelConfiguration.ResetStageLevelNumber();
+        DefaultLevel.Load(levelConfiguration);
+    }
+
+    public void NextStageLevelLoad(LevelConfiguration levelConfiguration)
     {
         DefaultLevel.Load(levelConfiguration);
     }
