@@ -39,14 +39,14 @@ public class ActiveLevelConfiguration : LevelConfiguration
         rotateOffsetMaximumSpace++;
     }
 
-    public override void IncreaseStageLevelNumber()
-    {
-        StageLevelNumber++;
-    }
-
     public void ChangeMaxOpenLevel(int newMaxOpenLevel)
     {
         MaxOpenLevel = newMaxOpenLevel;
+    }
+
+    public override void IncreaseStageLevelNumber()
+    {
+        StageLevelNumber++;
     }
 
     public void RefundLevelSettings(int[] parameters)
@@ -54,7 +54,7 @@ public class ActiveLevelConfiguration : LevelConfiguration
         ChangeParameters(parameters);
     }
 
-    private void ChangeParameters(int[] changeValue)
+    public void ChangeParameters(int[] changeValue)
     {
         int i = 0;
         buttonsCount = changeValue[i++];

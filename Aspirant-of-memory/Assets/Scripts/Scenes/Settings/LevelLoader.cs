@@ -16,11 +16,6 @@ public class LevelLoader : MonoBehaviour
     private SpinnerAnimation spinnerAnimation;
 
     public StageLevelChanger Mode => stageLevelChanger;
-    
-    //public void OnSceneLoaded(LevelConfiguration argument)
-    //{
-    //    levelConfiguration = argument;
-    //}
 
     private void Awake()
     {

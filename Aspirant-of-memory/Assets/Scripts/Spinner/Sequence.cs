@@ -5,21 +5,20 @@ using System.Linq;
 using UnityEngine;
 using IJunior.TypedScenes;
 
-public class Sequence : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
+public class Sequence : MonoBehaviour, ISceneLoadHandler<ActiveLevelConfiguration>
 {
     [SerializeField] private int queueLength;
     [SerializeField] private float activateButtonDelay = 1.5f;
 
     private List<Button> childButtons;
     private Queue<Button> queueButtons;
-    private ButtonsSpawner buttonsSpawner;
 
     public float movingDelay = 1f; 
 
     public event Action<bool> QueueReady;
     public event Action<int> SequenceChanged;
     public event Action LoseLevel;
-    public void OnSceneLoaded(LevelConfiguration argument)
+    public void OnSceneLoaded(ActiveLevelConfiguration argument)
     {
         queueLength = argument.QueueLength;
     }

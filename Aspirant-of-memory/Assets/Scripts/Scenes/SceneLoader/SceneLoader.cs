@@ -18,12 +18,13 @@ public class SceneLoader : MonoBehaviour
     public void ActivateLevel(LevelConfiguration levelConfiguration)
     {
         activeLevelConfiguration.ResetStageLevelNumber();
-        DefaultLevel.Load(levelConfiguration);
+        activeLevelConfiguration.ChangeParameters(levelConfiguration.Parameters);
+        DefaultLevel.Load(activeLevelConfiguration);
     }
 
-    public void NextStageLevelLoad(LevelConfiguration levelConfiguration)
+    public void NextStageLevelLoad(ActiveLevelConfiguration activeLevelConfiguration)
     {
-        DefaultLevel.Load(levelConfiguration);
+        DefaultLevel.Load(activeLevelConfiguration);
     }
 
     public void LoadLevel(ActiveLevelConfiguration activeLevelConfiguration)

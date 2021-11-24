@@ -47,7 +47,9 @@ public class LevelConfiguration : ScriptableObject
 
     private int RangeOverSize(int baseValue, int overValue)
     {
-        return Random.Range(baseValue, baseValue + overValue + 1);
+        int currentValue = Random.Range(baseValue, baseValue + overValue + 1);
+        Debug.Log(currentValue);
+        return currentValue;
     }
 
     public List<int> TakeParameters()
@@ -58,7 +60,7 @@ public class LevelConfiguration : ScriptableObject
         return parameters;
     }
 
-    public void ChangeParametersSettings()
+    public void SpecificChangeParametersSettings()
     {
         if (ModuloCheckWithStageLevelNumber(buttonsCountChangeEveryStageLevel))
         {

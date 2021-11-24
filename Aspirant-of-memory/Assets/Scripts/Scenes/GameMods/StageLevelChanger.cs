@@ -13,7 +13,7 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
 
     public int PointsAfterWinStageLevel => pointsAfterWinStageLevel;
 
-    protected ActiveLevelConfiguration activeLevelConfigurationSettings;
+    protected ActiveLevelConfiguration activeLevelConfiguration;
     protected LevelConfiguration levelConfiguration;
     protected int[] startLevelConfigurationParameters;
     public int CurrentPoints { get; private set; }
@@ -37,7 +37,7 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
 
     public void ChangeActiveLevelConfiguration(ActiveLevelConfiguration activeLevelConfiguration)
     {
-        this.activeLevelConfigurationSettings = activeLevelConfiguration;
+        this.activeLevelConfiguration = activeLevelConfiguration;
     }
 
     public void ChangeLevelConfigurationParametes(int[] parameters)
@@ -47,7 +47,7 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
 
     public void LoadProgressStageLevel()
     {
-        for (int i = 0; i < activeLevelConfigurationSettings.StageLevelNumber; i++)
+        for (int i = 0; i < activeLevelConfiguration.StageLevelNumber; i++)
         {
             ChangeConfigurationsValuesOnWin();
         }
@@ -56,14 +56,14 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
     public void ChangeConfigurationsValuesOnWin() 
     {
         UpdatePoints(GetComponent<Points>().PointsCount);
-        SaveSerial.SaveAll(activeLevelConfigurationSettings.MaxOpenLevel, CurrentPoints, activeLevelConfigurationSettings.Parameters);
+        SaveSerial.SaveAll(activeLevelConfiguration.MaxOpenLevel, CurrentPoints, activeLevelConfiguration.Parameters);
     }
 
     public void StageLevelComplete()
     {
-        if (activeLevelConfigurationSettings.StageLevelNumber >= maxStageLevel)
+        if (activeLevelConfiguration.StageLevelNumber >= maxStageLevel)
         {
-            if (activeLevelConfigurationSettings.CurrentLevel == activeLevelConfigurationSettings.MaxOpenLevel)
+            if (activeLevelConfiguration.CurrentLevel == activeLevelConfiguration.MaxOpenLevel)
             {
                 IncreaseMaxOpenLevel();
             }
@@ -78,34 +78,34 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
 
     private void IncreaseMaxOpenLevel()
     {
-        SaveSerial.SaveAll(activeLevelConfigurationSettings.MaxOpenLevel + 1, CurrentPoints, activeLevelConfigurationSettings.Parameters);
+        SaveSerial.SaveAll(activeLevelConfiguration.MaxOpenLevel + 1, CurrentPoints, activeLevelConfiguration.Parameters);
     }
 
     public void NextStageLevelLoad()
     {
-        activeLevelConfigurationSettings.IncreaseStageLevelNumber();
-        OnStageLevelChanged?.Invoke(activeLevelConfigurationSettings.StageLevelNumber);
+        activeLevelConfiguration.IncreaseStageLevelNumber();
+        OnStageLevelChanged?.Invoke(activeLevelConfiguration.StageLevelNumber);
         ChangeConfigurationsValuesOnWin();
         Debug.Log("Win and increased stage level");
-        DefaultLevel.Load(levelConfiguration);
+        DefaultLevel.Load(activeLevelConfiguration);
     }
 
     public void RestartLevel()
     {
-        DefaultLevel.Load(levelConfiguration);
+        DefaultLevel.Load(activeLevelConfiguration);
     }
 
     public void RefundLevelSettings()
     {
         ResetLevel();
-        activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfigurationParameters);
-        DefaultLevel.Load(activeLevelConfigurationSettings);
+        activeLevelConfiguration.RefundLevelSettings(startLevelConfigurationParameters);
+        DefaultLevel.Load(activeLevelConfiguration);
     }
 
     public void ResetLevel()
     {
-        activeLevelConfigurationSettings.RefundLevelSettings(startLevelConfigurationParameters);
-        activeLevelConfigurationSettings.ResetStageLevelNumber();
+        activeLevelConfiguration.RefundLevelSettings(startLevelConfigurationParameters);
+        activeLevelConfiguration.ResetStageLevelNumber();
     }
 
     public void UpdatePoints(int points)

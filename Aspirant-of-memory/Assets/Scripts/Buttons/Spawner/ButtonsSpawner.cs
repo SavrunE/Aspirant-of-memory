@@ -5,7 +5,7 @@ using IJunior.TypedScenes;
 
 
 [RequireComponent(typeof(Sequence))]
-public class ButtonsSpawner : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
+public class ButtonsSpawner : MonoBehaviour, ISceneLoadHandler<ActiveLevelConfiguration>
 {
     [SerializeField] private int ButtonsCount;
     [SerializeField] private ButtonRotator buttonRotatorTemplate;
@@ -14,7 +14,7 @@ public class ButtonsSpawner : MonoBehaviour, ISceneLoadHandler<LevelConfiguratio
     public float angleRotation => 360f / ButtonsCount;
     public List<Button> childButtons { get; private set; }
 
-    public void OnSceneLoaded(LevelConfiguration argument)
+    public void OnSceneLoaded(ActiveLevelConfiguration argument)
     {
         ButtonsCount = argument.ButtonsCount;
     }
