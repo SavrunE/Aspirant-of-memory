@@ -36,19 +36,18 @@ public class LevelConfiguration : ScriptableObject
     public int MaxButtons => maxButtons;
     public int MaxLengthCount => maxLengthCount;
     public int MaxRotate => maxButtons / 2;
-    public int ButtonsCount => RangeOverSize(buttonsCount, buttonsCountMaximumSpace);
-    public int QueueLength => RangeOverSize(queueLength, queueLengthMaximumSpace);
-    public int RotateLength => RangeOverSize(rotateOffset, rotateOffsetMaximumSpace);
+    public int ButtonsCount => RandomRangeOverSize(buttonsCount, buttonsCountMaximumSpace);
+    public int QueueLength => RandomRangeOverSize(queueLength, queueLengthMaximumSpace);
+    public int RotateLength => RandomRangeOverSize(rotateOffset, rotateOffsetMaximumSpace);
 
     public int[] Parameters => new int[] {
         buttonsCount, buttonsCountMaximumSpace,
         queueLength, queueLengthMaximumSpace,
         rotateOffset , rotateOffsetMaximumSpace };
 
-    private int RangeOverSize(int baseValue, int overValue)
+    private int RandomRangeOverSize(int baseValue, int overValue)
     {
         int currentValue = Random.Range(baseValue, baseValue + overValue + 1);
-        Debug.Log(currentValue);
         return currentValue;
     }
 

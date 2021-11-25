@@ -7,7 +7,7 @@ using System;
 
 [RequireComponent(typeof(ButtonsSpawner))]
 [RequireComponent(typeof(Sequence))]
-public class SpinnerMover : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
+public class SpinnerMover : MonoBehaviour, ISceneLoadHandler<ActiveLevelConfiguration>
 {
     [SerializeField] private int buttonsOffset;
 
@@ -16,7 +16,7 @@ public class SpinnerMover : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 
     public event Action<bool> SequenceActivated;
 
-    public void OnSceneLoaded(LevelConfiguration argument)
+    public void OnSceneLoaded(ActiveLevelConfiguration argument)
     {
         buttonsOffset = argument.RotateLength;
     }
