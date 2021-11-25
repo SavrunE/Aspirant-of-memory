@@ -95,6 +95,7 @@ public class LevelConfiguration : ScriptableObject
         }
         return false;
     }
+
     public virtual int StageLevelNumberInfo()
     {
         throw new System.NotImplementedException();

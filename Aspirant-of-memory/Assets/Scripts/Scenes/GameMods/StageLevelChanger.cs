@@ -47,7 +47,7 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
 
     public void LoadProgressStageLevel()
     {
-        for (int i = 0; i < activeLevelConfiguration.StageLevelNumber; i++)
+        for (int i = 0; i < activeLevelConfiguration.StageLevelNumberInfo(); i++)
         {
             ChangeConfigurationsValuesOnWin();
         }
@@ -61,7 +61,7 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
 
     public void StageLevelComplete()
     {
-        if (activeLevelConfiguration.StageLevelNumber >= maxStageLevel)
+        if (activeLevelConfiguration.StageLevelNumberInfo() >= maxStageLevel)
         {
             if (activeLevelConfiguration.CurrentLevel == activeLevelConfiguration.MaxOpenLevel)
             {
@@ -84,7 +84,7 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
     public void NextStageLevelLoad()
     {
         activeLevelConfiguration.IncreaseStageLevelNumber();
-        OnStageLevelChanged?.Invoke(activeLevelConfiguration.StageLevelNumber);
+        OnStageLevelChanged?.Invoke(activeLevelConfiguration.StageLevelNumberInfo());
         ChangeConfigurationsValuesOnWin();
         Debug.Log("Win and increased stage level");
         DefaultLevel.Load(activeLevelConfiguration);

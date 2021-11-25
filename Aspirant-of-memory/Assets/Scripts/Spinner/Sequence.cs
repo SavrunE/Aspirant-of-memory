@@ -20,7 +20,7 @@ public class Sequence : MonoBehaviour, ISceneLoadHandler<ActiveLevelConfiguratio
     public event Action LoseLevel;
     public void OnSceneLoaded(ActiveLevelConfiguration argument)
     {
-        queueLength = argument.QueueLength;
+        queueLength = argument.QueueLength + argument.StageLevelNumberInfo();
     }
 
     public void CollectSequence(List<Button> childButtons)

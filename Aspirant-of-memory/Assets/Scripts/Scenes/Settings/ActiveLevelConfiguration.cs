@@ -7,7 +7,12 @@ using UnityEngine;
 public class ActiveLevelConfiguration : LevelConfiguration
 {
     public int MaxOpenLevel { get; private set; }
-    public int StageLevelNumber { get; private set; }
+    private int stageLevelNumber;
+
+    public override int StageLevelNumberInfo()
+    {
+        return stageLevelNumber;
+    }
 
     public override void IncreaseButtonsCount()
     {
@@ -46,7 +51,7 @@ public class ActiveLevelConfiguration : LevelConfiguration
 
     public override void IncreaseStageLevelNumber()
     {
-        StageLevelNumber++;
+        stageLevelNumber++;
     }
 
     public void RefundLevelSettings(int[] parameters)
@@ -67,6 +72,6 @@ public class ActiveLevelConfiguration : LevelConfiguration
 
     public override void ResetStageLevelNumber()
     {
-        StageLevelNumber = 0;
+        stageLevelNumber = 0;
     }
 }
