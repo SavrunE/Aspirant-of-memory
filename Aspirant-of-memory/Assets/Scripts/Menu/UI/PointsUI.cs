@@ -8,14 +8,10 @@ public class PointsUI : MonoBehaviour
     private Text text;
     [SerializeField] private Points points;
 
-    private void Start()
+    private void OnEnable()
     {
         text = GetComponent<Text>();
         ChangeText();
-    }
-
-    private void OnEnable()
-    {
         points.OnPointsChanged += ChangeText;
     }
 

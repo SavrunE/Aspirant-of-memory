@@ -16,11 +16,11 @@ class SaveData
 [RequireComponent(typeof(ConfigurationChanger))]
 public class SaveSerial : MonoBehaviour
 {
-    private int playersMaxOpenLevel;
-    private int playersCurrentPoints;
+    public int PiontsCurrentValue { get; private set; }
+    private int levelMaxOpenValue;
     private int[] parameters;
 
-    public int Level() => playersMaxOpenLevel;
+    public int Level() => levelMaxOpenValue;
 
     private BinaryFormatter binaryFormatter;
     private FileStream file;
@@ -73,13 +73,13 @@ public class SaveSerial : MonoBehaviour
 
     private void ParametersChanger(int level, int points, int[] parameters)
     {
-        this.playersMaxOpenLevel = level;
-        this.playersCurrentPoints = points;
+        this.levelMaxOpenValue = level;
+        this.PiontsCurrentValue = points;
         this.parameters = parameters;
 
         ChangeData(level, points, parameters);
 
-        OnMaxOpenLevelChanged(playersMaxOpenLevel);
+        OnMaxOpenLevelChanged(levelMaxOpenValue);
     }
 
     public void ChangeData(int playersMaxOpenLevel, int playersCurrentPoints, int[] parameters)

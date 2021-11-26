@@ -9,10 +9,10 @@ public class SceneLoader : MonoBehaviour
     private SaveSerial saveSerial;
     [SerializeField] private ActiveLevelConfiguration activeLevelConfiguration;
 
-    private void Start()
+    public void Start()
     {
         saveSerial = GetComponent<SaveSerial>();
-        LoadProgress();
+        saveSerial.LoadGame();
     }
 
     public void ActivateLevel(LevelConfiguration levelConfiguration)
@@ -30,10 +30,5 @@ public class SceneLoader : MonoBehaviour
     public void LoadLevel(ActiveLevelConfiguration activeLevelConfiguration)
     {
         DefaultLevel.Load(activeLevelConfiguration);
-    }
-
-    private void LoadProgress()
-    {
-        saveSerial.LoadGame();
     }
 }

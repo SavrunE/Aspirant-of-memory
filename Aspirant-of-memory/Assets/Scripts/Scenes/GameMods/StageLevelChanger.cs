@@ -6,13 +6,13 @@ using IJunior.TypedScenes;
 
 public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
 {
-    public SaveSerial SaveSerial;
     [SerializeField] protected int pointsAfterWinStageLevel = 10;
     [SerializeField] protected int maxStageLevel = 5;
     [SerializeField] protected int pointsFromWin = 50;
 
     public int PointsAfterWinStageLevel => pointsAfterWinStageLevel;
 
+    protected SaveSerial saveSerial;
     protected ActiveLevelConfiguration activeLevelConfiguration;
     protected LevelConfiguration levelConfiguration;
     protected int[] startLevelConfigurationParameters;
@@ -28,6 +28,7 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
     private void Awake()
     {
         levelParameters = new int[SettingsCount];
+        saveSerial = GetComponent<SaveSerial>();
     }
 
     public void OnSceneLoaded(LevelConfiguration argument)
@@ -56,7 +57,7 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
     public void ChangeConfigurationsValuesOnWin() 
     {
         UpdatePoints(GetComponent<Points>().PointsCount);
-        SaveSerial.SaveAll(activeLevelConfiguration.MaxOpenLevel, CurrentPoints, activeLevelConfiguration.Parameters);
+        saveSerial.SaveAll(activeLevelConfiguration.MaxOpenLevel, CurrentPoints, activeLevelConfiguration.Parameters);
     }
 
     public void StageLevelComplete()
@@ -78,7 +79,7 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
 
     private void IncreaseMaxOpenLevel()
     {
-        SaveSerial.SaveAll(activeLevelConfiguration.MaxOpenLevel + 1, CurrentPoints, activeLevelConfiguration.Parameters);
+        saveSerial.SaveAll(activeLevelConfiguration.MaxOpenLevel + 1, CurrentPoints, activeLevelConfiguration.Parameters);
     }
 
     public void NextStageLevelLoad()

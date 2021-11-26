@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Points : MonoBehaviour
 {
-    [SerializeField] private static int points;
+    [SerializeField] private int points;
     public int PointsCount => points;
     public event Action<int> OnPointsChanged;
     public StageLevelChanger stageLevelChanger;
@@ -15,12 +13,23 @@ public class Points : MonoBehaviour
     public void PointsIncrease(int value)
     {
         points += value;
-        OnPointsChanged?.Invoke(points);
+        OnPointsChangedEvent();
     }
 
     public void PointsReduct(int value)
     {
         points -= value;
+        OnPointsChangedEvent();
+    }
+
+    public void ChangePoints(int points)
+    {
+        this.points = points;
+        OnPointsChangedEvent();
+    }
+
+    private void OnPointsChangedEvent()
+    {
         OnPointsChanged?.Invoke(points);
     }
 }

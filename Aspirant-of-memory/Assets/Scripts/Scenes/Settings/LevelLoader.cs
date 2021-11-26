@@ -9,8 +9,8 @@ public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private Sequence sequence;
     [SerializeField] private ActiveLevelConfiguration activeLevelConfiguration;
-    [SerializeField] private LevelConfiguration levelConfiguration;
-    
+    [SerializeField] private SaveSerial saveSerial;
+
     private StageLevelChanger stageLevelChanger;
     private Points points;
     private SpinnerAnimation spinnerAnimation;
@@ -28,6 +28,8 @@ public class LevelLoader : MonoBehaviour
     {
         points = GetComponent<Points>();
         spinnerAnimation = GetComponent<SpinnerAnimation>();
+        LoadProgress();
+        points.ChangePoints(activeLevelConfiguration.PointsInfo());
     }
 
     private void OnEnable()
@@ -40,6 +42,13 @@ public class LevelLoader : MonoBehaviour
     {
         sequence.SequenceChanged -= OnSequenceChanged;
         sequence.LoseLevel -= LoseLevel;
+    }
+
+    public void LoadProgress()
+    {
+        saveSerial = GetComponent<SaveSerial>();
+        saveSerial.LoadGame();
+        activeLevelConfiguration.ChangePoints(saveSerial.PiontsCurrentValue);
     }
 
     private void OnSequenceChanged(int size)
