@@ -73,6 +73,7 @@ public class ActiveLevelConfiguration : LevelConfiguration
         queueLengthMaximumSpace = changeValue[i++];
         rotateOffset = changeValue[i++];
         rotateOffsetMaximumSpace = changeValue[i++];
+        pointsAfterWinStageLevel = changeValue[i++];
     }
 
     public void ChangePoints(int points)

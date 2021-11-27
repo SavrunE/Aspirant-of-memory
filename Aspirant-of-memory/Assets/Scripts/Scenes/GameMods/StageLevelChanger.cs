@@ -4,17 +4,13 @@ using UnityEngine;
 using System;
 using IJunior.TypedScenes;
 
-public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfiguration>
+public class StageLevelChanger : MonoBehaviour
 {
-    [SerializeField] protected int pointsAfterWinStageLevel = 10;
     [SerializeField] protected int maxStageLevel = 5;
     [SerializeField] protected int pointsFromWin = 50;
 
-    public int PointsAfterWinStageLevel => pointsAfterWinStageLevel;
-
     protected SaveSerial saveSerial;
     protected ActiveLevelConfiguration activeLevelConfiguration;
-    protected LevelConfiguration levelConfiguration;
     protected int[] startLevelConfigurationParameters;
     public int CurrentPoints { get; private set; }
     public int PointsForWinLevel { get; private set; }
@@ -29,11 +25,6 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
     {
         levelParameters = new int[SettingsCount];
         saveSerial = GetComponent<SaveSerial>();
-    }
-
-    public void OnSceneLoaded(LevelConfiguration argument)
-    {
-        levelConfiguration = argument;
     }
 
     public void ChangeActiveLevelConfiguration(ActiveLevelConfiguration activeLevelConfiguration)
@@ -68,7 +59,7 @@ public class StageLevelChanger : MonoBehaviour, ISceneLoadHandler<LevelConfigura
             {
                 IncreaseMaxOpenLevel();
             }
-            Debug.Log("Win and loaded start window");
+            Debug.Log("Win and load start window");
             StartWindow.Load();
         }
         else

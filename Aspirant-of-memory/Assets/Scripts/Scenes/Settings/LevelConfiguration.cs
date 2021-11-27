@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelConfiguration", menuName = "LevelConfiguration")]
 public class LevelConfiguration : ScriptableObject
 {
+    [SerializeField] protected int pointsAfterWinStageLevel = 10;
+    public int PointsAfterWinStageLevel => pointsAfterWinStageLevel;
+
     public int CurrentLevel { get; private set; }
 
     [SerializeField] protected int maxStageLevel = 5;
@@ -43,7 +46,8 @@ public class LevelConfiguration : ScriptableObject
     public int[] Parameters => new int[] {
         buttonsCount, buttonsCountMaximumSpace,
         queueLength, queueLengthMaximumSpace,
-        rotateOffset , rotateOffsetMaximumSpace };
+        rotateOffset , rotateOffsetMaximumSpace,
+        pointsAfterWinStageLevel };
 
     private int RandomRangeOverSize(int baseValue, int overValue)
     {
