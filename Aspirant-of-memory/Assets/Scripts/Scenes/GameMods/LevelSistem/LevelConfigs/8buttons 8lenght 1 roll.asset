@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e7a17b15722f34bac1b2a3d0335e6b, type: 3}
   m_Name: 8buttons 8lenght 1 roll
   m_EditorClassIdentifier: 
-  pointsAfterWinStageLevel: 15
+  pointsAfterWinStageLevel: 400
   maxStageLevel: 5
   buttonsCount: 8
   buttonsCountMaximumSpace: 0
