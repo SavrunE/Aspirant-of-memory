@@ -37,18 +37,10 @@ public class StageLevelChanger : MonoBehaviour
         this.startLevelConfigurationParameters = parameters;
     }
 
-    public void LoadProgressStageLevel()
-    {
-        for (int i = 0; i < activeLevelConfiguration.StageLevelNumberInfo(); i++)
-        {
-            ChangeConfigurationsValuesOnWin();
-        }
-    }
-
     public void ChangeConfigurationsValuesOnWin() 
     {
         UpdatePoints(GetComponent<Points>().PointsCount);
-        saveSerial.SaveAll(activeLevelConfiguration.MaxOpenLevel, CurrentPoints, activeLevelConfiguration.Parameters);
+        saveSerial.SaveParameters(CurrentPoints, activeLevelConfiguration.Parameters);
     }
 
     public void StageLevelComplete()
@@ -70,7 +62,7 @@ public class StageLevelChanger : MonoBehaviour
 
     private void IncreaseMaxOpenLevel()
     {
-        saveSerial.SaveAll(activeLevelConfiguration.MaxOpenLevel + 1, CurrentPoints, activeLevelConfiguration.Parameters);
+        saveSerial.SaveParameters(CurrentPoints, activeLevelConfiguration.Parameters, activeLevelConfiguration.MaxOpenLevel + 1);
     }
 
     public void NextStageLevelLoad()
