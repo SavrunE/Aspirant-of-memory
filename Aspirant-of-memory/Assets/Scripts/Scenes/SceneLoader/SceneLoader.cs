@@ -7,12 +7,16 @@ using UnityEngine;
 public class SceneLoader : MonoBehaviour
 {
     private SaveSerial saveSerial;
+    [SerializeField] private Points points;
     [SerializeField] private ActiveLevelConfiguration activeLevelConfiguration;
+    [SerializeField] private LoaderOpenLevels loaderOpenLevels;
 
     public void Start()
     {
         saveSerial = GetComponent<SaveSerial>();
         saveSerial.LoadGame();
+        points.ChangePoints(activeLevelConfiguration.PointsInfo());
+        loaderOpenLevels.LoadOpenLevels(saveSerial.OpenLevels());
     }
 
     public void ActivateLevel(LevelConfiguration levelConfiguration)

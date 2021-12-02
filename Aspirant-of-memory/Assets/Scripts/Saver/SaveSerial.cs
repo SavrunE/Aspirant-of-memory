@@ -26,6 +26,8 @@ public class SaveSerial : MonoBehaviour
 
     public event Action<int> OnMaxOpenLevelChanged;
 
+    public List<int> OpenLevels() => openLevels;
+
     public void SaveParameters(int points, int[] parameters)
     {
         ParametersChanger(points, parameters);
