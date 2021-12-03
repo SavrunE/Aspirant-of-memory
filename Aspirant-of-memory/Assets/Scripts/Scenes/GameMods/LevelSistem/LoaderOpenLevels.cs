@@ -11,7 +11,7 @@ public class LoaderOpenLevels : MonoBehaviour
         int i = 0;
         foreach (LevelOpener levelOpen in levelOpeners)
         {
-            i ++;
+            i++;
             foreach (int openLevel in openLevels)
             {
                 if (openLevel == i)

@@ -5,7 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(NoOpenLevelViewer))]
 public class LevelOpener : MonoBehaviour
 {
+    public bool IsOpened { get; private set; } = false;
+
     [SerializeField] private int payPrice;
+   
     private Points points;
     private NoOpenLevelViewer noOpenLevelViewer;
 
@@ -13,14 +16,10 @@ public class LevelOpener : MonoBehaviour
 
     public int PayPrice() => payPrice;
 
-    private void Start()
-    {
-        points = transform.parent.parent.GetComponent<PointsContainer>().Points;
-        Debug.Log(points);
-    }
-
     public void TryPayToOpenLevel()
     {
+        points = transform.parent.parent.GetComponent<PointsContainer>().Points;
+
         if (points.PointsCount >= payPrice)
         {
             points.PointsReduct(payPrice);
@@ -31,7 +30,6 @@ public class LevelOpener : MonoBehaviour
 
     public void OpenLevel()
     {
-        noOpenLevelViewer.GetComponent<NoOpenLevelViewer>();
-        noOpenLevelViewer.OpenLevel();
+        
     }
 }

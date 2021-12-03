@@ -170,6 +170,7 @@ public class SaveSerial : MonoBehaviour
         foreach (var openLevel in data.OpenLevels)
         {
             openLevels.Add(openLevel);
+            Debug.Log(openLevel);
         }
     }
 }
