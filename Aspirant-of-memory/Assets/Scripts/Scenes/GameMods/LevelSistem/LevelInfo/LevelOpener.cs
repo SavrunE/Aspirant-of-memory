@@ -10,6 +10,7 @@ public class LevelOpener : MonoBehaviour
     [SerializeField] private int payPrice;
    
     private Points points;
+    private LevelSwitcher levelSwitcher;
     private NoOpenLevelViewer noOpenLevelViewer;
 
     private static int openLevelsNumerator;
@@ -26,10 +27,30 @@ public class LevelOpener : MonoBehaviour
 
             OpenLevel();
         }
+        else
+        {
+            Debug.Log("Have no points");
+        }
     }
 
     public void OpenLevel()
     {
-        
+        LevelSwitcherInitialization();
+        levelSwitcher.OpenLevel();
+    }
+
+    public void CloseLevel()
+    {
+        LevelSwitcherInitialization();
+        levelSwitcher.CloseLevel();
+    }
+
+    private void LevelSwitcherInitialization()
+    {
+        levelSwitcher = transform.parent.gameObject.GetComponent<LevelSwitcher>();
+        if (levelSwitcher == null)
+        {
+            throw new System.NotFiniteNumberException();
+        }
     }
 }

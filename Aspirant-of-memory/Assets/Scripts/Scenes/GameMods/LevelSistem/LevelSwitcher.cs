@@ -11,6 +11,24 @@ public class LevelSwitcher : MonoBehaviour
     {
         levelOpen = GetComponentInChildren<LevelOpen>();
         levelClose = GetComponentInChildren<LevelClose>();
+
+        if (levelOpen == null || levelClose == null)
+        {
+            throw new System.NotFiniteNumberException();
+        }
+
         levelOpen.gameObject.SetActive(false);
+    }
+
+    public void OpenLevel()
+    {
+        levelOpen.gameObject.SetActive(true);
+        levelClose.gameObject.SetActive(false);
+    }
+
+    public void CloseLevel()
+    {
+        levelOpen.gameObject.SetActive(false);
+        levelClose.gameObject.SetActive(true);
     }
 }

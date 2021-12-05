@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelConfiguration", menuName = "LevelConfiguration")]
 public class LevelConfiguration : ScriptableObject
 {
-    public static int LevelNumber { get; private set; }
-
     [SerializeField] protected int pointsAfterWinStageLevel = 10;
     public int PointsAfterWinStageLevel => pointsAfterWinStageLevel;
 
