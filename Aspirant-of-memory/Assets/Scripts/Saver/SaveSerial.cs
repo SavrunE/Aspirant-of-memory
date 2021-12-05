@@ -28,15 +28,6 @@ public class SaveSerial : MonoBehaviour
 
     public List<int> OpenLevels() => openLevels;
 
-    public void SaveParameters(int points, int[] parameters)
-    {
-        ParametersChanger(points, parameters);
-    } 
-
-    public void SaveParameters(int points, int[] parameters, int level)
-    {
-        ParametersChanger(points, parameters, level);
-    }
 
     public void LoadGame()
     {
@@ -83,12 +74,30 @@ public class SaveSerial : MonoBehaviour
         openLevels = new List<int>(1);
         openLevels.Add(1);
     }
+    public void SaveParameters(int points, int[] parameters)
+    {
+        ParametersChanger(points, parameters);
+    }
+
+    public void SaveParameters(int points, int[] parameters, int level)
+    {
+        ParametersChanger(points, parameters, level);
+    }
+
+    public void ParametersChanger(int points)
+    {
+        this.PiontsCurrentValue = points;
+
+        Debug.Log("Save points");
+        ChangeData(points);
+    }
 
     private void ParametersChanger(int points, int[] parameters)
     {
         this.PiontsCurrentValue = points;
         this.parameters = parameters;
 
+        Debug.Log("Save points, int[] parameters");
         ChangeData(points, parameters);
     }
 
@@ -97,13 +106,25 @@ public class SaveSerial : MonoBehaviour
         this.PiontsCurrentValue = points;
         this.parameters = parameters;
 
+        Debug.Log("Save points, int[] parameters, level");
         ChangeData(points, parameters, level);
+    }
+
+    public void ChangeData(int playersCurrentPoints)
+    {
+        ChangeData(playersCurrentPoints, parameters, 0);
+    }
+
+    public void ChangeData(int playersCurrentPoints, int level)
+    {
+        ChangeData(playersCurrentPoints, parameters, level);
     }
 
     public void ChangeData(int playersCurrentPoints, int[] parameters)
     {
         ChangeData(playersCurrentPoints, parameters, 0);
     }
+
     public void ChangeData(int playersCurrentPoints, int[] parameters, int level)
     {
         CreateBinarySettings();
@@ -117,7 +138,8 @@ public class SaveSerial : MonoBehaviour
         SerializeAndCloseFile();
         Debug.Log("Game data changed!");
     }
-    public void OpenLevel(int level)
+
+    private void OpenLevel(int level)
     {
         if (openLevels == null)
         {

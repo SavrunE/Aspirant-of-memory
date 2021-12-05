@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
     {
         saveSerial = GetComponent<SaveSerial>();
         saveSerial.LoadGame();
-        points.ChangePoints(activeLevelConfiguration.PointsInfo());
+        points.ChangePointsView(activeLevelConfiguration.PointsInfo());
         loaderOpenLevels.LoadOpenLevels(saveSerial.OpenLevels());
     }
 

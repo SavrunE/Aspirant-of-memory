@@ -4,6 +4,7 @@ using UnityEngine;
 public class Points : MonoBehaviour
 {
     [SerializeField] private int points;
+    [SerializeField] private SaveSerial saveSerial;
     public int PointsCount => points;
     public event Action<int> OnPointsChanged;
 
@@ -12,16 +13,18 @@ public class Points : MonoBehaviour
     public void PointsIncrease(int value)
     {
         points += value;
+        saveSerial.ParametersChanger(points);
         OnPointsChangedEvent();
     }
 
     public void PointsReduct(int value)
     {
         points -= value;
+        saveSerial.ParametersChanger(points);
         OnPointsChangedEvent();
     }
 
-    public void ChangePoints(int points)
+    public void ChangePointsView(int points)
     {
         this.points = points;
         OnPointsChangedEvent();

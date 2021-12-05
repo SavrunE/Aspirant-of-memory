@@ -29,7 +29,7 @@ public class LevelLoader : MonoBehaviour
         points = GetComponent<Points>();
         spinnerAnimation = GetComponent<SpinnerAnimation>();
         LoadProgress();
-        points.ChangePoints(activeLevelConfiguration.PointsInfo());
+        points.ChangePointsView(activeLevelConfiguration.PointsInfo());
     }
 
     private void OnEnable()

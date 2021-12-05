@@ -8,14 +8,18 @@ public class LoaderOpenLevels : MonoBehaviour
     public void LoadOpenLevels(List<int> openLevels)
     {
         levelOpeners = GetComponentsInChildren<LevelOpener>();
-        int i = 0;
+        int levelNumber = 0;
         foreach (LevelOpener levelOpen in levelOpeners)
         {
             levelOpen.CloseLevel();
-            i++;
+            
+            levelNumber++;
+            
+            levelOpen.SetLevelNumber(levelNumber);
+
             foreach (int openLevel in openLevels)
             {
-                if (openLevel == i)
+                if (openLevel == levelNumber)
                 {
                     levelOpen.OpenLevel();
                 }

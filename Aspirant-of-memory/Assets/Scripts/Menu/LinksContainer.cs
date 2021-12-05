@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointsContainer : MonoBehaviour
+public class LinksContainer : MonoBehaviour
 {
     public Points Points;
+    public SaveSerial SaveSerial;
 }

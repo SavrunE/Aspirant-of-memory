@@ -2101,7 +2101,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: 3
 --- !u!222 &341635317
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3453,6 +3453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Points: {fileID: 1396297756}
+  SaveSerial: {fileID: 935540319}
 --- !u!114 &592273098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4394,7 +4395,7 @@ RectTransform:
   - {fileID: 211632880}
   - {fileID: 1567297206}
   m_Father: {fileID: 1741692549}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5211,7 +5212,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: 4
 --- !u!222 &1087871006
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6279,7 +6280,7 @@ RectTransform:
   - {fileID: 526293578}
   - {fileID: 1551142187}
   m_Father: {fileID: 1741692549}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6771,6 +6772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
+  saveSerial: {fileID: 935540319}
 --- !u!114 &1396297757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7094,7 +7096,7 @@ RectTransform:
   - {fileID: 1510387849}
   - {fileID: 729436637}
   m_Father: {fileID: 1741692549}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8642,9 +8644,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1441159398}
   - {fileID: 1229775019}
   - {fileID: 807287802}
-  - {fileID: 1441159398}
   - {fileID: 2089669375}
   m_Father: {fileID: 592273096}
   m_RootOrder: 6

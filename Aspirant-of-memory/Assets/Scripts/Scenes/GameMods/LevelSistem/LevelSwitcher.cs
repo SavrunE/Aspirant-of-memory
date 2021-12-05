@@ -7,7 +7,7 @@ public class LevelSwitcher : MonoBehaviour
     private LevelOpen levelOpen;
     private LevelClose levelClose;
 
-    private void Start()
+    private void Awake()
     {
         levelOpen = GetComponentInChildren<LevelOpen>();
         levelClose = GetComponentInChildren<LevelClose>();
