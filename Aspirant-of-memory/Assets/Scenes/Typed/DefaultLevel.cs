@@ -22,10 +22,5 @@ namespace IJunior.TypedScenes
         {
             LoadScene(_sceneName, loadSceneMode, argument);
         }
-        
-        public static void Load(LevelConfiguration argument, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
-        {
-            LoadScene(_sceneName, loadSceneMode, argument);
-        }
     }
 }

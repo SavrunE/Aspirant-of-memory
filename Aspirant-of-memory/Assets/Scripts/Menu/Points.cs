@@ -13,14 +13,14 @@ public class Points : MonoBehaviour
     public void PointsIncrease(int value)
     {
         points += value;
-        saveSerial.ParametersChanger(points);
+        saveSerial.SaveParameters(points);
         OnPointsChangedEvent();
     }
 
     public void PointsReduct(int value)
     {
         points -= value;
-        saveSerial.ParametersChanger(points);
+        saveSerial.SaveParameters(points);
         OnPointsChangedEvent();
     }
 

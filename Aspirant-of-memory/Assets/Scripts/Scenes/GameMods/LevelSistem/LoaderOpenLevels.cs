@@ -5,21 +5,28 @@ using UnityEngine;
 public class LoaderOpenLevels : MonoBehaviour
 {
     private LevelOpener[] levelOpeners;
+
     public void LoadOpenLevels(List<int> openLevels)
     {
         levelOpeners = GetComponentsInChildren<LevelOpener>();
         int levelNumber = 0;
         foreach (LevelOpener levelOpen in levelOpeners)
         {
-            levelOpen.CloseLevel();
-            
             levelNumber++;
-            
+
+            levelOpen.CloseLevel();
             levelOpen.SetLevelNumber(levelNumber);
 
-            foreach (int openLevel in openLevels)
+        }
+
+
+        foreach (int openLevel in openLevels)
+        {
+            levelNumber++;
+
+            foreach (LevelOpener levelOpen in levelOpeners)
             {
-                if (openLevel == levelNumber)
+                if (levelOpen.LevelNumber == openLevel)
                 {
                     levelOpen.OpenLevel();
                 }

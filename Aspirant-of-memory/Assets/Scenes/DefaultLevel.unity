@@ -424,7 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequence: {fileID: 392207721}
   activeLevelConfiguration: {fileID: 11400000, guid: f6c1606df9e314f449b3904f08565fd9, type: 2}
-  saveSerial: {fileID: 0}
+  saveSerial: {fileID: 514014635}
 --- !u!4 &514014630
 Transform:
   m_ObjectHideFlags: 0
@@ -451,8 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f55ce39b5aa5d4795d7f703530abea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveSerial: {fileID: 0}
-  pointsAfterWinStageLevel: 10
   maxStageLevel: 5
   pointsFromWin: 50
 --- !u!114 &514014632
@@ -481,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
-  stageLevelChanger: {fileID: 514014631}
+  saveSerial: {fileID: 514014635}
 --- !u!114 &514014634
 MonoBehaviour:
   m_ObjectHideFlags: 0

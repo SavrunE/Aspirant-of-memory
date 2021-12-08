@@ -9,7 +9,6 @@ using System.IO;
 class SaveData
 {
     public int PlayersCurrentPoints;
-    public int[] Parameters;
     public int[] OpenLevels;
 }
 
@@ -17,7 +16,6 @@ class SaveData
 public class SaveSerial : MonoBehaviour
 {
     public int PiontsCurrentValue { get; private set; }
-    private int[] parameters;
     private List<int> openLevels;
 
     private BinaryFormatter binaryFormatter;
@@ -40,15 +38,30 @@ public class SaveSerial : MonoBehaviour
             data = (SaveData)binaryFormatter.Deserialize(file);
             file.Close();
 
-            SaveParameters(data.PlayersCurrentPoints, data.Parameters);
-            LoadOpenLevels();
+            LoadParameters(data.PlayersCurrentPoints, data.OpenLevels);
 
             Debug.Log("Game data loaded!");
         }
         else
         {
-            ParametersChanger(0, null);
+            int[] oneLevel = { 1 };
+            LoadParameters(0, oneLevel);
             Debug.Log("There is no save data! Taked reset.");
+        }
+    }
+
+    private void LoadParameters(int points, int[] openLevels)
+    {
+        PiontsCurrentValue = points;
+        LoadOpenLevels(openLevels);
+    }
+
+    private void LoadOpenLevels(int[] levels)
+    {
+        this.openLevels = new List<int>();
+        foreach (var level in levels)
+        {
+            openLevels.Add(level);
         }
     }
 
@@ -60,7 +73,7 @@ public class SaveSerial : MonoBehaviour
             File.Delete(Application.persistentDataPath
               + "/MySaveData.dat");
 
-            SaveParameters(0, null);
+            SaveParameters(0, 1);
             ResetOpenLevels();
 
             Debug.Log("Data reset complete!");
@@ -74,17 +87,8 @@ public class SaveSerial : MonoBehaviour
         openLevels = new List<int>(1);
         openLevels.Add(1);
     }
-    public void SaveParameters(int points, int[] parameters)
-    {
-        ParametersChanger(points, parameters);
-    }
 
-    public void SaveParameters(int points, int[] parameters, int level)
-    {
-        ParametersChanger(points, parameters, level);
-    }
-
-    public void ParametersChanger(int points)
+    public void SaveParameters(int points)
     {
         this.PiontsCurrentValue = points;
 
@@ -92,45 +96,24 @@ public class SaveSerial : MonoBehaviour
         ChangeData(points);
     }
 
-    private void ParametersChanger(int points, int[] parameters)
+    public void SaveParameters(int points, int level)
     {
         this.PiontsCurrentValue = points;
-        this.parameters = parameters;
 
-        Debug.Log("Save points, int[] parameters");
-        ChangeData(points, parameters);
+        Debug.Log("Save points, level");
+        ChangeData(points, level);
     }
 
-    private void ParametersChanger(int points, int[] parameters, int level)
+    public void ChangeData(int points)
     {
-        this.PiontsCurrentValue = points;
-        this.parameters = parameters;
-
-        Debug.Log("Save points, int[] parameters, level");
-        ChangeData(points, parameters, level);
+        ChangeData(points, 0);
     }
 
-    public void ChangeData(int playersCurrentPoints)
-    {
-        ChangeData(playersCurrentPoints, parameters, 0);
-    }
-
-    public void ChangeData(int playersCurrentPoints, int level)
-    {
-        ChangeData(playersCurrentPoints, parameters, level);
-    }
-
-    public void ChangeData(int playersCurrentPoints, int[] parameters)
-    {
-        ChangeData(playersCurrentPoints, parameters, 0);
-    }
-
-    public void ChangeData(int playersCurrentPoints, int[] parameters, int level)
+    public void ChangeData(int points, int level)
     {
         CreateBinarySettings();
         
-        data.PlayersCurrentPoints = playersCurrentPoints;
-        data.Parameters = parameters;
+        data.PlayersCurrentPoints = points;
 
         OpenLevel(level);
 
@@ -145,20 +128,17 @@ public class SaveSerial : MonoBehaviour
         {
             openLevels = new List<int>(1);
             openLevels.Add(1);
+            openLevels.Add(level);
+            SaveOpenLevel();
             Debug.Log("openLevels was null");
         }
         if (level != 0)
         {
             openLevels.Add(level);
-            Debug.Log($"Open level {openLevels.IndexOf(level)} is saved");
+            Debug.Log($"Open level is saved by index {openLevels.IndexOf(level)}#");
             SaveOpenLevel();
             OnMaxOpenLevelChanged(level);
         }
-        else
-        {
-            SaveOpenLevel();
-        }
-       
     }
 
     private void SaveOpenLevel()
@@ -168,6 +148,7 @@ public class SaveSerial : MonoBehaviour
         foreach (var openLevel in openLevels)
         {
             data.OpenLevels[i] = openLevel;
+            Debug.Log(data.OpenLevels[i]);
             i++;
         }
     }
@@ -184,15 +165,5 @@ public class SaveSerial : MonoBehaviour
     {
         binaryFormatter.Serialize(file, data);
         file.Close();
-    }
-
-    private void LoadOpenLevels()
-    {
-        this.openLevels = new List<int>(data.OpenLevels.Length);
-        foreach (var openLevel in data.OpenLevels)
-        {
-            openLevels.Add(openLevel);
-            Debug.Log(openLevel);
-        }
     }
 }

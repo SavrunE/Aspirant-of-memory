@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(NoOpenLevelViewer))]
 public class LevelOpener : MonoBehaviour
 {
-    public static int LevelNumber { get; private set; }
+    public int LevelNumber { get; private set; }
     public bool IsOpened { get; private set; } = false;
 
     [SerializeField] private int payPrice;
@@ -19,6 +19,7 @@ public class LevelOpener : MonoBehaviour
 
     public void SetLevelNumber(int level)
     {
+        //Debug.Log(level);
         LevelNumber = level;
     }
 
@@ -29,9 +30,10 @@ public class LevelOpener : MonoBehaviour
 
         if (points.PointsCount >= payPrice)
         {
+            Debug.Log(LevelNumber);
             points.PointsReduct(payPrice);
             saveSerial = linksContainer.SaveSerial;
-            saveSerial.ChangeData(points.PointsCount, LevelNumber);
+            saveSerial.SaveParameters(points.PointsCount, LevelNumber);
 
             OpenLevel();
         }
