@@ -9,7 +9,7 @@ public class LevelOpener : MonoBehaviour
     public bool IsOpened { get; private set; } = false;
 
     [SerializeField] private int payPrice;
-    
+
     private SaveSerial saveSerial;
     private Points points;
     private LevelSwitcher levelSwitcher;
@@ -30,7 +30,6 @@ public class LevelOpener : MonoBehaviour
 
         if (points.PointsCount >= payPrice)
         {
-            Debug.Log(LevelNumber);
             points.PointsReduct(payPrice);
             saveSerial = linksContainer.SaveSerial;
             saveSerial.SaveParameters(points.PointsCount, LevelNumber);

@@ -8,8 +8,6 @@ public class Points : MonoBehaviour
     public int PointsCount => points;
     public event Action<int> OnPointsChanged;
 
-    public int PointsValue => points;
-
     public void PointsIncrease(int value)
     {
         points += value;

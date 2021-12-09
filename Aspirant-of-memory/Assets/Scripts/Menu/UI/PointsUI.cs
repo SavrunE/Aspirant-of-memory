@@ -21,7 +21,7 @@ public class PointsUI : MonoBehaviour
     }
     public void ChangeText()
     {
-        text.text = points.PointsValue.ToString();
+        text.text = points.PointsCount.ToString();
     }
     public void ChangeText(int value)
     {

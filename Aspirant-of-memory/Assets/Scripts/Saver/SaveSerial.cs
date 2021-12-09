@@ -16,16 +16,13 @@ class SaveData
 public class SaveSerial : MonoBehaviour
 {
     public int PiontsCurrentValue { get; private set; }
-    private List<int> openLevels;
+    public List<int> OpenLevels { get; private set; }
 
     private BinaryFormatter binaryFormatter;
     private FileStream file;
     private SaveData data;
 
     public event Action<int> OnMaxOpenLevelChanged;
-
-    public List<int> OpenLevels() => openLevels;
-
 
     public void LoadGame()
     {
@@ -58,10 +55,10 @@ public class SaveSerial : MonoBehaviour
 
     private void LoadOpenLevels(int[] levels)
     {
-        this.openLevels = new List<int>();
+        this.OpenLevels = new List<int>();
         foreach (var level in levels)
         {
-            openLevels.Add(level);
+            OpenLevels.Add(level);
         }
     }
 
@@ -84,15 +81,15 @@ public class SaveSerial : MonoBehaviour
 
     private void ResetOpenLevels()
     {
-        openLevels = new List<int>(1);
-        openLevels.Add(1);
+        OpenLevels = new List<int>(1);
+        OpenLevels.Add(1);
     }
 
     public void SaveParameters(int points)
     {
         this.PiontsCurrentValue = points;
 
-        Debug.Log("Save points");
+        Debug.Log("Save points " + points);
         ChangeData(points);
     }
 
@@ -119,36 +116,38 @@ public class SaveSerial : MonoBehaviour
 
 
         SerializeAndCloseFile();
-        Debug.Log("Game data changed!");
     }
 
     private void OpenLevel(int level)
     {
-        if (openLevels == null)
+        if (OpenLevels == null)
         {
-            openLevels = new List<int>(1);
-            openLevels.Add(1);
-            openLevels.Add(level);
+            OpenLevels = new List<int>(1);
+            OpenLevels.Add(1);
+            OpenLevels.Add(level);
             SaveOpenLevel();
             Debug.Log("openLevels was null");
         }
         if (level != 0)
         {
-            openLevels.Add(level);
-            Debug.Log($"Open level is saved by index {openLevels.IndexOf(level)}#");
+            OpenLevels.Add(level);
+            Debug.Log($"Open level is saved by index {OpenLevels.IndexOf(level)}#");
             SaveOpenLevel();
             OnMaxOpenLevelChanged(level);
+        }
+        if (level == 0)
+        {
+            SaveOpenLevel();
         }
     }
 
     private void SaveOpenLevel()
     {
-        data.OpenLevels = new int[openLevels.Count];
+        data.OpenLevels = new int[OpenLevels.Count];
         int i = 0;
-        foreach (var openLevel in openLevels)
+        foreach (var openLevel in OpenLevels)
         {
             data.OpenLevels[i] = openLevel;
-            Debug.Log(data.OpenLevels[i]);
             i++;
         }
     }
