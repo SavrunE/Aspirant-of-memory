@@ -15,7 +15,7 @@ class SaveData
 [RequireComponent(typeof(ConfigurationChanger))]
 public class SaveSerial : MonoBehaviour
 {
-    public int PiontsCurrentValue { get; private set; }
+    public int PointsCurrentValue { get; private set; }
     public List<int> OpenLevels { get; private set; }
 
     private BinaryFormatter binaryFormatter;
@@ -49,7 +49,7 @@ public class SaveSerial : MonoBehaviour
 
     private void LoadParameters(int points, int[] openLevels)
     {
-        PiontsCurrentValue = points;
+        PointsCurrentValue = points;
         LoadOpenLevels(openLevels);
     }
 
@@ -73,6 +73,7 @@ public class SaveSerial : MonoBehaviour
             SaveParameters(0, 1);
             ResetOpenLevels();
 
+            SaveParameters(0, 1);
             Debug.Log("Data reset complete!");
         }
         else
@@ -87,7 +88,7 @@ public class SaveSerial : MonoBehaviour
 
     public void SaveParameters(int points)
     {
-        this.PiontsCurrentValue = points;
+        this.PointsCurrentValue = points;
 
         Debug.Log("Save points " + points);
         ChangeData(points);
@@ -95,7 +96,7 @@ public class SaveSerial : MonoBehaviour
 
     public void SaveParameters(int points, int level)
     {
-        this.PiontsCurrentValue = points;
+        this.PointsCurrentValue = points;
 
         Debug.Log("Save points, level");
         ChangeData(points, level);

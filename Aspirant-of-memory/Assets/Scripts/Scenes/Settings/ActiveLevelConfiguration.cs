@@ -7,12 +7,6 @@ public class ActiveLevelConfiguration : LevelConfiguration
 {
     public int MaxOpenLevel { get; private set; }
     private int stageLevelNumber;
-    private int points;
-
-    public int PointsInfo()
-    {
-        return points;
-    }
 
     public override int StageLevelNumberInfo()
     {
@@ -74,11 +68,6 @@ public class ActiveLevelConfiguration : LevelConfiguration
         rotateOffset = changeValue[i++];
         rotateOffsetMaximumSpace = changeValue[i++];
         pointsAfterWinStageLevel = changeValue[i++];
-    }
-
-    public void ChangePoints(int points)
-    {
-        this.points = points;
     }
 
     public override void ResetStageLevelNumber()

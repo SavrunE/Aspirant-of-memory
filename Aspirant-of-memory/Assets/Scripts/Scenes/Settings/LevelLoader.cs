@@ -29,7 +29,6 @@ public class LevelLoader : MonoBehaviour
         points = GetComponent<Points>();
         spinnerAnimation = GetComponent<SpinnerAnimation>();
         LoadProgress();
-        points.ChangePointsView(activeLevelConfiguration.PointsInfo());
     }
 
     private void OnEnable()
@@ -48,7 +47,7 @@ public class LevelLoader : MonoBehaviour
     {
         saveSerial = GetComponent<SaveSerial>();
         saveSerial.LoadGame();
-        activeLevelConfiguration.ChangePoints(saveSerial.PiontsCurrentValue);
+        points.ChangePointsView(saveSerial.PointsCurrentValue);
     }
 
     private void OnSequenceChanged(int size)
