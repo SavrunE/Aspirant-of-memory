@@ -49,6 +49,7 @@ public class StageLevelChanger : MonoBehaviour
         {
             if (activeLevelConfiguration.CurrentLevel == activeLevelConfiguration.MaxOpenLevel)
             {
+                Debug.Log("On smog");
                 IncreaseMaxOpenLevel();
             }
             Debug.Log("Win and load start window");

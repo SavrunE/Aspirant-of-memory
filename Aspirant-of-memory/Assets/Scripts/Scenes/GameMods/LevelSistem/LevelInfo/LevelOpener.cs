@@ -14,20 +14,30 @@ public class LevelOpener : MonoBehaviour
     private Points points;
     private LevelSwitcher levelSwitcher;
     private NoOpenLevelViewer noOpenLevelViewer;
+    private LinksContainer linksContainer;
 
     public int PayPrice() => payPrice;
 
     public void SetLevelNumber(int level)
     {
-        //Debug.Log(level);
         LevelNumber = level;
+    }
+
+    private void Start()
+    {
+        LinksContainer linksContainer = transform.parent.parent.parent.GetComponent<LinksContainer>();
+        Debug.Log(linksContainer);
+        
+        points = linksContainer.Points;
+
+        noOpenLevelViewer = GetComponent<NoOpenLevelViewer>();
+
+        float pointsSlashPayPrice = (points.PointsCount + 1f)/ (payPrice + 1f);
+        noOpenLevelViewer.ChangeView(pointsSlashPayPrice, linksContainer.OpenTextColor, linksContainer.CloseTextColor);
     }
 
     public void TryPayToOpenLevel()
     {
-        LinksContainer linksContainer = transform.parent.parent.parent.GetComponent<LinksContainer>();
-        points = linksContainer.Points;
-
         if (points.PointsCount >= payPrice)
         {
             points.PointsReduct(payPrice);

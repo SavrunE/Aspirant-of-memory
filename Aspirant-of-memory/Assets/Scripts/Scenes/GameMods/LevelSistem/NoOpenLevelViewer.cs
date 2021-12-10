@@ -13,10 +13,31 @@ public class NoOpenLevelViewer : MonoBehaviour
 
     private Text text;
 
-    private void Start()
+    public void ChangeView(float pointsSlashPayPrice, Color openTextColor, Color closeTextColor)
     {
         levelOpener = GetComponent<LevelOpener>();
         text = gameObject.GetComponentInChildren<Text>();
         text.text = levelOpener.PayPrice().ToString();
+        ChangeColor(pointsSlashPayPrice, openTextColor, closeTextColor);
+    }
+
+    private void ChangeColor(float pointsSlashPayPrice, Color openTextColor, Color closeTextColor)
+    {
+        if (pointsSlashPayPrice >= 1f)
+        {
+            Debug.Log(pointsSlashPayPrice);
+            text.color = openTextColor;
+            return;
+        }
+        if (pointsSlashPayPrice >= 0.5f)
+        {
+            Debug.Log(pointsSlashPayPrice);
+            text.color = new Color(closeTextColor.r, closeTextColor.g, closeTextColor.b, 1f * pointsSlashPayPrice);
+        }
+        else
+        {
+            Debug.Log(pointsSlashPayPrice);
+            text.color = new Color(closeTextColor.r, closeTextColor.g, closeTextColor.b, 0.5f);
+        }
     }
 }
