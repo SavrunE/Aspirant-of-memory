@@ -3107,7 +3107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca24265d4c5677b4ba8f39eac5639718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  payPrice: 5
+  payPrice: 35
 --- !u!114 &547870420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3495,8 +3495,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Points: {fileID: 1396297756}
   SaveSerial: {fileID: 935540319}
-  OpenTextColor: {r: 0, g: 0.7176471, b: 0.03137255, a: 1}
-  CloseTextColor: {r: 0.5849056, g: 0, b: 0, a: 1}
+  OpenTextColor: {r: 0.43373415, g: 0, b: 0.6698113, a: 1}
+  CloseTextColor: {r: 0.5426899, g: 0, b: 0.7924528, a: 1}
 --- !u!114 &592273098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4523,7 +4523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca24265d4c5677b4ba8f39eac5639718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  payPrice: 5
+  payPrice: 25
 --- !u!114 &832156853
 MonoBehaviour:
   m_ObjectHideFlags: 0

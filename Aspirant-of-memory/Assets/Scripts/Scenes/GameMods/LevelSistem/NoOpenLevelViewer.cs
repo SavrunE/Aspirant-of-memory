@@ -13,8 +13,12 @@ public class NoOpenLevelViewer : MonoBehaviour
 
     private Text text;
 
+    private float smallestAlpha;
+
     public void ChangeView(float pointsSlashPayPrice, Color openTextColor, Color closeTextColor)
     {
+        smallestAlpha = 0.3f;
+
         levelOpener = GetComponent<LevelOpener>();
         text = gameObject.GetComponentInChildren<Text>();
         text.text = levelOpener.PayPrice().ToString();
@@ -25,19 +29,16 @@ public class NoOpenLevelViewer : MonoBehaviour
     {
         if (pointsSlashPayPrice >= 1f)
         {
-            Debug.Log(pointsSlashPayPrice);
             text.color = openTextColor;
             return;
         }
-        if (pointsSlashPayPrice >= 0.5f)
+        if (pointsSlashPayPrice >= smallestAlpha)
         {
-            Debug.Log(pointsSlashPayPrice);
             text.color = new Color(closeTextColor.r, closeTextColor.g, closeTextColor.b, 1f * pointsSlashPayPrice);
         }
         else
         {
-            Debug.Log(pointsSlashPayPrice);
-            text.color = new Color(closeTextColor.r, closeTextColor.g, closeTextColor.b, 0.5f);
+            text.color = new Color(closeTextColor.r, closeTextColor.g, closeTextColor.b, smallestAlpha);
         }
     }
 }
