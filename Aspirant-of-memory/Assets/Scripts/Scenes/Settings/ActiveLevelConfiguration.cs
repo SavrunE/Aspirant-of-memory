@@ -8,7 +8,7 @@ public class ActiveLevelConfiguration : LevelConfiguration
     public int MaxOpenLevel { get; private set; }
     private int stageLevelNumber;
 
-    public virtual int MaxStageLevelNumberInfo()
+    public override int MaxStageLevelNumberInfo()
     {
         return maxStageLevel;
     }

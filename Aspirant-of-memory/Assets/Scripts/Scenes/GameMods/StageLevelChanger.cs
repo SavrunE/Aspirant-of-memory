@@ -6,8 +6,6 @@ using IJunior.TypedScenes;
 
 public class StageLevelChanger : MonoBehaviour
 {
-    [SerializeField] protected int pointsFromWin = 50;
-
     protected SaveSerial saveSerial;
     protected ActiveLevelConfiguration activeLevelConfiguration;
     protected int[] startLevelConfigurationParameters;

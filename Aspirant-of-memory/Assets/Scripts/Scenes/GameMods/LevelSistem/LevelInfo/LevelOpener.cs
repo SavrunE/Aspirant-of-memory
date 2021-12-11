@@ -50,7 +50,7 @@ public class LevelOpener : MonoBehaviour
         }
         else
         {
-            Debug.Log("Have no points");
+            linksContainer.NoOpenLevelAnimation();
         }
     }
 
