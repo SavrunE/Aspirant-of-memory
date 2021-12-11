@@ -6,7 +6,6 @@ using IJunior.TypedScenes;
 
 public class StageLevelChanger : MonoBehaviour
 {
-    [SerializeField] protected int maxStageLevel = 5;
     [SerializeField] protected int pointsFromWin = 50;
 
     protected SaveSerial saveSerial;
@@ -45,7 +44,7 @@ public class StageLevelChanger : MonoBehaviour
 
     public void StageLevelComplete()
     {
-        if (activeLevelConfiguration.StageLevelNumberInfo() >= maxStageLevel)
+        if (activeLevelConfiguration.StageLevelNumberInfo() >= activeLevelConfiguration.MaxStageLevelNumberInfo())
         {
             if (activeLevelConfiguration.CurrentLevel == activeLevelConfiguration.MaxOpenLevel)
             {

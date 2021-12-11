@@ -44,6 +44,7 @@ public class LevelConfiguration : ScriptableObject
     public int RotateLength => RandomRangeOverSize(rotateOffset, rotateOffsetMaximumSpace);
 
     public int[] Parameters => new int[] {
+        maxStageLevel,
         buttonsCount, buttonsCountMaximumSpace,
         queueLength, queueLengthMaximumSpace,
         rotateOffset , rotateOffsetMaximumSpace,
@@ -98,6 +99,10 @@ public class LevelConfiguration : ScriptableObject
             return true;
         }
         return false;
+    }
+    public virtual int MaxStageLevelNumberInfo()
+    {
+        throw new System.NotImplementedException();
     }
 
     public virtual int StageLevelNumberInfo()

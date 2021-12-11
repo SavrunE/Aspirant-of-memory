@@ -8,6 +8,11 @@ public class ActiveLevelConfiguration : LevelConfiguration
     public int MaxOpenLevel { get; private set; }
     private int stageLevelNumber;
 
+    public virtual int MaxStageLevelNumberInfo()
+    {
+        return maxStageLevel;
+    }
+
     public override int StageLevelNumberInfo()
     {
         return stageLevelNumber;
@@ -61,6 +66,7 @@ public class ActiveLevelConfiguration : LevelConfiguration
     public void ChangeParameters(int[] changeValue)
     {
         int i = 0;
+        maxStageLevel = changeValue[i++];
         buttonsCount = changeValue[i++];
         buttonsCountMaximumSpace = changeValue[i++];
         queueLength = changeValue[i++];

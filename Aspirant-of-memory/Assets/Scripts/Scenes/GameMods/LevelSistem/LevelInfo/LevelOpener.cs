@@ -35,8 +35,6 @@ public class LevelOpener : MonoBehaviour
 
         float pointsSlashPayPrice = (points.PointsCount + 1f) / (payPrice + 1f);
 
-        Debug.Log(pointsSlashPayPrice + " " + LevelNumber + " " + points.PointsCount);
-
         noOpenLevelViewer.ChangeView(pointsSlashPayPrice, linksContainer.OpenTextColor, linksContainer.CloseTextColor);
     }
 

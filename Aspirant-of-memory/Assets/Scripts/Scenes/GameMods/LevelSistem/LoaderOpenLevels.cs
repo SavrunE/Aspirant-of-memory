@@ -16,9 +16,7 @@ public class LoaderOpenLevels : MonoBehaviour
 
             levelOpen.CloseLevel();
             levelOpen.SetLevelNumber(levelNumber);
-
         }
-
 
         foreach (int openLevel in openLevels)
         {

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-
 [RequireComponent(typeof(LevelOpener))]
 public class NoOpenLevelViewer : MonoBehaviour
 {
