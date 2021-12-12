@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsAfterWinStageLevel: 5000
   pointsAfterEndLevel: 800000
-  maxStageLevel: 5
+  maxStageLevel: 3
   buttonsCount: 6
   buttonsCountMaximumSpace: 0
   queueLength: 3

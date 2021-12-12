@@ -20,8 +20,27 @@ public class NoOpenLevelViewer : MonoBehaviour
 
         levelOpener = GetComponent<LevelOpener>();
         text = gameObject.GetComponentInChildren<Text>();
-        text.text = levelOpener.PayPrice().ToString();
+        text.text = ChangeIntToTextKK(levelOpener.PayPrice());
         ChangeColor(pointsSlashPayPrice, openTextColor, closeTextColor);
+    }
+
+    private string ChangeIntToTextKK(int price)
+    {
+        if (price % 1000000 == 0)
+        {
+            return (price / 1000000).ToString() + "kk"; 
+        }
+        else
+        {
+            if (price % 1000 == 0)
+            {
+                return (price / 1000).ToString() + "kk";
+            }
+            else
+            {
+                return price.ToString();
+            }
+        }
     }
 
     private void ChangeColor(float pointsSlashPayPrice, Color openTextColor, Color closeTextColor)

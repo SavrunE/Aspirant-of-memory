@@ -133,7 +133,6 @@ public class SaveSerial : MonoBehaviour
             OpenLevels.Add(level);
             Debug.Log($"Open level is saved by index {OpenLevels.IndexOf(level)}#");
             SaveOpenLevel();
-            OnMaxOpenLevelChanged(level);
         }
         if (level == 0)
         {

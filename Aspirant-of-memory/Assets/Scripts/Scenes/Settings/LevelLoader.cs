@@ -73,13 +73,18 @@ public class LevelLoader : MonoBehaviour
         {
             points.PointsIncrease(activeLevelConfiguration.PointsAfterEndLevel);
             Debug.Log("Win and load start window");
-            StartWindow.Load();
+            LoadStartWindow();
         }
         else
         {
             points.PointsIncrease(activeLevelConfiguration.PointsAfterWinStageLevel);
             stageLevelChanger.NextStageLevelLoad();
         }
+    }
+
+    public void LoadStartWindow()
+    {
+        StartWindow.Load();
     }
 
     private void LoseLevel()
