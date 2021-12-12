@@ -7,6 +7,7 @@ public class ScaleAnimation : MonoBehaviour
 {
     [SerializeField] private float scaleRangeChangeMultiplier;
     [SerializeField] private float scaleSpeedCnange;
+    [SerializeField] private Points points;
 
     public float FullTimeAnimation() => scaleSpeedCnange * 2f;
 
@@ -19,23 +20,27 @@ public class ScaleAnimation : MonoBehaviour
 
     private IEnumerator Changer()
     {
-        Vector3 startScale = transform.localScale;
+        Vector3 startTextScale = transform.localScale;
+        Vector3 startPointsScale = points.transform.localScale;
 
         ActivateObjectSwitcher activateObjectSwitcher = transform.parent.GetComponent<ActivateObjectSwitcher>();
 
         activateObjectSwitcher.Activate();
 
-        ChangeScale(startScale * scaleRangeChangeMultiplier);
+        ChangeScale(startTextScale * scaleRangeChangeMultiplier, this.gameObject);
+        ChangeScale(startPointsScale * scaleRangeChangeMultiplier, points.gameObject);
+
         yield return new WaitForSeconds(scaleSpeedCnange);
-        ChangeScale(startScale);
+        ChangeScale(startTextScale, this.gameObject);
+        ChangeScale(startPointsScale, points.gameObject);
 
         yield return new WaitForSeconds(scaleSpeedCnange);
         activateObjectSwitcher.Deactive();
     }
 
-    private void ChangeScale(Vector3 endScale)
+    private void ChangeScale(Vector3 endScale, GameObject transformObject)
     {
-        transform.DOScale(endScale, scaleSpeedCnange);
+        transformObject.transform.DOScale(endScale, scaleSpeedCnange);
     }
 
     private void ZeroValueChanger()
