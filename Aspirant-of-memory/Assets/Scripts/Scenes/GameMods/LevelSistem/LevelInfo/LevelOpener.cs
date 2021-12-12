@@ -28,12 +28,22 @@ public class LevelOpener : MonoBehaviour
         linksContainer = transform.parent.parent.parent.GetComponent<LinksContainer>();
     }
 
-    private void ChangeCloseView()
+    private void OnEnable()
     {
         points = linksContainer.Points;
+        points.OnPointsChanged += ChangeCloseView;
+    }
+
+    private void OnDisable()
+    {
+        points.OnPointsChanged -= ChangeCloseView;
+    }
+
+    private void ChangeCloseView(int pointsValue)
+    {
         noOpenLevelViewer = GetComponent<NoOpenLevelViewer>();
 
-        float pointsSlashPayPrice = (points.PointsCount + 1f) / (payPrice + 1f);
+        float pointsSlashPayPrice = (pointsValue + 1f) / (payPrice + 1f);
 
         noOpenLevelViewer.ChangeView(pointsSlashPayPrice, linksContainer.OpenTextColor, linksContainer.CloseTextColor);
     }
@@ -62,8 +72,9 @@ public class LevelOpener : MonoBehaviour
 
     public void CloseLevel()
     {
+        points = linksContainer.Points;
         LevelSwitcherInitialization();
-        ChangeCloseView();
+        ChangeCloseView(points.PointsCount);
         levelSwitcher.CloseLevel();
     }
 

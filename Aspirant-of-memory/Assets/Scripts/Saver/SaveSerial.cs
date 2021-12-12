@@ -25,6 +25,7 @@ public class SaveSerial : MonoBehaviour
 
     public void LoadGame()
     {
+        ResetData();
         if (File.Exists(Application.persistentDataPath
           + "/MySaveData.dat"))
         {

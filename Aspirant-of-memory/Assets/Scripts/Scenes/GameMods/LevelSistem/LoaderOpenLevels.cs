@@ -5,9 +5,11 @@ using UnityEngine;
 public class LoaderOpenLevels : MonoBehaviour
 {
     private LevelOpener[] levelOpeners;
+    private List<int> openLevels;
 
     public void LoadOpenLevels(List<int> openLevels)
     {
+        this.openLevels = openLevels;
         levelOpeners = GetComponentsInChildren<LevelOpener>();
         int levelNumber = 0;
         foreach (LevelOpener levelOpen in levelOpeners)
@@ -20,8 +22,6 @@ public class LoaderOpenLevels : MonoBehaviour
 
         foreach (int openLevel in openLevels)
         {
-            levelNumber++;
-
             foreach (LevelOpener levelOpen in levelOpeners)
             {
                 if (levelOpen.LevelNumber == openLevel)

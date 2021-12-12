@@ -34,7 +34,7 @@ public class NoOpenLevelViewer : MonoBehaviour
         {
             if (price % 1000 == 0)
             {
-                return (price / 1000).ToString() + "kk";
+                return (price / 1000).ToString() + "k";
             }
             else
             {
