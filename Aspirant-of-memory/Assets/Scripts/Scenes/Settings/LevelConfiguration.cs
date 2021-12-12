@@ -6,7 +6,9 @@ using UnityEngine;
 public class LevelConfiguration : ScriptableObject
 {
     [SerializeField] protected int pointsAfterWinStageLevel = 10;
+    [SerializeField] protected int pointsAfterEndLevel = 100;
     public int PointsAfterWinStageLevel => pointsAfterWinStageLevel;
+    public int PointsAfterEndLevel => pointsAfterEndLevel;
 
     public int CurrentLevel { get; private set; }
 
@@ -48,7 +50,7 @@ public class LevelConfiguration : ScriptableObject
         buttonsCount, buttonsCountMaximumSpace,
         queueLength, queueLengthMaximumSpace,
         rotateOffset , rotateOffsetMaximumSpace,
-        pointsAfterWinStageLevel };
+        pointsAfterWinStageLevel, pointsAfterEndLevel };
 
     private int RandomRangeOverSize(int baseValue, int overValue)
     {

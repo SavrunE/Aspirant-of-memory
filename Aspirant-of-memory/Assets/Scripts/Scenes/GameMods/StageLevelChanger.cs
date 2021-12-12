@@ -34,35 +34,6 @@ public class StageLevelChanger : MonoBehaviour
         this.startLevelConfigurationParameters = parameters;
     }
 
-    public void ChangeConfigurationsValuesOnWinStageLevel() 
-    {
-        UpdatePoints(GetComponent<Points>().PointsCount);
-        saveSerial.SaveParameters(CurrentPoints);
-    }
-
-    public void StageLevelComplete()
-    {
-        if (activeLevelConfiguration.StageLevelNumberInfo() >= activeLevelConfiguration.MaxStageLevelNumberInfo())
-        {
-            if (activeLevelConfiguration.CurrentLevel == activeLevelConfiguration.MaxOpenLevel)
-            {
-                Debug.Log("On smog");
-                IncreaseMaxOpenLevel();
-            }
-            Debug.Log("Win and load start window");
-            StartWindow.Load();
-        }
-        else
-        {
-            NextStageLevelLoad();
-        }
-    }
-
-    private void IncreaseMaxOpenLevel()
-    {
-        saveSerial.SaveParameters(CurrentPoints, activeLevelConfiguration.MaxOpenLevel + 1);
-    }
-
     public void NextStageLevelLoad()
     {
         activeLevelConfiguration.IncreaseStageLevelNumber();
@@ -70,6 +41,12 @@ public class StageLevelChanger : MonoBehaviour
         ChangeConfigurationsValuesOnWinStageLevel();
         Debug.Log("Win and increased stage level");
         DefaultLevel.Load(activeLevelConfiguration);
+    }
+
+    public void ChangeConfigurationsValuesOnWinStageLevel()
+    {
+        UpdatePoints(GetComponent<Points>().PointsCount);
+        saveSerial.SaveParameters(CurrentPoints);
     }
 
     public void RestartLevel()

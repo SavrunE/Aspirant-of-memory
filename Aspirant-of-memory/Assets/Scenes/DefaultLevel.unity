@@ -451,8 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f55ce39b5aa5d4795d7f703530abea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStageLevel: 5
-  pointsFromWin: 50
 --- !u!114 &514014632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,6 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeLevelConfiguration: {fileID: 11400000, guid: f6c1606df9e314f449b3904f08565fd9, type: 2}
+  saveSerial: {fileID: 0}
 --- !u!114 &514014633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1066,7 +1065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1143484460
 RectTransform:
   m_ObjectHideFlags: 0

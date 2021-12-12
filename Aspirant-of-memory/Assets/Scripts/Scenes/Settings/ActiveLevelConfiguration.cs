@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ActiveLevelConfiguration", menuName = "ActiveLevelConfiguration")]
 public class ActiveLevelConfiguration : LevelConfiguration
 {
-    public int MaxOpenLevel { get; private set; }
     private int stageLevelNumber;
 
     public override int MaxStageLevelNumberInfo()
@@ -48,11 +47,6 @@ public class ActiveLevelConfiguration : LevelConfiguration
         rotateOffsetMaximumSpace++;
     }
 
-    public void ChangeMaxOpenLevel(int newMaxOpenLevel)
-    {
-        MaxOpenLevel = newMaxOpenLevel;
-    }
-
     public override void IncreaseStageLevelNumber()
     {
         stageLevelNumber++;
@@ -74,6 +68,7 @@ public class ActiveLevelConfiguration : LevelConfiguration
         rotateOffset = changeValue[i++];
         rotateOffsetMaximumSpace = changeValue[i++];
         pointsAfterWinStageLevel = changeValue[i++];
+        pointsAfterEndLevel = changeValue[i++];
     }
 
     public override void ResetStageLevelNumber()

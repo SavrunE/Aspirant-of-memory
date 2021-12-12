@@ -12,7 +12,6 @@ class SaveData
     public int[] OpenLevels;
 }
 
-[RequireComponent(typeof(ConfigurationChanger))]
 public class SaveSerial : MonoBehaviour
 {
     public int PointsCurrentValue { get; private set; }

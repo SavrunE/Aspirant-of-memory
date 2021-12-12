@@ -68,8 +68,18 @@ public class LevelLoader : MonoBehaviour
         float waitTime = spinnerAnimation.WinAnimation();
         yield return new WaitForSeconds(waitTime);
 
-        points.PointsIncrease(activeLevelConfiguration.PointsAfterWinStageLevel);
-        stageLevelChanger.StageLevelComplete();
+
+        if (activeLevelConfiguration.StageLevelNumberInfo() >= activeLevelConfiguration.MaxStageLevelNumberInfo())
+        {
+            points.PointsIncrease(activeLevelConfiguration.PointsAfterEndLevel);
+            Debug.Log("Win and load start window");
+            StartWindow.Load();
+        }
+        else
+        {
+            points.PointsIncrease(activeLevelConfiguration.PointsAfterWinStageLevel);
+            stageLevelChanger.NextStageLevelLoad();
+        }
     }
 
     private void LoseLevel()

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12e7a17b15722f34bac1b2a3d0335e6b, type: 3}
-  m_Name: 5buttons
+  m_Name: 2 4buttons
   m_EditorClassIdentifier: 
-  pointsAfterWinStageLevel: 20
+  pointsAfterWinStageLevel: 15
+  pointsAfterEndLevel: 150
   maxStageLevel: 5
-  buttonsCount: 5
+  buttonsCount: 4
   buttonsCountMaximumSpace: 0
   queueLength: 3
   queueLengthMaximumSpace: 0
