@@ -6,7 +6,7 @@ using UnityEngine;
 public class ColorChanger : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
-    private float minimumEffectAlpha;
+
     private float maximumEffectAlpha;
     private float speedEffectChanger;
     private float baseAlpha;
@@ -23,7 +23,6 @@ public class ColorChanger : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        minimumEffectAlpha = ColorSettings.Instance.minimumEffectAlpha;
         maximumEffectAlpha = ColorSettings.Instance.maximumEffectAlpha;
         speedEffectChanger = ColorSettings.Instance.speedEffectChanger;
         baseAlpha = spriteRenderer.color.a;
@@ -34,6 +33,7 @@ public class ColorChanger : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = ColorSettings.Instance.colors[element];
     }
+
     public void ChangeBaseColor(int element, float colorAlpha)
     {
         spriteRenderer = GetComponent<SpriteRenderer>();

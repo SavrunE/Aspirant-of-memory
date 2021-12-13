@@ -14,8 +14,6 @@ public class ColorSettings : MonoBehaviour
     public float speedEffectChanger = 0.01f;
     public float effectAlpha = 0.2f;
 
-    private Sequence sequence;
-
     private void Awake()
     {
         if (Instance == null)
@@ -26,7 +24,5 @@ public class ColorSettings : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        sequence = GetComponent<Sequence>();
     }
 }

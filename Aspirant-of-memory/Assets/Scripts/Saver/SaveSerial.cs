@@ -25,7 +25,7 @@ public class SaveSerial : MonoBehaviour
 
     public void LoadGame()
     {
-        ResetData();
+        //ResetData();
         if (File.Exists(Application.persistentDataPath
           + "/MySaveData.dat"))
         {
@@ -110,7 +110,7 @@ public class SaveSerial : MonoBehaviour
     public void ChangeData(int points, int level)
     {
         CreateBinarySettings();
-        
+
         data.PlayersCurrentPoints = points;
 
         OpenLevel(level);
