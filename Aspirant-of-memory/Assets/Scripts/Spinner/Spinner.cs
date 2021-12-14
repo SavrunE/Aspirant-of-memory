@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class Spinner : MonoBehaviour
 {
+    private float horizontalCameraValue;
+
     [SerializeField] private float normalScale;
-    public float NormalScale => normalScale;
-    private void Start()
+
+    //* horizontalCameraValue
+    public float NormalScale => normalScale * horizontalCameraValue;
+
+
+    private void Awake()
     {
+        horizontalCameraValue = Camera.main.aspect;
         if (normalScale < 0.1f)
         {
-            Debug.Log("Scale so small" + this);
+            normalScale = 1f;
+            Debug.Log("Change small scale for 1" + this);
         }
     }
 }
