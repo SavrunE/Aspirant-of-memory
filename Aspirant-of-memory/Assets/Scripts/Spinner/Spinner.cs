@@ -20,5 +20,7 @@ public class Spinner : MonoBehaviour
             normalScale = 1f;
             Debug.Log("Change small scale for 1" + this);
         }
+
+        Debug.Log((int)(1841/1000));
     }
 }
