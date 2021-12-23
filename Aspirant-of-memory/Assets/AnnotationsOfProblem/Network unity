@@ -1,0 +1,136 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Networking;
+using System.Net.Http;
+
+public class GetFile : MonoBehaviour
+{
+    [SerializeField] private InputFieled outputArea;
+
+    public int TimeDCM { get; private set; }
+
+    private string urlLinkTime100 = "https://time100.ru/";//have no seconds
+    private string urlLinkTimeIsRuMoscow = "https://time.is/ru/Moscow";//error Forbidden
+    private string urlLinkMoskovskoeVremja = "https://https://moskovskoe.vremja.org/";// error System.Net.WebConnection+<Connect>d__16.MoveNext ()
+    private string urlLinkTochnoeMoskovskoeVremya = "https://tochnoe-moskovskoe-vremya.ru/vremya/moscow";
+    private string urlLinkUnnRu = "http://www.unn.ru/time/";
+
+    public void GetDataTime100() => TakeTimeJson(urlLinkTime100,
+        new string[] { "Europe/Moscow", "</span>" });
+    public void GetDataTimeIsRuMoscow() => TakeTimeJson(urlLinkTimeIsRuMoscow,
+        new string[] { "<time", "</time>" });
+    public void GetDataMoskovskoeVremja() => TakeTimeJson(urlLinkMoskovskoeVremja,
+        new string[] { "Timer", "</div>" });
+    public void GetDataTochnoeMoskovskoeVremya() => TakeTimeUWR(urlLinkTochnoeMoskovskoeVremya,
+       new string[] { "dclock__number dclock__hours", "<span",
+        "dclock__number dclock__minutes", "<span" ,
+        "dclock__number dclock__seconds", "<span" ,
+       });
+    public void GetDataUnnRu() => TakeTimeUWR(urlLinkUnnRu,
+       new string[] { "servertime", "/div" });
+
+    private void Start()
+    {
+        GetDataTochnoeMoskovskoeVremya();
+        GetDataUnnRu();
+    }
+
+    private void TakeTimeUWR(string urlLink, string[] betweenValues)
+    {
+        StartCoroutine(GetData_Coroutine(urlLink, betweenValues));
+    }
+
+    private void TakeTimeJson(string urlLink, string[] betweenValues)
+    {
+        GetData_Json(urlLink, betweenValues);
+    }
+
+    private IEnumerator GetData_Coroutine(string urlLink, string[] betweenValues)
+    {
+        Debug.Log("Show Loader...");
+
+        using (UnityWebRequest request = UnityWebRequest.Get(urlLink))
+        {
+            yield return request.SendWebRequest();
+            if (request.isNetworkError || request.isHttpError)
+            {
+                Debug.Log("Error isNetworkError");
+            }
+            else
+            {
+                string cutString = request.downloadHandler.text;
+                FindBetweenValues(betweenValues, cutString);
+            }
+        }
+    }
+
+    private async void GetData_Json(string urlLink, string[] betweenValues)
+    {
+        using (var httpClient = new HttpClient())
+        {
+            var response = await httpClient.GetAsync(urlLink);
+            if (response.IsSuccessStatusCode)
+            {
+                string cutString = await response.Content.ReadAsStringAsync();
+                FindBetweenValues(betweenValues, cutString);
+            }
+            else
+            {
+                Debug.Log(response.ReasonPhrase);
+            }
+        }
+    }
+
+    private void FindBetweenValues(string[] betweenValues, string cutString)
+    {
+        if (betweenValues.Length != 0 && betweenValues.Length % 2 == 0)
+        {
+            string endString = "";
+            for (int i = 0; i < betweenValues.Length; i += 2)
+            {
+                string value = GetBetween(cutString, betweenValues[i], betweenValues[i + 1]);
+                value = GetBetween(value, ">", "<");
+                value = CutColon(value);
+
+                endString += value;
+            }
+
+            bool success = int.TryParse(endString, out int parsedTime);
+
+            if (success)
+            {
+                TimeDCM = parsedTime;
+                Debug.Log(TimeDCM);
+            }
+            else
+            {
+                Debug.Log("Can't parse" + endString);
+            }
+        }
+        else
+        {
+            Debug.Log(betweenValues.Length + " must contain even numbers");
+        }
+    }
+
+
+    private string GetBetween(string strSource, string strStart, string strEnd)
+    {
+        if (strSource.Contains(strStart) && strSource.Contains(strEnd))
+        {
+            int Start, End;
+            Start = strSource.IndexOf(strStart, 0) + strStart.Length;
+            End = strSource.IndexOf(strEnd, Start);
+            return strSource.Substring(Start, End - Start);
+        }
+
+        return "";
+    }
+
+    private string CutColon(string strSource)
+    {
+        return strSource.Replace(":", string.Empty);
+    }
+}

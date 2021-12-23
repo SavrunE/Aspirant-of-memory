@@ -10,7 +10,6 @@ public class TrigerBackLine : MonoBehaviour
     {
         if (collision.TryGetComponent<TrigerTopLine>(out TrigerTopLine triger))
         {
-            Debug.Log("Here");
             triger.ChangeYBackground();
         }
     }

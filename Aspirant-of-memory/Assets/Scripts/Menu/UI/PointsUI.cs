@@ -25,16 +25,25 @@ public class PointsUI : MonoBehaviour
     }
     public void ChangeText(int value)
     {
-        if (value > 10000000)
+        if (value > 10000)
         {
-            text.text = ((int)(value/1000000)).ToString() + "kk";
+
+
+            if (value > 10000000)
+            {
+                text.text = ((int)(value / 1000000)).ToString() + "kk";
+            }
+            else
+            {
+                if (value > 10000)
+                {
+                    text.text = ((int)(value / 1000)).ToString() + "k";
+                }
+            }
         }
         else
         {
-            if (value > 10000)
-            {
-                text.text = ((int)(value / 1000)).ToString() + "k";
-            }
+            text.text = value.ToString();
         }
     }
 }
