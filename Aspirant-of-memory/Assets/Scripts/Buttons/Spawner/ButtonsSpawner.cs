@@ -1,14 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using IJunior.TypedScenes;
-
 
 [RequireComponent(typeof(Sequence))]
 public class ButtonsSpawner : MonoBehaviour, ISceneLoadHandler<ActiveLevelConfiguration>
 {
     [SerializeField] private int ButtonsCount;
     [SerializeField] private ButtonRotator buttonRotatorTemplate;
+    [SerializeField] private float buttonRadius = 1f;
+    [SerializeField] private float buttonScale= 1f;
     private Sequence sequence;
 
     public float angleRotation => 360f / ButtonsCount;
@@ -31,8 +31,10 @@ public class ButtonsSpawner : MonoBehaviour, ISceneLoadHandler<ActiveLevelConfig
             buttonRotator = Instantiate(buttonRotatorTemplate, this.transform);
             childButtons.Add(buttonRotator.GetComponentInChildren<Button>());
 
-            buttonRotator.transform.eulerAngles = new Vector3(0, 0, angleRotation * i);
-        }
+			buttonRotator.SetRadiusScale(buttonRadius, buttonScale);
+			buttonRotator.transform.eulerAngles = new Vector3(0, 0, angleRotation * i);
+
+		}
         sequence.CollectSequence(childButtons);
     }
 }

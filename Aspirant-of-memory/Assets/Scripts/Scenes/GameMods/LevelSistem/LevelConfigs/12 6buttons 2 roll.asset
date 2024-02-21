@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 12 6buttons 2 roll
   m_EditorClassIdentifier: 
   pointsAfterWinStageLevel: 50000
-  pointsAfterEndLevel: 800000
+  pointsAfterEndLevel: 850000
   maxStageLevel: 3
   buttonsCount: 6
   buttonsCountMaximumSpace: 0
