@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Test.unity
     guid: 70244a9fe6a9f2a4cae53381eb90283f
+  - enabled: 0
+    path: Assets/Scenes/preLoadScene.unity
+    guid: a7fa5875196146a428d942555fadbb37
   m_configObjects: {}
