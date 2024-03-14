@@ -41,5 +41,11 @@ class VoUnityEditorExtensionsSceneList
 		EditorSceneManager.OpenScene("Assets/Scenes/preLoadScene.unity");
 	}
 
+	[MenuItem("VoEditor/LoadScene/ExampleYG")]
+	public static void LoadScene_ExampleYG()
+	{
+		EditorSceneManager.OpenScene("Assets/YandexGame/Example/Scenes/ExampleYG.unity");
+	}
+
 }
 #endif

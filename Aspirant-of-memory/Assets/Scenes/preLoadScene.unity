@@ -169,6 +169,12 @@ MonoBehaviour:
   - name: DefaultLevel
     uuid: 5e3a76ab-4495-402d-a113-e8af2c56a894
     path: Assets/Scenes/DefaultLevel.unity
+  - name: preLoadScene
+    uuid: 2bd88832-0c7b-4eb4-adee-e7d2f881e596
+    path: Assets/Scenes/preLoadScene.unity
+  - name: ExampleYG
+    uuid: b907b3f0-4421-442f-96a3-c484227d413e
+    path: Assets/YandexGame/Example/Scenes/ExampleYG.unity
 --- !u!4 &234636919
 Transform:
   m_ObjectHideFlags: 0

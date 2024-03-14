@@ -1,9 +1,10 @@
 {
-    "idSave": 4,
+    "idSave": 5,
     "isFirstSession": false,
-    "language": "en",
+    "language": "ru",
     "promptDone": false,
     "money": 2132,
+    "points": 21,
     "newPlayerName": "ячсячс",
     "openLevels": [
         false,
