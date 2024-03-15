@@ -882,6 +882,7 @@ GameObject:
   - component: {fileID: 896513937}
   - component: {fileID: 896513936}
   - component: {fileID: 896513935}
+  - component: {fileID: 896513938}
   m_Layer: 5
   m_Name: StartGameButton
   m_TagString: Untagged
@@ -931,11 +932,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.16470589}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.16470589}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.16470589}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.16470589}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.08235294}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -998,8 +999,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -8918964801076769200, guid: bb3fa5b1a779ce747908ff84efc57379, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1016,6 +1017,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896513933}
   m_CullTransparentMesh: 1
+--- !u!114 &896513938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896513933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7246d6a0a05dd1e49817ddf9091b653f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 896513936}
+  _sprites:
+  - {fileID: 3105465659968702117, guid: 14a8a7dd67cb75d48a023521ad093950, type: 3}
+  - {fileID: -8918964801076769200, guid: 14a8a7dd67cb75d48a023521ad093950, type: 3}
+  - {fileID: -5776882744629981960, guid: 14a8a7dd67cb75d48a023521ad093950, type: 3}
+  - {fileID: 1698407636139500275, guid: 14a8a7dd67cb75d48a023521ad093950, type: 3}
+  - {fileID: -7863607329394978311, guid: 14a8a7dd67cb75d48a023521ad093950, type: 3}
+  - {fileID: -1853957442731252549, guid: 14a8a7dd67cb75d48a023521ad093950, type: 3}
+  - {fileID: 3847620392635639066, guid: 14a8a7dd67cb75d48a023521ad093950, type: 3}
+  - {fileID: 8659586871654961535, guid: 14a8a7dd67cb75d48a023521ad093950, type: 3}
+  - {fileID: -7349239812924223867, guid: 14a8a7dd67cb75d48a023521ad093950, type: 3}
 --- !u!1 &1143484459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,7 +1925,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start Game!
+  m_Text: 
 --- !u!222 &1918338516
 CanvasRenderer:
   m_ObjectHideFlags: 0
