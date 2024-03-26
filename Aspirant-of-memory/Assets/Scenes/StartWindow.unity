@@ -21184,6 +21184,10 @@ PrefabInstance:
       propertyPath: infoYG
       value: 
       objectReference: {fileID: 11400000, guid: 3bf212fb295a47a43b0fd712f3d297b7, type: 2}
+    - target: {fileID: 2211564899198745196, guid: caf9732433f4dc044845763962493607, type: 3}
+      propertyPath: singleton
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211564899198745197, guid: caf9732433f4dc044845763962493607, type: 3}
       propertyPath: m_Name
       value: YandexGame
